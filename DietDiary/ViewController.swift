@@ -14,7 +14,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
 
     var db: Firestore!
     
-    @IBOutlet weak var FBLoginButton: FBLoginButton!
+    @IBOutlet weak var fbLoginButton: FBLoginButton!
     
 
 
@@ -25,8 +25,8 @@ class ViewController: UIViewController, LoginButtonDelegate {
         db = Firestore.firestore()
         
         //permissions
-        self.FBLoginButton.permissions = ["public_profile","email"]
-        self.FBLoginButton.delegate = self
+        self.fbLoginButton.permissions = ["public_profile","email"]
+        self.fbLoginButton.delegate = self
         Profile.enableUpdatesOnAccessTokenChange(true)
         //註冊通知-當登入帳號有改變時會發送通知FBSDKProfileDidChangeNotification
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateProfile), name: NSNotification.Name.ProfileDidChange, object: nil)
