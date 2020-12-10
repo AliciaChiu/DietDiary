@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5383B988F6E871D5F3D91D74 /* Pods_DietDiary_DietDiaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A27ED4E411A5AF676BDE7C84 /* Pods_DietDiary_DietDiaryUITests.framework */; };
+		BF30C2562FC1486CCBF0D50B /* Pods_DietDiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08BCCF6C4301EF2027710A3C /* Pods_DietDiaryTests.framework */; };
+		E24AD954E6A7940C7E87D3A1 /* Pods_DietDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C934803F8446F2A2AA2AF5BC /* Pods_DietDiary.framework */; };
 		F23C5431258260BA000D6281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C5430258260BA000D6281 /* AppDelegate.swift */; };
 		F23C5433258260BA000D6281 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C5432258260BA000D6281 /* SceneDelegate.swift */; };
 		F23C5435258260BA000D6281 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C5434258260BA000D6281 /* ViewController.swift */; };
@@ -36,6 +39,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0816AB5A06C16332D4DD9BCC /* Pods-DietDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietDiary.release.xcconfig"; path = "Target Support Files/Pods-DietDiary/Pods-DietDiary.release.xcconfig"; sourceTree = "<group>"; };
+		08BCCF6C4301EF2027710A3C /* Pods_DietDiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietDiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		378CC762D5D77A182E70EDAC /* Pods-DietDiary-DietDiaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietDiary-DietDiaryUITests.release.xcconfig"; path = "Target Support Files/Pods-DietDiary-DietDiaryUITests/Pods-DietDiary-DietDiaryUITests.release.xcconfig"; sourceTree = "<group>"; };
+		94015A2B5A0444E327DEF157 /* Pods-DietDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-DietDiaryTests/Pods-DietDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		99B7779E89FC33674CB85063 /* Pods-DietDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietDiary.debug.xcconfig"; path = "Target Support Files/Pods-DietDiary/Pods-DietDiary.debug.xcconfig"; sourceTree = "<group>"; };
+		A27ED4E411A5AF676BDE7C84 /* Pods_DietDiary_DietDiaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietDiary_DietDiaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD0382221006F43CE95B57B6 /* Pods-DietDiary-DietDiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietDiary-DietDiaryUITests.debug.xcconfig"; path = "Target Support Files/Pods-DietDiary-DietDiaryUITests/Pods-DietDiary-DietDiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C934803F8446F2A2AA2AF5BC /* Pods_DietDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F23C542D258260BA000D6281 /* DietDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DietDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F23C5430258260BA000D6281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F23C5432258260BA000D6281 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +62,7 @@
 		F23C5451258260BE000D6281 /* DietDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DietDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F23C5455258260BE000D6281 /* DietDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietDiaryUITests.swift; sourceTree = "<group>"; };
 		F23C5457258260BE000D6281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAD466FD98B2BE62B9D51401 /* Pods-DietDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-DietDiaryTests/Pods-DietDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E24AD954E6A7940C7E87D3A1 /* Pods_DietDiary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF30C2562FC1486CCBF0D50B /* Pods_DietDiaryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +86,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5383B988F6E871D5F3D91D74 /* Pods_DietDiary_DietDiaryUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E9167F129D5FB0A86BD9905 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C934803F8446F2A2AA2AF5BC /* Pods_DietDiary.framework */,
+				A27ED4E411A5AF676BDE7C84 /* Pods_DietDiary_DietDiaryUITests.framework */,
+				08BCCF6C4301EF2027710A3C /* Pods_DietDiaryTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		81657D0E8A6B9C5E31B9A24F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				99B7779E89FC33674CB85063 /* Pods-DietDiary.debug.xcconfig */,
+				0816AB5A06C16332D4DD9BCC /* Pods-DietDiary.release.xcconfig */,
+				AD0382221006F43CE95B57B6 /* Pods-DietDiary-DietDiaryUITests.debug.xcconfig */,
+				378CC762D5D77A182E70EDAC /* Pods-DietDiary-DietDiaryUITests.release.xcconfig */,
+				94015A2B5A0444E327DEF157 /* Pods-DietDiaryTests.debug.xcconfig */,
+				FAD466FD98B2BE62B9D51401 /* Pods-DietDiaryTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F23C5424258260BA000D6281 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +124,8 @@
 				F23C5449258260BE000D6281 /* DietDiaryTests */,
 				F23C5454258260BE000D6281 /* DietDiaryUITests */,
 				F23C542E258260BA000D6281 /* Products */,
+				81657D0E8A6B9C5E31B9A24F /* Pods */,
+				4E9167F129D5FB0A86BD9905 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,9 +179,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F23C545A258260BE000D6281 /* Build configuration list for PBXNativeTarget "DietDiary" */;
 			buildPhases = (
+				D57AB06EB277C5883256AF6F /* [CP] Check Pods Manifest.lock */,
 				F23C5429258260BA000D6281 /* Sources */,
 				F23C542A258260BA000D6281 /* Frameworks */,
 				F23C542B258260BA000D6281 /* Resources */,
+				DAF6A3A0D8467F8A9791471F /* [CP] Embed Pods Frameworks */,
+				9A5D1B39008D33210C18059F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,6 +199,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F23C545D258260BE000D6281 /* Build configuration list for PBXNativeTarget "DietDiaryTests" */;
 			buildPhases = (
+				C8445B74C6079697B59CDED6 /* [CP] Check Pods Manifest.lock */,
 				F23C5442258260BE000D6281 /* Sources */,
 				F23C5443258260BE000D6281 /* Frameworks */,
 				F23C5444258260BE000D6281 /* Resources */,
@@ -173,9 +218,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F23C5460258260BE000D6281 /* Build configuration list for PBXNativeTarget "DietDiaryUITests" */;
 			buildPhases = (
+				4DDCB10487D7C5F9328071D2 /* [CP] Check Pods Manifest.lock */,
 				F23C544D258260BE000D6281 /* Sources */,
 				F23C544E258260BE000D6281 /* Frameworks */,
 				F23C544F258260BE000D6281 /* Resources */,
+				9C152EC4348C1D05488D4AFC /* [CP] Embed Pods Frameworks */,
+				37540A45C35772DB113ACD78 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -255,6 +303,143 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		37540A45C35772DB113ACD78 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DietDiary-DietDiaryUITests/Pods-DietDiary-DietDiaryUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DietDiary-DietDiaryUITests/Pods-DietDiary-DietDiaryUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DietDiary-DietDiaryUITests/Pods-DietDiary-DietDiaryUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4DDCB10487D7C5F9328071D2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DietDiary-DietDiaryUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A5D1B39008D33210C18059F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DietDiary/Pods-DietDiary-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DietDiary/Pods-DietDiary-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DietDiary/Pods-DietDiary-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C152EC4348C1D05488D4AFC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DietDiary-DietDiaryUITests/Pods-DietDiary-DietDiaryUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DietDiary-DietDiaryUITests/Pods-DietDiary-DietDiaryUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DietDiary-DietDiaryUITests/Pods-DietDiary-DietDiaryUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8445B74C6079697B59CDED6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DietDiaryTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D57AB06EB277C5883256AF6F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DietDiary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAF6A3A0D8467F8A9791471F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DietDiary/Pods-DietDiary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DietDiary/Pods-DietDiary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DietDiary/Pods-DietDiary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F23C5429258260BA000D6281 /* Sources */ = {
@@ -437,6 +622,7 @@
 		};
 		F23C545B258260BE000D6281 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99B7779E89FC33674CB85063 /* Pods-DietDiary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -456,6 +642,7 @@
 		};
 		F23C545C258260BE000D6281 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0816AB5A06C16332D4DD9BCC /* Pods-DietDiary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -475,6 +662,7 @@
 		};
 		F23C545E258260BE000D6281 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94015A2B5A0444E327DEF157 /* Pods-DietDiaryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -497,6 +685,7 @@
 		};
 		F23C545F258260BE000D6281 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FAD466FD98B2BE62B9D51401 /* Pods-DietDiaryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -519,6 +708,7 @@
 		};
 		F23C5461258260BE000D6281 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD0382221006F43CE95B57B6 /* Pods-DietDiary-DietDiaryUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -539,6 +729,7 @@
 		};
 		F23C5462258260BE000D6281 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 378CC762D5D77A182E70EDAC /* Pods-DietDiary-DietDiaryUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
