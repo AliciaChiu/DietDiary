@@ -14,6 +14,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
 
     var db: Firestore!
     
+    
     @IBOutlet weak var fbLoginButton: FBLoginButton!
     
 
@@ -30,8 +31,12 @@ class ViewController: UIViewController, LoginButtonDelegate {
         Profile.enableUpdatesOnAccessTokenChange(true)
         //註冊通知-當登入帳號有改變時會發送通知FBSDKProfileDidChangeNotification
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateProfile), name: NSNotification.Name.ProfileDidChange, object: nil)
-        self.updateProfile()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.updateProfile()
     }
     
     @objc func updateProfile() {
@@ -57,6 +62,10 @@ class ViewController: UIViewController, LoginButtonDelegate {
                     print("birthday = \(birthday)")
                 }
             })
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "UserInfoOneVCNav") as! UINavigationController
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
         }
     }
 

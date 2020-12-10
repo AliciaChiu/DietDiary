@@ -20,6 +20,7 @@
 		F23C5456258260BE000D6281 /* DietDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C5455258260BE000D6281 /* DietDiaryUITests.swift */; };
 		F23C54A825826665000D6281 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F23C54A725826665000D6281 /* GoogleService-Info.plist */; };
 		F23C54B925826715000D6281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23C54B725826715000D6281 /* Main.storyboard */; };
+		F2B6E1F9258274AA0008C3B7 /* UserInfoOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B6E1F8258274AA0008C3B7 /* UserInfoOneVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		F23C5457258260BE000D6281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F23C54A725826665000D6281 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F23C54B825826715000D6281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F2B6E1F8258274AA0008C3B7 /* UserInfoOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoOneVC.swift; sourceTree = "<group>"; };
 		FAD466FD98B2BE62B9D51401 /* Pods-DietDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-DietDiaryTests/Pods-DietDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +149,7 @@
 				F23C5430258260BA000D6281 /* AppDelegate.swift */,
 				F23C5432258260BA000D6281 /* SceneDelegate.swift */,
 				F23C5434258260BA000D6281 /* ViewController.swift */,
+				F2B6E1F8258274AA0008C3B7 /* UserInfoOneVC.swift */,
 				F23C543C258260BE000D6281 /* Assets.xcassets */,
 				F23C543E258260BE000D6281 /* LaunchScreen.storyboard */,
 				F23C5441258260BE000D6281 /* Info.plist */,
@@ -453,6 +456,7 @@
 				F23C543B258260BA000D6281 /* DietDiary.xcdatamodeld in Sources */,
 				F23C5431258260BA000D6281 /* AppDelegate.swift in Sources */,
 				F23C5433258260BA000D6281 /* SceneDelegate.swift in Sources */,
+				F2B6E1F9258274AA0008C3B7 /* UserInfoOneVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
