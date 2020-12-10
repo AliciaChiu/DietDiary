@@ -9,10 +9,16 @@ import UIKit
 
 class UserInfoOneVC: UIViewController {
 
+    @IBOutlet weak var genderView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.title = "基本資料"
+        genderView.layer.cornerRadius = 15.0
+        genderView.layer.borderWidth = 2.0
+        genderView.layer.borderColor = UIColor(red: 245/255, green: 215/255, blue: 223/255, alpha: 1).cgColor
+        genderView.clipsToBounds = true
+        
     }
     
 
