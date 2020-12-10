@@ -8,14 +8,46 @@
 import UIKit
 import CoreData
 import Firebase
+import FBSDKCoreKit
+import Reachability
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var reachability: Reachability?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        do{
+            self.reachability = try Reachability()
+            try self.reachability?.startNotifier() //開始發送通知
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.reachabilityStatus), name: .reachabilityChanged, object: nil)
+        }catch{
+           print("error while init Reachability \(error)")
+        }
         FirebaseApp.configure()
         return true
+    }
+    
+    @objc func reachabilityStatus(){
+        switch self.reachability?.connection {
+        case .wifi:
+            print("wifi")
+        case .cellular:
+            print("4G or 5G")
+        case .none?:
+            print("沒有網路")
+        case .unavailable:
+            print("沒有網路")
+        default:
+            print("error")
+        }
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return ApplicationDelegate.shared.application(app, open: url, options: options)
     }
 
     // MARK: UISceneSession Lifecycle
