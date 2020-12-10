@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,12 +13,13 @@
 		F23C5431258260BA000D6281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C5430258260BA000D6281 /* AppDelegate.swift */; };
 		F23C5433258260BA000D6281 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C5432258260BA000D6281 /* SceneDelegate.swift */; };
 		F23C5435258260BA000D6281 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C5434258260BA000D6281 /* ViewController.swift */; };
-		F23C5438258260BA000D6281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23C5436258260BA000D6281 /* Main.storyboard */; };
 		F23C543B258260BA000D6281 /* DietDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F23C5439258260BA000D6281 /* DietDiary.xcdatamodeld */; };
 		F23C543D258260BE000D6281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F23C543C258260BE000D6281 /* Assets.xcassets */; };
 		F23C5440258260BE000D6281 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23C543E258260BE000D6281 /* LaunchScreen.storyboard */; };
 		F23C544B258260BE000D6281 /* DietDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C544A258260BE000D6281 /* DietDiaryTests.swift */; };
 		F23C5456258260BE000D6281 /* DietDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C5455258260BE000D6281 /* DietDiaryUITests.swift */; };
+		F23C54A825826665000D6281 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F23C54A725826665000D6281 /* GoogleService-Info.plist */; };
+		F23C54B925826715000D6281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23C54B725826715000D6281 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +52,6 @@
 		F23C5430258260BA000D6281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F23C5432258260BA000D6281 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F23C5434258260BA000D6281 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F23C5437258260BA000D6281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F23C543A258260BA000D6281 /* DietDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DietDiary.xcdatamodel; sourceTree = "<group>"; };
 		F23C543C258260BE000D6281 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F23C543F258260BE000D6281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,6 +62,8 @@
 		F23C5451258260BE000D6281 /* DietDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DietDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F23C5455258260BE000D6281 /* DietDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietDiaryUITests.swift; sourceTree = "<group>"; };
 		F23C5457258260BE000D6281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F23C54A725826665000D6281 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F23C54B825826715000D6281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAD466FD98B2BE62B9D51401 /* Pods-DietDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-DietDiaryTests/Pods-DietDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,7 +115,6 @@
 				94015A2B5A0444E327DEF157 /* Pods-DietDiaryTests.debug.xcconfig */,
 				FAD466FD98B2BE62B9D51401 /* Pods-DietDiaryTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -142,13 +143,14 @@
 		F23C542F258260BA000D6281 /* DietDiary */ = {
 			isa = PBXGroup;
 			children = (
+				F23C54B725826715000D6281 /* Main.storyboard */,
 				F23C5430258260BA000D6281 /* AppDelegate.swift */,
 				F23C5432258260BA000D6281 /* SceneDelegate.swift */,
 				F23C5434258260BA000D6281 /* ViewController.swift */,
-				F23C5436258260BA000D6281 /* Main.storyboard */,
 				F23C543C258260BE000D6281 /* Assets.xcassets */,
 				F23C543E258260BE000D6281 /* LaunchScreen.storyboard */,
 				F23C5441258260BE000D6281 /* Info.plist */,
+				F23C54A725826665000D6281 /* GoogleService-Info.plist */,
 				F23C5439258260BA000D6281 /* DietDiary.xcdatamodeld */,
 			);
 			path = DietDiary;
@@ -283,8 +285,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F23C5440258260BE000D6281 /* LaunchScreen.storyboard in Resources */,
+				F23C54A825826665000D6281 /* GoogleService-Info.plist in Resources */,
 				F23C543D258260BE000D6281 /* Assets.xcassets in Resources */,
-				F23C5438258260BA000D6281 /* Main.storyboard in Resources */,
+				F23C54B925826715000D6281 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,20 +488,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F23C5436258260BA000D6281 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F23C5437258260BA000D6281 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F23C543E258260BE000D6281 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F23C543F258260BE000D6281 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F23C54B725826715000D6281 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F23C54B825826715000D6281 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
