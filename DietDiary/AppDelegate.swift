@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        UINavigationBar.appearance().barTintColor = UIColor(red: 247/255, green: 194/255, blue: 209/255, alpha: 1)
+        UINavigationBar.appearance().barTintColor = UIColor(red: 255/255, green: 167/255, blue: 38/255, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
 
