@@ -9,23 +9,33 @@ import UIKit
 
 class UserInfoOneVC: UIViewController {
 
-    @IBOutlet weak var genderView: UIView!
+    @IBOutlet weak var genderView: UserInfoView!
     
-    @IBOutlet weak var birthdayView: UIView!
+    @IBOutlet weak var birthdayView: UserInfoView!
+    
+    @IBOutlet weak var heightView: UserInfoView!
+    @IBOutlet weak var heightTxt: UITextField!
+    
+    @IBOutlet weak var weighView: UserInfoView!
+    @IBOutlet weak var weighTxt: UITextField!
+    
+    @IBOutlet weak var goalWeighView: UserInfoView!
+    @IBOutlet weak var goalWeighTxt: UITextField!
+    
+    @IBOutlet weak var exerciseView: UserInfoView!
+    
+    @IBOutlet weak var nextStepBtn: UIButton!
+    @IBAction func nextStep(_ sender: Any) {
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "基本資料"
-        genderView.layer.cornerRadius = 15.0
-        genderView.layer.borderWidth = 2.0
-        genderView.layer.borderColor = UIColor(red: 255/255, green: 167/255, blue: 38/255, alpha: 1).cgColor
-        genderView.clipsToBounds = true
-        
-        birthdayView.layer.cornerRadius = 15.0
-        birthdayView.layer.borderWidth = 2.0
-        birthdayView.layer.borderColor = UIColor(red: 255/255, green: 167/255, blue: 38/255, alpha: 1).cgColor
-        birthdayView.clipsToBounds = true
+        self.nextStepBtn.layer.cornerRadius = 15.0
+
+
         
     }
     

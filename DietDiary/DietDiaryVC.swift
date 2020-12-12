@@ -1,34 +1,18 @@
 //
-//  UserInfoTwoVC.swift
+//  dietDiaryVC.swift
 //  DietDiary
 //
-//  Created by Alicia Chiu on 2020/12/11.
+//  Created by Alicia Chiu on 2020/12/13.
 //
 
 import UIKit
 
-class UserInfoTwoVC: UIViewController {
+class DietDiaryVC: UIViewController {
 
-    var planInfoView: UserInfoView?
-    
-    required init(coder: NSCoder) {
-        super.init(coder: coder)!
-        let planInfoView = UserInfoView(coder: coder)
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let planLabel = self.planInfoView?.titleLabel {
-            planLabel.text = "計畫目標"
-            
-        }
-        
 
-        
-        
-        
+        // Do any additional setup after loading the view.
     }
     
 

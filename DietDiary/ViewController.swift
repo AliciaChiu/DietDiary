@@ -64,7 +64,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
             })
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(identifier: "UserInfoOneVCNav") as! UINavigationController
-            vc.modalPresentationStyle = .fullScreen
+            vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true, completion: nil)
         }
     }
