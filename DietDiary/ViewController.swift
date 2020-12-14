@@ -16,10 +16,13 @@ class ViewController: UIViewController, LoginButtonDelegate {
     
     
     @IBOutlet weak var fbLoginButton: FBLoginButton!
+  
+    @IBOutlet weak var loginView: UIView!
     
-    @IBOutlet weak var loginImageView: UIImageView!
+    @IBOutlet weak var userNameTxt: UITextField!
     
-
+    @IBOutlet weak var passwordTxt: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let settings = FirestoreSettings()
@@ -33,6 +36,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
         //註冊通知-當登入帳號有改變時會發送通知FBSDKProfileDidChangeNotification
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateProfile), name: NSNotification.Name.ProfileDidChange, object: nil)
         
+        self.fbLoginButton.layer.cornerRadius = 30.0
 
         
     }
