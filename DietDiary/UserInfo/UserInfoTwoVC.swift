@@ -11,9 +11,14 @@ class UserInfoTwoVC: UIViewController {
 
     @IBOutlet weak var planView: UserInfoView!
     @IBOutlet weak var planLabel: UILabel!
+    var planName: String?
+
+    
     
     @IBOutlet weak var goalWeighView: UserInfoView!
     @IBOutlet weak var goalWeighLabel: UILabel!
+    var goalWeigh: String?
+    
     
     @IBOutlet weak var monthlyDecreaseView: UIView!
     
@@ -29,19 +34,26 @@ class UserInfoTwoVC: UIViewController {
     @IBOutlet weak var finishBtn: UIButton!
     
     @IBAction func finish(_ sender: Any) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let dietDiaryVC = sb.instantiateViewController(identifier: "DietDiaryVC") as! UIViewController
-        dietDiaryVC.modalPresentationStyle = .overFullScreen
-        self.present(dietDiaryVC, animated: true, completion: nil)
+       performSegue(withIdentifier: "UserInfoTwoSegue", sender: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.finishBtn.layer.cornerRadius = 15.0
-
-            
+        self.goalWeighLabel.text = self.goalWeigh
+        self.planLabel.text = self.planName
+        
         }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "UserInfoTwoSegue" {
+            if let vc = segue.destination as? DietDiaryVC {
+                
+            }
+        }
+       
+    }
         
 
         

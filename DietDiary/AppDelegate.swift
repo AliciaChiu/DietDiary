@@ -10,6 +10,7 @@ import CoreData
 import Firebase
 import FBSDKCoreKit
 import Reachability
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(red: 255/255, green: 167/255, blue: 38/255, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-
         
+        IQKeyboardManager.shared.enable = true
         
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         do{
@@ -33,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }catch{
            print("error while init Reachability \(error)")
         }
+        
         FirebaseApp.configure()
         return true
     }
@@ -68,7 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+
     }
+    
+
 
     // MARK: - Core Data stack
 

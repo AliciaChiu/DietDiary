@@ -11,10 +11,11 @@ pod 'FirebaseFirestoreSwift'
 pod 'Firebase/Storage'
 
 pod 'FirebaseUI/Auth'
-pod 'FirebaseUI/Google'
 pod 'FBSDKCoreKit/Swift'
 pod 'FBSDKLoginKit'
 pod 'ReachabilitySwift'
+
+pod 'IQKeyboardManagerSwift'
 
   target 'DietDiaryTests' do
     inherit! :search_paths
