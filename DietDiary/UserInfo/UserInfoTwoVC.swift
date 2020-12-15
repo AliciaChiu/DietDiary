@@ -9,29 +9,20 @@ import UIKit
 
 class UserInfoTwoVC: UIViewController {
 
-    @IBOutlet weak var planView: UserInfoView!
-    @IBOutlet weak var planLabel: UILabel!
-    var planName: String?
 
-    
-    
-    @IBOutlet weak var goalWeighView: UserInfoView!
+    @IBOutlet weak var planLabel: UILabel!
+
     @IBOutlet weak var goalWeighLabel: UILabel!
-    var goalWeigh: String?
     
-    
-    @IBOutlet weak var monthlyDecreaseView: UIView!
-    
-    @IBOutlet weak var timeNeededView: UserInfoView!
     @IBOutlet weak var timeNeededLabel: UILabel!
     
-    @IBOutlet weak var dailyCaloriesView: UserInfoView!
     @IBOutlet weak var dailyCaloriesLabel: UILabel!
     
-    @IBOutlet weak var dailyWaterView: UserInfoView!
     @IBOutlet weak var dailyWaterTxt: UITextField!
     
     @IBOutlet weak var finishBtn: UIButton!
+    
+    var userInfo: UserInfo!
     
     @IBAction func finish(_ sender: Any) {
        performSegue(withIdentifier: "UserInfoTwoSegue", sender: nil)
@@ -41,9 +32,16 @@ class UserInfoTwoVC: UIViewController {
         super.viewDidLoad()
         
         self.finishBtn.layer.cornerRadius = 15.0
-        self.goalWeighLabel.text = self.goalWeigh
-        self.planLabel.text = self.planName
+        self.planLabel.text = self.userInfo.planName
+        self.goalWeighLabel.text = "\(self.userInfo.goalWeight!)"
         
+        guard let weight2 = self.userInfo.weight, let height2 = self.userInfo.height else {
+            assertionFailure("Fail to enter user information.")
+            return
+        }
+        let activityLevel = self.userInfo.activityLevel
+        self.dailyCaloriesLabel.text = "\(self.userInfo.calculateBMR(weight: weight2, height: height2, age: 29.0, activityLevel: activityLevel))"
+       
         }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

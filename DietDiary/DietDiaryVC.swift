@@ -8,6 +8,8 @@
 import UIKit
 
 class DietDiaryVC: UIViewController {
+    
+    var dailyWaterAmount: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
