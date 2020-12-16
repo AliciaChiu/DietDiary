@@ -33,20 +33,24 @@ class UserInfoTwoVC: UIViewController {
         
         self.finishBtn.layer.cornerRadius = 15.0
         self.planLabel.text = self.userInfo.planName
-        self.goalWeighLabel.text = "\(self.userInfo.goalWeight!)"
-        
-        guard let weight2 = self.userInfo.weight, let height2 = self.userInfo.height else {
-            assertionFailure("Fail to enter user information.")
+        self.goalWeighLabel.text = "\(Int(self.userInfo.goalWeight!))"
+        self.dailyCaloriesLabel.text = "\(Int(self.userInfo.dailyCalories!))"
+ 
+/*
+        guard let weight = self.userInfo.weight, let goalWeight: self.userInfo.goalWeight else {
+            assertionFailure("")
             return
         }
-        let activityLevel = self.userInfo.activityLevel
-        self.dailyCaloriesLabel.text = "\(self.userInfo.calculateBMR(weight: weight2, height: height2, age: 29.0, activityLevel: activityLevel))"
+        let timeNeeded = self.userInfo.caculateTimeNeeded(weight: weight , goalWeight: goalWeight, monthlyDecreaseWeight: 1)
+        self.timeNeededLabel.text = "\(Int(timeNeeded!))天"
+ */
+        
        
         }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "UserInfoTwoSegue" {
-            if let vc = segue.destination as? DietDiaryVC {
+            if let dietDiaryVC = segue.destination as? DietDiaryVC {
                 
             }
         }

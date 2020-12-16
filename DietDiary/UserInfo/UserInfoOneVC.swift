@@ -64,13 +64,20 @@ class UserInfoOneVC: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "UserInfoOneSegue" {
-            if let vc = segue.destination as? UserInfoTwoVC {
-                userInfo.height = Double(self.heightTxt.text ?? "")
-                userInfo.weight = Double(self.weightTxt.text ?? "")
-                userInfo.goalWeight = Double(self.goalWeightTxt.text ?? "")
+            if let secondVC = segue.destination as? UserInfoTwoVC {
+                self.userInfo.height = Double(self.heightTxt.text ?? "")
+                self.userInfo.weight = Double(self.weightTxt.text ?? "")
+                self.userInfo.goalWeight = Double(self.goalWeightTxt.text ?? "")
                 
-                vc.userInfo = self.userInfo
+                guard let weight = self.userInfo.weight, let height = self.userInfo.height, let goalWeight = self.userInfo.goalWeight else {
+                    assertionFailure("Fail to enter user information.")
+                    return
+                }
+                let activityLevel = self.userInfo.activityLevel
+                userInfo.dailyCalories = self.userInfo.calculateBMR(weight: weight, goalWeight: goalWeight, height: height, age: 29.0, activityLevel: activityLevel)
+
                 
+                secondVC.userInfo = self.userInfo
                 
             }
         }

@@ -26,7 +26,7 @@ class UserInfo {
     var weight: Double?
     var goalWeight: Double?
     
-    var monthlyDecrease: Double?
+    var monthlyDecreaseWeight: Double?
     var timeNeeded: Double?
     var dailyCalories: Double?
     var dailyWater: Double?
@@ -48,21 +48,27 @@ class UserInfo {
         }
     }
     
-//    func setPlan() ->  {
-//        if self.weight - self.goalWeight > 0 {
-//            self.planName = "減重"
-//        } else {
-//            self.planName = "增重"
-//        }
-//    }
+    func caculateAge() -> Double {
+        return 29.0
+    }
     
-    func calculateBMR(weight: Double, height: Double, age: Double, activityLevel: ActivityLevel) -> Double {
+    func caculateTimeNeeded(weight: Double, goalWeight: Double, monthlyDecreaseWeight: Double) -> Double {
+        
+        let hopeLost = weight - goalWeight
+        let day = hopeLost / monthlyDecreaseWeight * 30
+        return day
+        
+    }
+    
+    func calculateBMR(weight: Double, goalWeight: Double, height: Double, age: Double, activityLevel: ActivityLevel) -> Double {
 
         let weighPara = 10 * weight
         let heightPara = 6.25 * height
         let agePara = 5 * age
         var base = 1.3
         var ree = 0.0
+        var bmr = 0.0
+        
         if gender == .Female {
             ree = weighPara + heightPara - agePara - 161
         } else {
@@ -72,16 +78,30 @@ class UserInfo {
         if activityLevel == .LowActivity {
             base = 1.3
         }else if activityLevel == .MiddleActivity {
-            base = 1.4
-        }else if activityLevel == .HighActivity {
             base = 1.5
+        }else if activityLevel == .HighActivity {
+            base = 1.7
         }
         
-        let bmr = base * ree
+        if let monthlyDecreaseWeight = self.monthlyDecreaseWeight {
+           
+            let dailyDecreaseCalories = monthlyDecreaseWeight * 7700 / 30
+            if weight - goalWeight > 0 {
+                bmr = base * ree - dailyDecreaseCalories
+            } else {
+                bmr = base * ree + dailyDecreaseCalories
+            }
+        }
         return bmr
-        
     }
+    
+
+    
+
 }
+    
+    
+
     
     
 /*
