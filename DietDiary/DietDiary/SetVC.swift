@@ -1,5 +1,5 @@
 //
-//  DetailVC.swift
+//  SetVC.swift
 //  DietDiary
 //
 //  Created by Alicia Chiu on 2020/12/17.
@@ -7,12 +7,18 @@
 
 import UIKit
 
-class DetailVC: UIViewController {
+class SetVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
+        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 0.8)
+    }
+    
+    
+    @IBAction func backToDD(_ sender: UIButton) {
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
 

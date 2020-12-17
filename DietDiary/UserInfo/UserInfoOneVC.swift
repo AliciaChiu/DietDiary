@@ -53,6 +53,7 @@ class UserInfoOneVC: UIViewController {
         super.viewDidLoad()
         
         self.title = "基本資料"
+        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         self.nextStepBtn.layer.cornerRadius = 15.0
        
 

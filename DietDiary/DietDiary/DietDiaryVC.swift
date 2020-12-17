@@ -28,6 +28,7 @@ class DietDiaryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         self.navigationItem.hidesBackButton = true
         
         self.categoryView.layer.borderWidth = 2.0
