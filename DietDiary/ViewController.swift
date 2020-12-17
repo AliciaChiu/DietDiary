@@ -15,8 +15,19 @@ class ViewController: UIViewController, LoginButtonDelegate {
     var db: Firestore!
     
     
-    @IBOutlet weak var fbLoginButton: FBLoginButton!
-  
+    @IBOutlet weak var fbLoginButton: UIButton!
+    
+    @IBAction func fbLogin(_ sender: UIButton) {
+        let manager = LoginManager()
+        //permissions
+        manager.logIn(permissions: ["public_profile","email"], from: self, handler: nil)
+        //manager.delegate = self
+        Profile.enableUpdatesOnAccessTokenChange(true)
+        //註冊通知-當登入帳號有改變時會發送通知FBSDKProfileDidChangeNotification
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateProfile), name: NSNotification.Name.ProfileDidChange, object: nil)
+        
+    }
+    
     @IBOutlet weak var loginView: UIView!
     
     @IBOutlet weak var userNameTxt: UITextField!
@@ -29,14 +40,13 @@ class ViewController: UIViewController, LoginButtonDelegate {
         Firestore.firestore().settings = settings
         db = Firestore.firestore()
         
-        //permissions
-        self.fbLoginButton.permissions = ["public_profile","email"]
-        self.fbLoginButton.delegate = self
-        Profile.enableUpdatesOnAccessTokenChange(true)
-        //註冊通知-當登入帳號有改變時會發送通知FBSDKProfileDidChangeNotification
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateProfile), name: NSNotification.Name.ProfileDidChange, object: nil)
+
         
-        self.fbLoginButton.layer.cornerRadius = 30.0
+        self.fbLoginButton.layer.cornerRadius = 15.0
+//        self.fbLoginButton.layer.borderWidth = 2.0
+//        self.fbLoginButton.layer.borderColor = UIColor(red: 247/255, green: 194/255, blue: 209/255, alpha: 1).cgColor
+//        self.fbLoginButton.clipsToBounds = true
+      
 
         
     }
