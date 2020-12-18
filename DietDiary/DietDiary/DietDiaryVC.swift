@@ -7,49 +7,46 @@
 
 import UIKit
 
-class DietDiaryVC: UIViewController {
-    
-    @IBOutlet weak var categoryView: UIView!
-    @IBOutlet weak var detailBtn: UIButton!
-    
-    @IBOutlet weak var eatenLabel: UILabel!
-    @IBOutlet weak var totalCaloriesLabel: UILabel!
-    @IBOutlet weak var grainsLabel: UILabel!
-    @IBOutlet weak var meatsLabel: UILabel!
-    @IBOutlet weak var oilsLabel: UILabel!
-    @IBOutlet weak var milkLabel: UILabel!
-    @IBOutlet weak var fruitsLabel: UILabel!
-    @IBOutlet weak var vegetablesLabel: UILabel!
-    
+class DietDiaryVC: UIViewController, UITableViewDataSource {
+
     @IBOutlet weak var addBtn: UIButton!
     
-    var dailyWaterAmount: String?
+    var diary: [Any] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         self.navigationItem.hidesBackButton = true
-        
-        self.categoryView.layer.borderWidth = 2.0
-        self.categoryView.layer.borderColor = UIColor(red: 255/255, green: 167/255, blue: 38/255, alpha: 1).cgColor
-        self.categoryView.clipsToBounds = true
-        
-        self.detailBtn.layer.cornerRadius = 20.0
-        self.detailBtn.layer.shadowColor = UIColor.systemGray6.cgColor
-        self.detailBtn.layer.shadowOpacity = 0.8
-        self.detailBtn.layer.shadowOffset = CGSize(width: 2, height: 2)
-        self.detailBtn.layer.masksToBounds = false
-        
-        self.addBtn.layer.cornerRadius = 15.0
-        self.addBtn.layer.shadowColor = UIColor.lightGray.cgColor
-        self.addBtn.layer.shadowOpacity = 0.8
-        self.addBtn.layer.shadowOffset = CGSize(width: 2, height: 2)
-        self.addBtn.layer.masksToBounds = false
-        
+        //self.tableView.dataSource = self
 
+        
+        addBtn.layer.cornerRadius = 15.0
+        addBtn.layer.shadowColor = UIColor.lightGray.cgColor
+        addBtn.layer.shadowOpacity = 0.8
+        addBtn.layer.shadowOffset = CGSize(width: 2, height: 2)
+        addBtn.layer.masksToBounds = false
+        
+        
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if section == 0 {
+            return 1
+        } else {
+            return self.diary.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SixNutrients", for: indexPath) as! NutrientsTableViewCell
+        return cell
+    }
 
     /*
     // MARK: - Navigation

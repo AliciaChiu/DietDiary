@@ -35,8 +35,8 @@ class UserInfoTwoVC: UIViewController {
         
         self.finishBtn.layer.cornerRadius = 15.0
         self.planLabel.text = self.userInfo.planName
-        self.goalWeighLabel.text = "\(Int(self.userInfo.goalWeight!))"
-        self.dailyCaloriesLabel.text = "\(Int(self.userInfo.dailyCalories!))"
+        self.goalWeighLabel.text = "\(Int(self.userInfo.goalWeight ?? 0))"
+        self.dailyCaloriesLabel.text = "\(Int(self.userInfo.dailyCalories ?? 0))"
  
 /*
         guard let weight = self.userInfo.weight, let goalWeight: self.userInfo.goalWeight else {
