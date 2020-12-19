@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DietDiaryVC: UIViewController, UITableViewDataSource {
+class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var addBtn: UIButton!
     
@@ -28,6 +28,8 @@ class DietDiaryVC: UIViewController, UITableViewDataSource {
         addBtn.layer.masksToBounds = false
         
         
+        
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -39,13 +41,22 @@ class DietDiaryVC: UIViewController, UITableViewDataSource {
         if section == 0 {
             return 1
         } else {
-            return self.diary.count
+            return 1 //self.diary.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SixNutrients", for: indexPath) as! NutrientsTableViewCell
+        let cell: UITableViewCell!
+        if indexPath.section == 0 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "nutrientsCell", for: indexPath) as! NutrientsTableViewCell
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "diaryCell", for: indexPath) as! DiaryTableViewCell
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 
     /*
