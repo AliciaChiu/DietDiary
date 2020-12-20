@@ -99,7 +99,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bmD-lz-QeL">
                                     <rect key="frame" x="4" y="0.0" width="64" height="64"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rice-bowl" translatesAutoresizingMaskIntoConstraints="NO" id="rrX-qo-15y">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grains" translatesAutoresizingMaskIntoConstraints="NO" id="rrX-qo-15y">
                                             <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.ConerRadius">
@@ -277,10 +277,10 @@
     </objects>
     <resources>
         <image name="fruits" width="64" height="64"/>
+        <image name="grains" width="64" height="64"/>
         <image name="meat" width="64" height="64"/>
         <image name="milk" width="64" height="64"/>
         <image name="oil" width="64" height="64"/>
-        <image name="rice-bowl" width="64" height="64"/>
         <image name="vegetables" width="64" height="64"/>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
