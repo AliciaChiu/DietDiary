@@ -1,25 +1,21 @@
 //
-//  CalendarVC.swift
+//  FoodDetailVC.swift
 //  DietDiary
 //
-//  Created by Alicia Chiu on 2020/12/19.
+//  Created by Alicia Chiu on 2020/12/20.
 //
 
 import UIKit
 
-class CalendarVC: UIViewController {
+class FoodDetailVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
     }
     
-    @IBAction func close(_ sender: Any) {
-        
-        self.dismiss(animated: true, completion: nil)
-        
-    }
+
     /*
     // MARK: - Navigation
 

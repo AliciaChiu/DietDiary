@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var addBtn: UIButton!
     
@@ -22,9 +22,6 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
 
         
         addBtn.layer.cornerRadius = 15.0
-        addBtn.layer.shadowColor = UIColor.lightGray.cgColor
-        addBtn.layer.shadowOpacity = 0.8
-        addBtn.layer.shadowOffset = CGSize(width: 2, height: 2)
         addBtn.layer.masksToBounds = false
         
         
@@ -59,14 +56,17 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        segue.destination.preferredContentSize = CGSize(width: 390, height: 400)
+        segue.destination.popoverPresentationController?.delegate = self
     }
-    */
+
+    //MARK: - UIPresentationController
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+       return .none
+    }
 
 }
