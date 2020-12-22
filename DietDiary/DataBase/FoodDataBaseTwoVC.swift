@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DataBaseTwoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FoodDataBaseTwoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -25,7 +25,7 @@ class DataBaseTwoVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
     }
     
 

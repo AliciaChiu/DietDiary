@@ -7,9 +7,10 @@
 
 import UIKit
 
-class UserInfoOneVC: UIViewController {
+class UserInfoVC: UIViewController {
     
-
+    @IBOutlet weak var genderSC: UISegmentedControl!
+    
     @IBOutlet weak var birthdayPicker: UIDatePicker!
     
     @IBOutlet weak var heightTxt: UITextField!
@@ -18,12 +19,18 @@ class UserInfoOneVC: UIViewController {
     
     @IBOutlet weak var goalWeightTxt: UITextField!
     
-    @IBOutlet weak var nextStepBtn: UIButton!
+    @IBOutlet weak var planLabel: UILabel!
+    
+    @IBOutlet weak var exerciseSC: UISegmentedControl!
+    
+    @IBOutlet weak var timeNeededLabel: UILabel!
+    
+    @IBOutlet weak var dailyCaloriesLabel: UILabel!
+    
+    @IBOutlet weak var finishBtn: UIButton!
     
     var userInfo = UserInfo()
     
-    @IBAction func nextStep(_ sender: Any) {
-    }
     
     @IBAction func genderMayTypeChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -49,14 +56,28 @@ class UserInfoOneVC: UIViewController {
         }
     }
     
+    @IBAction func finish(_ sender: Any) {
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "基本資料"
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
-        self.nextStepBtn.layer.cornerRadius = 15.0
+        self.finishBtn.layer.cornerRadius = 15.0
        
-
+//        self.finishBtn.layer.cornerRadius = 15.0
+//        self.planLabel.text = self.userInfo.planName
+//        self.goalWeighLabel.text = "\(Int(self.userInfo.goalWeight ?? 0))"
+//        self.dailyCaloriesLabel.text = "\(Int(self.userInfo.dailyCalories ?? 0))"
+        
+        /*
+                guard let weight = self.userInfo.weight, let goalWeight: self.userInfo.goalWeight else {
+                    assertionFailure("")
+                    return
+                }
+                let timeNeeded = self.userInfo.caculateTimeNeeded(weight: weight , goalWeight: goalWeight, monthlyDecreaseWeight: 1)
+                self.timeNeededLabel.text = "\(Int(timeNeeded!))天"
+         */
     }
     
 
@@ -64,8 +85,8 @@ class UserInfoOneVC: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "UserInfoOneSegue" {
-            if let secondVC = segue.destination as? UserInfoTwoVC {
+        if segue.identifier == "UserInfoSegue" {
+            if let secondVC = segue.destination as? DietDiaryVC {
 //                self.userInfo.height = Double(self.heightTxt.text ?? "")
 //                self.userInfo.weight = Double(self.weightTxt.text ?? "")
 //                self.userInfo.goalWeight = Double(self.goalWeightTxt.text ?? "")

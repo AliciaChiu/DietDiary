@@ -16,7 +16,7 @@ class NutrientsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-            detailBtn.layer.cornerRadius = 20.0
+            detailBtn.layer.cornerRadius = 15.0
             detailBtn.layer.shadowColor = UIColor.systemGray6.cgColor
             detailBtn.layer.shadowOpacity = 0.8
             detailBtn.layer.shadowOffset = CGSize(width: 2, height: 2)

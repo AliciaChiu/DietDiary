@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class DailyDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()

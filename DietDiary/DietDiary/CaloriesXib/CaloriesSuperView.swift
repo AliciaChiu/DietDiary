@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CaloriesSuperView: UIView {
+@IBDesignable class CaloriesSuperView: UIView {
 
     override func prepareForInterfaceBuilder() {
           super.prepareForInterfaceBuilder()

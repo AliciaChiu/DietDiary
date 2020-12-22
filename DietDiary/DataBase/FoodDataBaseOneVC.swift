@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DataBaseOneVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FoodDataBaseOneVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -22,17 +22,17 @@ class DataBaseOneVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     }
     
 
-    @IBOutlet weak var finishBtn: UIButton!
-    
-    @IBAction func finishAdd(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
+//    @IBOutlet weak var finishBtn: UIButton!
+//    
+//    @IBAction func finishAdd(_ sender: UIButton) {
+//        self.navigationController?.popViewController(animated: true)
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         
-        finishBtn.layer.cornerRadius = 15.0
-        finishBtn.layer.masksToBounds = false
+//        finishBtn.layer.cornerRadius = 15.0
+//        finishBtn.layer.masksToBounds = false
 
     }
     

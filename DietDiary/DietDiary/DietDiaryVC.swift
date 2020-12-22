@@ -11,6 +11,8 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
 
     @IBOutlet weak var addBtn: UIButton!
     
+    var userInfo: UserInfo?
+    
     var diary: [Any] = []
 
     override func viewDidLoad() {
