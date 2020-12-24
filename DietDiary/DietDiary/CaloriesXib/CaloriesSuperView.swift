@@ -8,6 +8,8 @@
 import UIKit
 
 @IBDesignable class CaloriesSuperView: UIView {
+    
+    var caloriesView: CaloriesView!
 
     override func prepareForInterfaceBuilder() {
           super.prepareForInterfaceBuilder()
@@ -15,10 +17,11 @@ import UIKit
        }
 
     func addXibView() {
-       if let caloriesView = Bundle(for: CaloriesView.self).loadNibNamed("\(CaloriesView.self)", owner: nil, options: nil)?.first as? UIView {
-          addSubview(caloriesView)
-          caloriesView.frame = bounds
-       }
+        if let caloriesView = Bundle(for: CaloriesView.self).loadNibNamed("\(CaloriesView.self)", owner: nil, options: nil)?.first as? CaloriesView {
+            addSubview(caloriesView)
+            caloriesView.frame = bounds
+            self.caloriesView = caloriesView
+        }
     }
     
     override func awakeFromNib() {
