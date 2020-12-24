@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         
+        
         IQKeyboardManager.shared.enable = true
         
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
