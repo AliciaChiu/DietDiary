@@ -19,33 +19,32 @@ class FoodListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "foodDetailSegue" {
+            if let vc = segue.destination as? FoodDetailVC, let indexPath = tableView.indexPathForSelectedRow {
+                let foodName = self.foodNames[indexPath.row]
+                if let food_data = self.foods[foodName] {
+                    print("選擇了 \(foodName)")
+                    print("資料有 \(food_data)")
+                    
+                }
+            }
+        }
     }
-    */
-
 }
+    
 
-extension FoodListViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        let foodName = self.foodNames[indexPath.row]
-//        if let food_data = self.foods[foodName] {
-//            print("選擇了 \(foodName)")
-//            print("資料有 \(food_data)")
-//            let vc = self.storyboard?.instantiateViewController(identifier: "FoodDetailVC") as! FoodDetailVC
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
-//    }
+
+
+extension FoodListViewController: UITableViewDelegate, UITableViewDataSource {  
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath)

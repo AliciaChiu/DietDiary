@@ -10,16 +10,23 @@ import UIKit
 class CategoryListController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var finishAddBtn: UIButton!
+    
     var categories:  [String] = []
     var allData: [String: [String: Any]]  =  [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
+        self.finishAddBtn.layer.cornerRadius = 15.0
+        
         self.title = "食物資料庫"
         self.allData = self.read_json(fileName: "data")
         self.categories = Array(self.allData.keys).sorted()
         self.tableView.reloadData()
     }
+    
     func read_json(fileName: String) -> [String: [String: Any]]{
         if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
             do {
@@ -34,11 +41,11 @@ class CategoryListController: UIViewController {
         }
         return [:]
     }
-}
-
-
-extension CategoryListController: UITableViewDelegate, UITableViewDataSource {
-
+    
+    @IBAction func finishAdd(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "foodListSegue" {
             if let vc = segue.destination as? FoodListViewController, let indexPath = tableView.indexPathForSelectedRow {
@@ -51,6 +58,17 @@ extension CategoryListController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
+    
+    
+    
+    
+    
+}
+
+
+extension CategoryListController: UITableViewDelegate, UITableViewDataSource {
+
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "foodCatogoryCell", for: indexPath)

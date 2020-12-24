@@ -31,6 +31,8 @@ class NutrientsView: UIView {
         categoryView.layer.cornerRadius = 100
 //        categoryView.layer.borderWidth = 2.0
 //        categoryView.layer.borderColor = UIColor(red: 255/255, green: 167/255, blue: 38/255, alpha: 1).cgColor
+//        self.sendSubviewToBack(categoryView)
+       
         
     }
     

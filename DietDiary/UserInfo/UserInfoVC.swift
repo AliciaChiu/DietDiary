@@ -29,15 +29,29 @@ class UserInfoVC: UIViewController {
     
     @IBOutlet weak var finishBtn: UIButton!
     
-    var userInfo = UserInfo()
+   
+    @IBAction func birthday(_ sender: UIDatePicker) {
+        print(sender.date)
+    }
     
+    @IBOutlet weak var monthlyLabel: UILabel!
+    
+    @IBAction func monthlyDecreaseValueChanged(_ sender: UIStepper) {
+        UserInfo.shared.monthlyDecreaseWeight = sender.value
+        self.monthlyLabel.text = "\(sender.value)"
+        if let weight = UserInfo.shared.weight, let goalWeight = UserInfo.shared.goalWeight, UserInfo.shared.monthlyDecreaseWeight != 0.0 {
+            let monthlyDecreaseWeight = UserInfo.shared.monthlyDecreaseWeight
+            let timeNeed = UserInfo.shared.caculateTimeNeeded(weight: weight, goalWeight: goalWeight, monthlyDecreaseWeight: monthlyDecreaseWeight)
+            self.timeNeededLabel.text = "\(timeNeed)天"
+        }
+    }
     
     @IBAction func genderMayTypeChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            userInfo.gender = .Male
+            UserInfo.shared.gender = .Male
         case 1:
-            userInfo.gender = .Female
+            UserInfo.shared.gender = .Female
         default:
             print("Please choose your gender. ")
         }
@@ -46,38 +60,34 @@ class UserInfoVC: UIViewController {
     @IBAction func exerciseMayTypeChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            userInfo.activityLevel = .LowActivity
+            UserInfo.shared.activityLevel = .LowActivity
         case 1:
-            userInfo.activityLevel = .MiddleActivity
+            UserInfo.shared.activityLevel = .MiddleActivity
         case 2:
-            userInfo.activityLevel = .HighActivity
+            UserInfo.shared.activityLevel = .HighActivity
         default:
             print("Please choose an activity level. ")
         }
     }
     
-    @IBAction func finish(_ sender: Any) {
+    @IBAction func finishUserInfo(_ sender: Any) {
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "基本資料"
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         self.finishBtn.layer.cornerRadius = 15.0
-       
-//        self.finishBtn.layer.cornerRadius = 15.0
-//        self.planLabel.text = self.userInfo.planName
-//        self.goalWeighLabel.text = "\(Int(self.userInfo.goalWeight ?? 0))"
-//        self.dailyCaloriesLabel.text = "\(Int(self.userInfo.dailyCalories ?? 0))"
+
+        self.weightTxt.delegate = self
+        self.goalWeightTxt.delegate = self
         
-        /*
-                guard let weight = self.userInfo.weight, let goalWeight: self.userInfo.goalWeight else {
-                    assertionFailure("")
-                    return
-                }
-                let timeNeeded = self.userInfo.caculateTimeNeeded(weight: weight , goalWeight: goalWeight, monthlyDecreaseWeight: 1)
-                self.timeNeededLabel.text = "\(Int(timeNeeded!))天"
-         */
+       
+        //self.birthdayPicker.locale = Locale.current
+        //self.dailyCaloriesLabel.text = "\(Int(UserInfo.shared.dailyCalories ?? 0))"
+        
+ 
     }
     
 
@@ -87,24 +97,43 @@ class UserInfoVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "UserInfoSegue" {
             if let secondVC = segue.destination as? DietDiaryVC {
-//                self.userInfo.height = Double(self.heightTxt.text ?? "")
-//                self.userInfo.weight = Double(self.weightTxt.text ?? "")
-//                self.userInfo.goalWeight = Double(self.goalWeightTxt.text ?? "")
-//                
-//                guard let weight = self.userInfo.weight, let height = self.userInfo.height, let goalWeight = self.userInfo.goalWeight else {
-//                     assertionFailure("Fail to enter user information.")
-//                    return
-//                }
-//                let activityLevel = self.userInfo.activityLevel
-//                userInfo.dailyCalories = self.userInfo.calculateBMR(weight: weight, goalWeight: goalWeight, height: height, age: 29.0, activityLevel: activityLevel)
-//
-//                
-                secondVC.userInfo = self.userInfo
+
+       
+                
+
                 
             }
         }
     }
 }
+
+extension UserInfoVC: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == self.weightTxt {
+            UserInfo.shared.weight = Double(textField.text ?? "")
+        }else if textField == self.goalWeightTxt {
+            UserInfo.shared.goalWeight = Double(textField.text ?? "")
+        }else if textField == self.heightTxt {
+            UserInfo.shared.height = Double(textField.text ?? "")
+        }
+        if !UserInfo.shared.planName.isEmpty {
+            self.planLabel.text = UserInfo.shared.planName
+        }
+        if let weight = UserInfo.shared.weight, let goalWeight = UserInfo.shared.goalWeight, UserInfo.shared.monthlyDecreaseWeight != 0.0 {
+            let monthlyDecreaseWeight = UserInfo.shared.monthlyDecreaseWeight
+            let timeNeed = UserInfo.shared.caculateTimeNeeded(weight: weight, goalWeight: goalWeight, monthlyDecreaseWeight: monthlyDecreaseWeight)
+            self.timeNeededLabel.text = "\(timeNeed)天"
+        }
+        if let weight = UserInfo.shared.weight, let goalWeight = UserInfo.shared.goalWeight, let height = UserInfo.shared.height {
+            let activityLevel = UserInfo.shared.activityLevel
+            UserInfo.shared.dailyCalories = UserInfo.shared.calculateBMR(weight: weight, goalWeight: goalWeight, height: height, age: 29.0, activityLevel: activityLevel)
+            self.dailyCaloriesLabel.text = "\(UserInfo.shared.dailyCalories)"
+        }
+
+        return true
+    }
+}
+
 
 
 

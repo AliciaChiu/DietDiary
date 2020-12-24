@@ -17,7 +17,7 @@ class NewRecordVC: UIViewController {
     @IBOutlet weak var mealView: UIView!
     
     @IBOutlet weak var addView: UIView!
-    
+
     
     
     
@@ -30,6 +30,8 @@ class NewRecordVC: UIViewController {
         self.timeView.layer.cornerRadius = 10.0
         self.mealView.layer.cornerRadius = 10.0
         self.addView.layer.cornerRadius = 10.0
+        
+        
         
     }
     

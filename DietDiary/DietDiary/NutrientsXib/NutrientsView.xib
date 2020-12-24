@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -234,7 +233,7 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemYellowColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="uS4-jA-fvr" secondAttribute="bottom" id="4ir-mc-lbT"/>
                         <constraint firstItem="4dn-8a-10e" firstAttribute="top" secondItem="8xq-uu-hHA" secondAttribute="top" id="7jr-kN-fRc"/>
@@ -253,6 +252,9 @@
                         <constraint firstItem="BGI-ba-l0m" firstAttribute="leading" secondItem="8xq-uu-hHA" secondAttribute="leading" constant="-40" id="xdf-By-DMb"/>
                         <constraint firstAttribute="trailing" secondItem="4dn-8a-10e" secondAttribute="trailing" constant="-40" id="xwf-XA-FiW"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -282,8 +284,5 @@
         <image name="milk" width="64" height="64"/>
         <image name="oil" width="64" height="64"/>
         <image name="vegetables" width="64" height="64"/>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

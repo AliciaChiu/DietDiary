@@ -8,25 +8,18 @@
 import Foundation
 import UIKit
 
-enum Gender {
-    case Male
-    case Female
-}
-
-enum ActivityLevel {
-    case LowActivity
-    case MiddleActivity
-    case HighActivity
-}
-
 class UserInfo {
+    
+    static let shared = UserInfo()
+    
+    private init(){}
     
     var age: String?
     var height: Double?
     var weight: Double?
     var goalWeight: Double?
     
-    var monthlyDecreaseWeight: Double?
+    var monthlyDecreaseWeight: Double = 0.0
     var timeNeeded: Double?
     var dailyCalories: Double?
     var dailyWater: Double?
@@ -39,11 +32,13 @@ class UserInfo {
             if let weight = self.weight, let goalWeight = self.goalWeight {
                 if weight - goalWeight > 0 {
                     return "減重"
-                } else {
+                } else if weight - goalWeight < 0{
                     return "增重"
+                } else {
+                    return "維持體重"
                 }
-            }else{
-                return "error"
+            } else {
+                return ""
             }
         }
     }
@@ -55,7 +50,7 @@ class UserInfo {
     func caculateTimeNeeded(weight: Double, goalWeight: Double, monthlyDecreaseWeight: Double) -> Double {
         
         let hopeLost = weight - goalWeight
-        let day = hopeLost / monthlyDecreaseWeight * 30
+        let day = (hopeLost / monthlyDecreaseWeight) * 30
         return day
         
     }
@@ -83,24 +78,29 @@ class UserInfo {
             base = 1.7
         }
         
-        if let monthlyDecreaseWeight = self.monthlyDecreaseWeight {
-           
-            let dailyDecreaseCalories = monthlyDecreaseWeight * 7700 / 30
-            if weight - goalWeight > 0 {
-                bmr = base * ree - dailyDecreaseCalories
-            } else {
-                bmr = base * ree + dailyDecreaseCalories
-            }
+        let monthlyDecreaseWeight = self.monthlyDecreaseWeight
+        
+        let dailyDecreaseCalories = monthlyDecreaseWeight * 7700 / 30
+        
+        if weight - goalWeight > 0 {
+            bmr = base * ree - dailyDecreaseCalories
+        } else {
+            bmr = base * ree + dailyDecreaseCalories
         }
         return bmr
     }
-    
-
-    
-
 }
     
-    
+enum Gender {
+    case Male
+    case Female
+}
+
+enum ActivityLevel {
+    case LowActivity
+    case MiddleActivity
+    case HighActivity
+}
 
     
     
