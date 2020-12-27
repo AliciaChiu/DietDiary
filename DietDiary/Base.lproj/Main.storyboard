@@ -1697,6 +1697,17 @@
                     <navigationItem key="navigationItem" title="設定" id="yYT-vz-CrP">
                         <barButtonItem key="rightBarButtonItem" title="重設" id="hkh-LQ-0ta"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="birthdayTxt" destination="hdo-Jb-zSi" id="Zel-6m-xFr"/>
+                        <outlet property="exerciseDegreeTxt" destination="HEZ-Az-aXf" id="QmY-1r-yXm"/>
+                        <outlet property="genderTxt" destination="EnD-Nr-cxn" id="kQ0-eo-5XE"/>
+                        <outlet property="goalWeightTxt" destination="8cp-Kz-mtK" id="jww-MQ-eNy"/>
+                        <outlet property="monthlyDecreaseTxt" destination="4D3-4R-4MN" id="1TM-Ps-bfd"/>
+                        <outlet property="nowHeightTxt" destination="PCZ-To-Svw" id="Dbm-PM-WbX"/>
+                        <outlet property="nowWeightTxt" destination="SgI-My-isq" id="JvZ-hy-M8N"/>
+                        <outlet property="planTxt" destination="KaB-rd-DPZ" id="LK5-LP-2G8"/>
+                        <outlet property="timeNeededTxt" destination="pR4-B8-Daj" id="bVi-VW-jYR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b7k-Ct-Fli" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

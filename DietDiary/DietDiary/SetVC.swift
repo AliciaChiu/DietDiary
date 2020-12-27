@@ -8,11 +8,36 @@
 import UIKit
 
 class SetVC: UIViewController {
+    
+    @IBOutlet weak var genderTxt: UITextField!
+    
+    @IBOutlet weak var birthdayTxt: UITextField!
+    
+    @IBOutlet weak var nowHeightTxt: UITextField!
+    
+    @IBOutlet weak var nowWeightTxt: UITextField!
+    
+    @IBOutlet weak var goalWeightTxt: UITextField!
+    
+    @IBOutlet weak var planTxt: UITextField!
+    
+    @IBOutlet weak var monthlyDecreaseTxt: UITextField!
+    
+    @IBOutlet weak var exerciseDegreeTxt: UITextField!
+    
+    @IBOutlet weak var timeNeededTxt: UITextField!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
+        
+        for view in self.view.subviews {
+            view.isUserInteractionEnabled = false
+        }
+        
     }
     
     
