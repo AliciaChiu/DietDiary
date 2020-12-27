@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireObjectMapper
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class UserInfoVC: UIViewController {
     
@@ -29,49 +33,6 @@ class UserInfoVC: UIViewController {
     
     @IBOutlet weak var finishBtn: UIButton!
     
-   
-    @IBAction func birthday(_ sender: UIDatePicker) {
-        print(sender.date)
-    }
-    
-    @IBOutlet weak var monthlyLabel: UILabel!
-    
-    @IBAction func monthlyDecreaseValueChanged(_ sender: UIStepper) {
-        UserInfo.shared.monthlyDecreaseWeight = sender.value
-        self.monthlyLabel.text = "\(sender.value)"
-        if let weight = UserInfo.shared.weight, let goalWeight = UserInfo.shared.goalWeight, UserInfo.shared.monthlyDecreaseWeight != 0.0 {
-            let monthlyDecreaseWeight = UserInfo.shared.monthlyDecreaseWeight
-            let timeNeed = UserInfo.shared.caculateTimeNeeded(weight: weight, goalWeight: goalWeight, monthlyDecreaseWeight: monthlyDecreaseWeight)
-            self.timeNeededLabel.text = "\(timeNeed)天"
-        }
-    }
-    
-    @IBAction func genderMayTypeChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            UserInfo.shared.gender = .Male
-        case 1:
-            UserInfo.shared.gender = .Female
-        default:
-            print("Please choose your gender. ")
-        }
-    }
-    
-    @IBAction func exerciseMayTypeChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            UserInfo.shared.activityLevel = .LowActivity
-        case 1:
-            UserInfo.shared.activityLevel = .MiddleActivity
-        case 2:
-            UserInfo.shared.activityLevel = .HighActivity
-        default:
-            print("Please choose an activity level. ")
-        }
-    }
-    
-    @IBAction func finishUserInfo(_ sender: Any) {
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,13 +43,97 @@ class UserInfoVC: UIViewController {
 
         self.weightTxt.delegate = self
         self.goalWeightTxt.delegate = self
+        self.heightTxt.delegate = self
         
-       
-        //self.birthdayPicker.locale = Locale.current
-        //self.dailyCaloriesLabel.text = "\(Int(UserInfo.shared.dailyCalories ?? 0))"
-        
- 
+//        MemoryData.userInfo = UserInformation()
+        if let profile = Profile.current {
+            MemoryData.userInfo?.unique_id = profile.userID
+        }
     }
+    
+   
+    @IBAction func birthday(_ sender: UIDatePicker) {
+        MemoryData.userInfo?.birthday = sender.date.getFormattedDate(format: "yyyy-MM-dd")
+    }
+    
+    @IBOutlet weak var monthlyLabel: UILabel!
+    
+    @IBAction func monthlyDecreaseValueChanged(_ sender: UIStepper) {
+        MemoryData.userInfo?.monthlyDecrease = sender.value
+        self.monthlyLabel.text = "\(sender.value)"
+        
+        MemoryData.userInfo?.caculateTimeNeeded()
+        self.timeNeededLabel.text = "\(Int(MemoryData.userInfo?.timeNeeded ?? 0))天"
+        
+        MemoryData.userInfo?.calculateBMR()
+        self.dailyCaloriesLabel.text = "\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
+
+    }
+    
+    @IBAction func genderMayTypeChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            MemoryData.userInfo?.gender = Gender.Male.rawValue
+        case 1:
+            MemoryData.userInfo?.gender = Gender.Female.rawValue
+        default:
+            print("Please choose your gender. ")
+        }
+        
+        MemoryData.userInfo?.calculateBMR()
+        self.dailyCaloriesLabel.text = "\(Int(MemoryData.userInfo?.dailyCalories ?? 0) ?? 0)大卡"
+
+    }
+    
+    @IBAction func exerciseMayTypeChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            MemoryData.userInfo?.exerciseDegree = ExerciseDegree.LowActivity.rawValue
+        case 1:
+            MemoryData.userInfo?.exerciseDegree = ExerciseDegree.MiddleActivity.rawValue
+        case 2:
+            MemoryData.userInfo?.exerciseDegree = ExerciseDegree.HighActivity.rawValue
+        default:
+            print("Please choose an activity level. ")
+        }
+        
+        MemoryData.userInfo?.calculateBMR()
+        self.dailyCaloriesLabel.text = "\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
+  
+    }
+    
+    @IBAction func finishUserInfo(_ sender: Any) {
+        
+        // 準備登入資料
+        let parameters: [String: Any] = [
+            "unique_id": MemoryData.userInfo?.unique_id ?? "",
+            "profile_url": MemoryData.userInfo?.profile_url ?? "",
+            "user_name": MemoryData.userInfo?.user_name ?? "",
+            "gender": MemoryData.userInfo?.gender ?? 1,
+            "birthday": MemoryData.userInfo?.birthday ?? "",
+            "nowHeight": MemoryData.userInfo?.nowHeight ?? 0,
+            "nowWeight": MemoryData.userInfo?.nowWeight ?? 0,
+            "goalWeight": MemoryData.userInfo?.goalWeight ?? 0,
+            "monthlyDecrease": MemoryData.userInfo?.monthlyDecrease ?? 1,
+            "exerciseDegree": MemoryData.userInfo?.exerciseDegree ?? 1
+        ]
+        
+        // 呼叫API
+        //self.indicatorView.startAnimating()
+        print(parameters)
+        
+        Alamofire.request(URLs.userInfoURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<UserInfoData>) in
+            
+            //self.indicatorView.stopAnimating()
+            print(response.result.value)
+            if response.result.isSuccess {
+                let userInfoData = response.result.value
+                MemoryData.userInfo = userInfoData?.data
+            }
+        }
+    }
+    
+
     
 
     
@@ -96,12 +141,8 @@ class UserInfoVC: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "UserInfoSegue" {
-            if let secondVC = segue.destination as? DietDiaryVC {
-
-       
-                
-
-                
+            if let vc = segue.destination as? DietDiaryVC {
+             
             }
         }
     }
@@ -109,27 +150,27 @@ class UserInfoVC: UIViewController {
 
 extension UserInfoVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == self.weightTxt {
-            UserInfo.shared.weight = Double(textField.text ?? "")
-        }else if textField == self.goalWeightTxt {
-            UserInfo.shared.goalWeight = Double(textField.text ?? "")
-        }else if textField == self.heightTxt {
-            UserInfo.shared.height = Double(textField.text ?? "")
+        
+        if let text = textField.text, let range = Range(range, in: text) {
+            let newText = text.replacingCharacters(in: range, with: string)
+            
+            if textField == self.weightTxt {
+                MemoryData.userInfo?.nowWeight = Double(newText)
+            }else if textField == self.goalWeightTxt {
+                MemoryData.userInfo?.goalWeight = Double(newText)
+            }else if textField == self.heightTxt {
+                MemoryData.userInfo?.nowHeight = Double(newText)
+            }
+            if !(MemoryData.userInfo?.planName.isEmpty ?? true) {
+                self.planLabel.text = MemoryData.userInfo?.planName
+            }
+            
+            MemoryData.userInfo?.caculateTimeNeeded()
+            self.timeNeededLabel.text = "\(Int(MemoryData.userInfo?.timeNeeded ?? 0))天"
+            
+            MemoryData.userInfo?.calculateBMR()
+            self.dailyCaloriesLabel.text = "\(Int(MemoryData.userInfo?.dailyCalories ?? 0) )大卡"
         }
-        if !UserInfo.shared.planName.isEmpty {
-            self.planLabel.text = UserInfo.shared.planName
-        }
-        if let weight = UserInfo.shared.weight, let goalWeight = UserInfo.shared.goalWeight, UserInfo.shared.monthlyDecreaseWeight != 0.0 {
-            let monthlyDecreaseWeight = UserInfo.shared.monthlyDecreaseWeight
-            let timeNeed = UserInfo.shared.caculateTimeNeeded(weight: weight, goalWeight: goalWeight, monthlyDecreaseWeight: monthlyDecreaseWeight)
-            self.timeNeededLabel.text = "\(timeNeed)天"
-        }
-        if let weight = UserInfo.shared.weight, let goalWeight = UserInfo.shared.goalWeight, let height = UserInfo.shared.height {
-            let activityLevel = UserInfo.shared.activityLevel
-            UserInfo.shared.dailyCalories = UserInfo.shared.calculateBMR(weight: weight, goalWeight: goalWeight, height: height, age: 29.0, activityLevel: activityLevel)
-            self.dailyCaloriesLabel.text = "\(UserInfo.shared.dailyCalories)"
-        }
-
         return true
     }
 }

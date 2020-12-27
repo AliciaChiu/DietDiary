@@ -8,10 +8,11 @@
 import UIKit
 
 class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate {
-
+    
     @IBOutlet weak var addBtn: UIButton!
     
-    var userInfo: UserInfo?
+//    var userInfo: UserInfo?
+    
     
     var diary: [Any] = []
 
@@ -45,13 +46,14 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell!
         if indexPath.section == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "nutrientsCell", for: indexPath) as! NutrientsTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "nutrientsCell", for: indexPath) as! NutrientsTableViewCell
+            cell.displayNutrientsValue()
+            return cell
         } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "diaryCell", for: indexPath) as! DiaryTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "diaryCell", for: indexPath) as! DiaryTableViewCell
+            return cell
         }
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

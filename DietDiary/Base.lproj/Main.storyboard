@@ -976,6 +976,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="dailyNutrientsSuperView" destination="KcR-ZR-pRh" id="s4J-BE-NFP"/>
                                             <outlet property="detailBtn" destination="aeg-BU-uP7" id="3fL-pL-PSV"/>
                                         </connections>
                                     </tableViewCell>
@@ -1716,26 +1717,60 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Sms-41-ser">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="1442.6666666666667"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8WH-JK-T1M">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="muc-f8-JIZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="422.66666666666669"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="foodTest" translatesAutoresizingMaskIntoConstraints="NO" id="bLg-fw-M6s">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnn-hD-PVO">
                                                         <rect key="frame" x="0.0" y="0.0" width="390" height="292.66666666666669"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bLg-fw-M6s">
+                                                                <rect key="frame" x="0.0" y="0.0" width="390" height="292.66666666666669"/>
+                                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                            </imageView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiX-Cy-ULy">
+                                                                <rect key="frame" x="330" y="232.66666666666669" width="50" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="hR1-TY-sdy"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="zDM-M2-sdg"/>
+                                                                </constraints>
+                                                                <state key="normal" image="camera"/>
+                                                                <connections>
+                                                                    <action selector="addPhoto:" destination="AQd-O1-scK" eventType="touchUpInside" id="S5f-gb-rcW"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="bLg-fw-M6s" secondAttribute="height" multiplier="4:3" id="U01-z8-hJe"/>
+                                                            <constraint firstItem="bLg-fw-M6s" firstAttribute="top" secondItem="bnn-hD-PVO" secondAttribute="top" id="2dv-QT-cop"/>
+                                                            <constraint firstAttribute="trailing" secondItem="MiX-Cy-ULy" secondAttribute="trailing" constant="10" id="4Bu-QW-vV0"/>
+                                                            <constraint firstAttribute="bottom" secondItem="MiX-Cy-ULy" secondAttribute="bottom" constant="10" id="LLF-yl-flY"/>
+                                                            <constraint firstAttribute="width" secondItem="bnn-hD-PVO" secondAttribute="height" multiplier="4:3" id="dAc-dN-mwE"/>
+                                                            <constraint firstAttribute="bottom" secondItem="bLg-fw-M6s" secondAttribute="bottom" id="dfK-pP-2NT"/>
+                                                            <constraint firstAttribute="trailing" secondItem="bLg-fw-M6s" secondAttribute="trailing" id="nfn-Go-ERi"/>
+                                                            <constraint firstItem="bLg-fw-M6s" firstAttribute="leading" secondItem="bnn-hD-PVO" secondAttribute="leading" id="xk9-ml-2Zi"/>
                                                         </constraints>
-                                                    </imageView>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" text="kjjhjkhjkj" translatesAutoresizingMaskIntoConstraints="NO" id="qxs-g7-FaN">
+                                                    </view>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" text="記錄一下心情吧^_^" translatesAutoresizingMaskIntoConstraints="NO" id="qxs-g7-FaN">
                                                         <rect key="frame" x="0.0" y="292.66666666666669" width="390" height="130"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="130" id="wq4-TH-ybR"/>
+                                                            <constraint firstAttribute="height" constant="130" id="Tcf-3Y-1Gc"/>
+                                                            <constraint firstAttribute="width" constant="390" id="bbx-e3-8c2"/>
                                                         </constraints>
                                                         <color key="textColor" systemColor="labelColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="bnn-hD-PVO" firstAttribute="top" secondItem="muc-f8-JIZ" secondAttribute="top" id="0tY-dm-3nf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="bnn-hD-PVO" secondAttribute="trailing" id="SbD-Vt-yDX"/>
+                                                    <constraint firstItem="qxs-g7-FaN" firstAttribute="leading" secondItem="muc-f8-JIZ" secondAttribute="leading" id="VgX-Fm-0N9"/>
+                                                    <constraint firstItem="qxs-g7-FaN" firstAttribute="top" secondItem="bnn-hD-PVO" secondAttribute="bottom" id="bVx-KJ-yjH"/>
+                                                    <constraint firstItem="bnn-hD-PVO" firstAttribute="leading" secondItem="muc-f8-JIZ" secondAttribute="leading" id="fTx-Qr-FAb"/>
+                                                    <constraint firstItem="qxs-g7-FaN" firstAttribute="top" secondItem="bnn-hD-PVO" secondAttribute="bottom" id="tDi-Yj-3hv"/>
+                                                    <constraint firstAttribute="trailing" secondItem="qxs-g7-FaN" secondAttribute="trailing" id="uxR-2d-oaL"/>
+                                                </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="v3b-Gd-Zc6">
                                                 <rect key="frame" x="35" y="452.66666666666663" width="320" height="310"/>
@@ -1988,12 +2023,9 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="r38-NH-MWU" firstAttribute="leading" secondItem="Sms-41-ser" secondAttribute="leading" constant="45" id="3YP-NY-Tcy"/>
-                                            <constraint firstItem="8WH-JK-T1M" firstAttribute="top" secondItem="Sms-41-ser" secondAttribute="top" id="Acx-Ot-gwB"/>
                                             <constraint firstAttribute="trailing" secondItem="gaF-Aa-srj" secondAttribute="trailing" constant="45" id="N0W-gh-z59"/>
                                             <constraint firstAttribute="trailing" secondItem="r38-NH-MWU" secondAttribute="trailing" constant="45" id="QGg-Mw-iNf"/>
                                             <constraint firstItem="gaF-Aa-srj" firstAttribute="leading" secondItem="Sms-41-ser" secondAttribute="leading" constant="45" id="Sbp-3Q-NJE"/>
-                                            <constraint firstItem="8WH-JK-T1M" firstAttribute="leading" secondItem="Sms-41-ser" secondAttribute="leading" id="pu1-GP-Ne2"/>
-                                            <constraint firstAttribute="trailing" secondItem="8WH-JK-T1M" secondAttribute="trailing" id="qiJ-uG-AlI"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -2012,10 +2044,16 @@
                     </view>
                     <navigationItem key="navigationItem" title="12/15" id="dkx-2C-hCa">
                         <barButtonItem key="backBarButtonItem" title=" " id="SoX-in-sSq"/>
+                        <barButtonItem key="rightBarButtonItem" title="完成" style="done" id="33d-Vz-Rfp">
+                            <connections>
+                                <action selector="done:" destination="AQd-O1-scK" id="8bw-5a-pNK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addView" destination="LjM-SW-SKj" id="UY6-ef-h8r"/>
                         <outlet property="dayView" destination="0w5-UZ-hcl" id="GQ3-dG-Hwt"/>
+                        <outlet property="foodImageView" destination="bLg-fw-M6s" id="6W7-7f-cVa"/>
                         <outlet property="mealView" destination="z9S-40-Gby" id="MEQ-OR-z6W"/>
                         <outlet property="timeView" destination="Hw9-HU-Yvp" id="JNZ-Ro-Rnv"/>
                     </connections>
@@ -2271,7 +2309,7 @@
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jJ8-aQ-hUH">
                                                                 <rect key="frame" x="119.99999999999999" y="0.0" width="172.66666666666663" height="50"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2500,6 +2538,10 @@
                     <navigationItem key="navigationItem" title="詳細資料" id="GRN-4j-IOB">
                         <barButtonItem key="backBarButtonItem" title="null" id="B8R-Mu-N0l"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dailyCaloriesSuperView" destination="RzP-3V-RUC" id="my6-0a-21G"/>
+                        <outlet property="dailyNutrientsSuperView" destination="cyu-9O-MZs" id="Buw-y5-L2L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5DF-VO-vsE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2508,7 +2550,7 @@
         <!--Navigation Controller-->
         <scene sceneID="zsl-gg-7JW">
             <objects>
-                <navigationController storyboardIdentifier="UserInfoOneVCNav" automaticallyAdjustsScrollViewInsets="NO" id="mNX-Lo-x4Q" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="UserInfoNav" automaticallyAdjustsScrollViewInsets="NO" id="mNX-Lo-x4Q" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mIn-fe-aVQ">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
@@ -2532,6 +2574,7 @@
         <image name="calendar1" width="128" height="128"/>
         <image name="calendar2" width="128" height="128"/>
         <image name="calories" width="128" height="128"/>
+        <image name="camera" width="128" height="128"/>
         <image name="clock" width="128" height="128"/>
         <image name="day" width="128" height="128"/>
         <image name="exercise" width="128" height="128"/>

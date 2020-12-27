@@ -17,6 +17,9 @@ pod 'ReachabilitySwift'
 
 pod 'IQKeyboardManagerSwift'
 
+pod 'Alamofire'
+pod 'AlamofireObjectMapper', '~> 5.2'
+
   target 'DietDiaryTests' do
     inherit! :search_paths
     # Pods for testing

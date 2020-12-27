@@ -9,10 +9,8 @@ import UIKit
 
 class FoodDetailVC: UIViewController {
     
-    var fooddata: [String : Any]!
-    
-    
-    
+    var food: Food!
+
     var delegate: FoodListViewController?
     
     @IBOutlet weak var amounTxt: UITextField!
@@ -20,7 +18,6 @@ class FoodDetailVC: UIViewController {
     @IBOutlet weak var gramLabel: UILabel!
     
     @IBOutlet weak var foodNutrientsSuperView: NutrientsSuperView!
-    
     
     @IBOutlet weak var foodCaloriesSuperView: CaloriesSuperView!
     
@@ -30,24 +27,19 @@ class FoodDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.title = self.food.name
         
         self.amounTxt.delegate = self
-        self.gramLabel.text = "\(fooddata["每單位重"] as! Int)公克"
-        print(self.gramLabel.text)
         
-        self.foodNutrientsSuperView.nutrientsView.eatenLabel.text = "\(fooddata["熱量"] as! Int)大卡"
+        self.gramLabel.text = "\(self.food.weight!)公克"
+        self.foodNutrientsSuperView.nutrientsView.eatenLabel.text = "\(self.food.calories!)大卡"
         
-        let carbohydrate = fooddata["總碳水化合物"] as! Int
-        let protein = fooddata["粗蛋白"] as! Int
-        let fat = fooddata["粗脂肪"] as! Int
-        
-        
-        self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(carbohydrate)g"
-        self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(protein)g"
-        self.foodCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(fat)g"
-        self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\((carbohydrate * 4) + (protein * 9) + (fat * 4))大卡"
-        
+        if let carbohydrate = self.food.carbohydrate, let protein = self.food.protein, let fat = self.food.fat {
+            self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(carbohydrate)g"
+            self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(protein)g"
+            self.foodCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(fat)g"
+            self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\(carbohydrate * 4 + protein * 4 + fat * 9)大卡"
+        }
     }
     
     
@@ -71,26 +63,27 @@ extension FoodDetailVC: UITextFieldDelegate {
         
         if let text = textField.text, let range = Range(range, in: text) {
             let newText = text.replacingCharacters(in: range, with: string)
+            
             let amount = Int(newText) ?? 1
-            let gram = fooddata["每單位重"] as! Int
+            let gram = food.weight ?? 0
             self.gramLabel.text = "\(amount * gram)公克"
 
-            let eatenCalories = fooddata["熱量"] as! Int
+            let eatenCalories = food.calories ?? 0
             self.foodNutrientsSuperView.nutrientsView.eatenLabel.text = "\(amount * eatenCalories)大卡"
 
-            let  carbohydrate = fooddata["總碳水化合物"] as! Int
+            let  carbohydrate = food.carbohydrate ?? 0
             self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(amount * carbohydrate)g"
 
-            let  protein = fooddata["粗蛋白"] as! Int
+            let  protein = food.protein ?? 0
             self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(amount * protein)g"
 
-            let  fat = fooddata["粗脂肪"] as! Int
+            let  fat = food.fat ?? 0
             self.foodCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(amount * fat)g"
             
-            
+            let threeCalories = (carbohydrate * 4) + (protein * 4) + (fat * 9)
+            self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\(amount * threeCalories)大卡"
+    
         }
-        
         return true
     }
-    
 }

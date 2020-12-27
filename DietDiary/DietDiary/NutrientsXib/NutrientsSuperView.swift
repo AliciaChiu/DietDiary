@@ -7,7 +7,7 @@
 
 import UIKit
 
-@IBDesignable class NutrientsSuperView: UIView {
+class NutrientsSuperView: UIView {
     
     var nutrientsView: NutrientsView!
     

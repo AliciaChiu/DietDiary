@@ -10,6 +10,10 @@ import UIKit
 class NewRecordVC: UIViewController {
     
     
+    @IBOutlet weak var foodImageView: UIImageView!
+    
+   
+    
     @IBOutlet weak var dayView: UIView!
     
     @IBOutlet weak var timeView: UIView!
@@ -35,7 +39,52 @@ class NewRecordVC: UIViewController {
         
     }
     
+    
+    @IBAction func addPhoto(_ sender: Any) {
+        
+        let photoSourceRequestController = UIAlertController(title: "", message: "請選擇使用相機或相簿", preferredStyle: .actionSheet)
+        
+        let cameraAction = UIAlertAction(title: "相機", style: .default) { (action) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.allowsEditing = false
+                imagePicker.sourceType = .camera
+                guard UIImagePickerController.isCameraDeviceAvailable(.front) else {
+                    print("Invalid camera device.")
+                    return
+                }
+                imagePicker.cameraDevice = .front
+                imagePicker.cameraCaptureMode = .photo
+                imagePicker.delegate = self
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }
 
+        
+        let photoLibraryAction = UIAlertAction(title: "相簿", style: .default) { (action) in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.allowsEditing = false
+                imagePicker.sourceType = .photoLibrary
+                imagePicker.delegate = self
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }
+        
+        photoSourceRequestController.addAction(cameraAction)
+        photoSourceRequestController.addAction(photoLibraryAction)
+        
+        present(photoSourceRequestController, animated: true, completion: nil)
+        
+    }
+    
+
+    @IBAction func done(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 
@@ -46,4 +95,14 @@ class NewRecordVC: UIViewController {
     }
     */
 
+}
+
+extension NewRecordVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as! UIImage
+        self.foodImageView.image = image
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }

@@ -7,39 +7,38 @@
 
 import UIKit
 
-class DailyDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+class DailyDetailVC: UIViewController {
+    
+    
+    @IBOutlet weak var dailyNutrientsSuperView: NutrientsSuperView!
+    
+    @IBOutlet weak var dailyCaloriesSuperView: CaloriesSuperView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 0 {
-            return 1
-        } else {
-            return 1 
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell!
-        if indexPath.section == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "SixNutrientsCell", for: indexPath) as! NutrientsTableViewCell
-        } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "CaloriesCell", for: indexPath) as! CaloriesTableViewCell
-        }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        setInitialValue()
         
+    }
+    
+    func setInitialValue() {
+        
+        self.dailyNutrientsSuperView.nutrientsView.eatenLabel.text = "剩餘\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
+        
+        MemoryData.userInfo?.caculateAmount()
+        self.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(MemoryData.userInfo?.grainsAmount ?? 0)份"
+        self.dailyNutrientsSuperView.nutrientsView.meatsLabel.text = "\(MemoryData.userInfo?.meatsAmount ?? 0)份"
+        self.dailyNutrientsSuperView.nutrientsView.milkLabel.text = "\(MemoryData.userInfo?.milkAmount ?? 0)份"
+        self.dailyNutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(MemoryData.userInfo?.vegetablesAmount ?? 0)份"
+        self.dailyNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(MemoryData.userInfo?.fruitsAmount ?? 0)份"
+        self.dailyNutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.userInfo?.oilsAmount ?? 0)份"
+        
+        self.dailyCaloriesSuperView.caloriesView.caloriesLabel.text = "0大卡"
+        self.dailyCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n0g"
+        self.dailyCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n0g"
+        self.dailyCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n0g"
     }
 
 

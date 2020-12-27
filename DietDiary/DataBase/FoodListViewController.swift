@@ -6,24 +6,44 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireObjectMapper
 
 class FoodListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var foods: [String: [String: Any]] = [:] {
-        didSet {
-            self.foodNames = Array(self.foods.keys).sorted()
-            
-        }
-    }
-    var foodNames: [String] = []
+    
+    var foodCatogory = ""
+    var foods: [Food] = []
+
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
+        self.title = self.foodCatogory
         
+        if MemoryData.foods.isEmpty {
+            Alamofire.request(URLs.foodURL).responseObject { (response: DataResponse<FoodsData>) in
+                if response.result.isSuccess {
+                    let foodsData = response.result.value
+                    MemoryData.foods = foodsData?.data ?? []
+                    self.reloadFoodData()
+                }
+            }
+        }else{
+            self.reloadFoodData()
+        }
+        
+    }
+    
+    func reloadFoodData() {
+        self.foods = MemoryData.foods.filter { (food) -> Bool in
+            return food.category == self.foodCatogory
+        }
+        self.tableView.reloadData()
+        //indicatorView.stopAnimating()
     }
     
 
@@ -33,13 +53,8 @@ class FoodListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "foodDetailSegue" {
             if let vc = segue.destination as? FoodDetailVC, let indexPath = tableView.indexPathForSelectedRow {
-                print(indexPath)
-                let foodName = self.foodNames[indexPath.row]
-                if let food_data = self.foods[foodName] as? [String: Any]{
-//                    print("選擇了 \(foodName)")
-//                    print("資料有 \(food_data)")
-                    vc.fooddata = food_data
-                }
+                let food = self.foods[indexPath.row]
+                vc.food = food
             }
         }
     }
@@ -52,16 +67,15 @@ extension FoodListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath)
-        cell.textLabel?.text = self.foodNames[indexPath.row]
+        cell.textLabel?.text = self.foods[indexPath.row].name
         
-        let foodName = self.foodNames[indexPath.row]
-        if let food_data = self.foods[foodName] as? [String: Any] {
-            cell.detailTextLabel?.text = "\(food_data["食品分類"]!),每份重\(food_data["每單位重"]!)公克,\(food_data["熱量"]!)大卡"
-        }
+        let food = self.foods[indexPath.row]
+        cell.detailTextLabel?.text = "\(food.category!),每份重\(food.weight!)公克,\(food.calories!)大卡"
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.foodNames.count
+        return self.foods.count
     }
 }
