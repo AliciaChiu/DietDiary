@@ -72,7 +72,11 @@ class UserInformation: Mappable {
             return 1
         }
     }
-    var timeNeeded: Int?
+    var timeNeeded: Int? {
+        get {
+            return calculateTimeNeeded()
+        }
+    }
     var dailyCalories: Double? {
         get {
             return calculateBMR()
@@ -104,7 +108,7 @@ class UserInformation: Mappable {
         }
     }
     
-    func caculateTimeNeeded() {
+    func calculateTimeNeeded() -> Int {
         
         if let weight = self.nowWeight, let goalWeight = self.goalWeight, let monthlyDecrease = self.monthlyDecrease {
             
@@ -112,15 +116,14 @@ class UserInformation: Mappable {
             if monthlyDecrease != 0 {
                 if hopeLost >= 0  {
                     let day = (hopeLost / monthlyDecrease) * 30
-                    self.timeNeeded = Int(day)
+                    return Int(day)
                 } else {
                     let day = (-hopeLost / monthlyDecrease) * 30
-                    self.timeNeeded = Int(day)
+                    return Int(day)
                 }
-            } else {
-                self.timeNeeded = 0
             }
         }
+        return 0
     }
     
     func calculateBMR() -> Double {
@@ -165,7 +168,7 @@ class UserInformation: Mappable {
         }
     }
     
-    func caculateAmount(){
+    func calculateAmount(){
         if let calories = self.dailyCalories {
             if calories >= 1200 &&  calories < 1500 {
                 self.grainsAmount = 1.5
@@ -244,25 +247,3 @@ class UserInformation: Mappable {
 每天必須減少攝食的熱量 = (4) ÷ 減肥期間(天) = ＿＿大卡。
 減肥期間每天必須攝取的熱量 = REE × 活動係數 - (5) = ＿＿大卡。
 */
-
-//
-//{
-//    "status": "success",
-//    "code": 200,
-//    "message": "Http ok",
-//    "data": {
-//        "id": 16,
-//        "unique_id": "tgyugh67g7h",
-//        "gender": 2,
-//        "birthday": "1991-10-30",
-//        "nowHeight": 166,
-//        "nowWeight": 60,
-//        "goalWeight": 50,
-//        "monthlyDecrease": 1,
-//        "exerciseDegree": 1,
-//        "created_at": "2020-12-26 13:22:04",
-//        "updated_at": "2020-12-26 13:23:51"
-//    },
-//    "error": {}
-//}
-

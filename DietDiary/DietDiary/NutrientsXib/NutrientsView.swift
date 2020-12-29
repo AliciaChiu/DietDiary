@@ -10,7 +10,7 @@ import UIKit
 class NutrientsView: UIView {
     
     @IBOutlet weak var categoryView: UIView!
-    @IBOutlet weak var eatenLabel: UILabel!
+    @IBOutlet weak var dailyCaloriesLabel: UILabel!
     @IBOutlet weak var grainsLabel: UILabel!
     @IBOutlet weak var meatsLabel: UILabel!
     @IBOutlet weak var oilsLabel: UILabel!

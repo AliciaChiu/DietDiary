@@ -25,9 +25,9 @@ class DailyDetailVC: UIViewController {
     
     func setInitialValue() {
         
-        self.dailyNutrientsSuperView.nutrientsView.eatenLabel.text = "剩餘\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
+        self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "剩餘\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
         
-        MemoryData.userInfo?.caculateAmount()
+        //MemoryData.userInfo?.calculateAmount()
         self.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(MemoryData.userInfo?.grainsAmount ?? 0)份"
         self.dailyNutrientsSuperView.nutrientsView.meatsLabel.text = "\(MemoryData.userInfo?.meatsAmount ?? 0)份"
         self.dailyNutrientsSuperView.nutrientsView.milkLabel.text = "\(MemoryData.userInfo?.milkAmount ?? 0)份"
@@ -35,10 +35,7 @@ class DailyDetailVC: UIViewController {
         self.dailyNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(MemoryData.userInfo?.fruitsAmount ?? 0)份"
         self.dailyNutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.userInfo?.oilsAmount ?? 0)份"
         
-        self.dailyCaloriesSuperView.caloriesView.caloriesLabel.text = "0大卡"
-        self.dailyCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n0g"
-        self.dailyCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n0g"
-        self.dailyCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n0g"
+        self.dailyCaloriesSuperView.caloriesView.setLabel()
     }
 
 

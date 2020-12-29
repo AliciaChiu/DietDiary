@@ -124,7 +124,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
                     } else {
                         let sb = UIStoryboard(name: "Main", bundle: nil)
                         let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController
-                        vc.modalPresentationStyle = .overFullScreen
+                        vc.modalPresentationStyle = .currentContext
                         
                         let dietDiaryVC = sb.instantiateViewController(withIdentifier: "DietDiaryVC")
                         vc.viewControllers.append(dietDiaryVC)
@@ -132,7 +132,6 @@ class ViewController: UIViewController, LoginButtonDelegate {
                     }
                 }
             }
-            
         }
     }
     
@@ -200,8 +199,6 @@ class ViewController: UIViewController, LoginButtonDelegate {
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        //        self.pictureView.profileID = "" //清掉大頭貼
-        //        self.nameLabel.text = nil
     }
 }
 

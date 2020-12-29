@@ -32,9 +32,9 @@ class NutrientsTableViewCell: UITableViewCell {
     
     func displayNutrientsValue(){
         
-        self.dailyNutrientsSuperView.nutrientsView.eatenLabel.text = "剩餘\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
+        self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "剩餘\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
         
-        MemoryData.userInfo?.caculateAmount()
+        MemoryData.userInfo?.calculateAmount()
         self.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(MemoryData.userInfo?.grainsAmount ?? 0)份"
         self.dailyNutrientsSuperView.nutrientsView.meatsLabel.text = "\(MemoryData.userInfo?.meatsAmount ?? 0)份"
         self.dailyNutrientsSuperView.nutrientsView.milkLabel.text = "\(MemoryData.userInfo?.milkAmount ?? 0)份"

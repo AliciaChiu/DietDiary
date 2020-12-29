@@ -266,7 +266,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="categoryView" destination="8xq-uu-hHA" id="Xsl-ZV-OfN"/>
-                <outlet property="eatenLabel" destination="yA7-1R-xvh" id="U6D-rQ-Qe1"/>
+                <outlet property="dailyCaloriesLabel" destination="yA7-1R-xvh" id="U6D-rQ-Qe1"/>
                 <outlet property="fruitsLabel" destination="fcd-Hs-vBW" id="iaj-oC-DYh"/>
                 <outlet property="grainsLabel" destination="9ba-1w-9PI" id="n7F-bY-wcv"/>
                 <outlet property="meatsLabel" destination="JAl-sn-9P2" id="bce-bq-5e6"/>

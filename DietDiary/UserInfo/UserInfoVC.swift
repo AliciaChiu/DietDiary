@@ -44,11 +44,12 @@ class UserInfoVC: UIViewController {
         self.weightTxt.delegate = self
         self.goalWeightTxt.delegate = self
         self.heightTxt.delegate = self
-        
-//        MemoryData.userInfo = UserInformation()
+
         if let profile = Profile.current {
             MemoryData.userInfo?.unique_id = profile.userID
         }
+
+        
     }
     
    
@@ -62,7 +63,7 @@ class UserInfoVC: UIViewController {
         MemoryData.userInfo?.monthlyDecrease = sender.value
         self.monthlyLabel.text = "\(sender.value)"
         
-        MemoryData.userInfo?.caculateTimeNeeded()
+        MemoryData.userInfo?.calculateTimeNeeded()
         self.timeNeededLabel.text = "\(Int(MemoryData.userInfo?.timeNeeded ?? 0))天"
         
         MemoryData.userInfo?.calculateBMR()
@@ -77,7 +78,7 @@ class UserInfoVC: UIViewController {
         case 1:
             MemoryData.userInfo?.gender = Gender.Female.rawValue
         default:
-            print("Please choose your gender. ")
+            MemoryData.userInfo?.gender = Gender.Male.rawValue
         }
         
         MemoryData.userInfo?.calculateBMR()
@@ -165,7 +166,7 @@ extension UserInfoVC: UITextFieldDelegate {
                 self.planLabel.text = MemoryData.userInfo?.planName
             }
             
-            MemoryData.userInfo?.caculateTimeNeeded()
+            MemoryData.userInfo?.calculateTimeNeeded()
             self.timeNeededLabel.text = "\(Int(MemoryData.userInfo?.timeNeeded ?? 0))天"
             
             MemoryData.userInfo?.calculateBMR()

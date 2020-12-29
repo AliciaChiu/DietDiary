@@ -32,7 +32,7 @@ class FoodDetailVC: UIViewController {
         self.amounTxt.delegate = self
         
         self.gramLabel.text = "\(self.food.weight!)公克"
-        self.foodNutrientsSuperView.nutrientsView.eatenLabel.text = "\(self.food.calories!)大卡"
+        self.foodNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "\(self.food.calories!)大卡"
         
         if let carbohydrate = self.food.carbohydrate, let protein = self.food.protein, let fat = self.food.fat {
             self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(carbohydrate)g"
@@ -69,7 +69,7 @@ extension FoodDetailVC: UITextFieldDelegate {
             self.gramLabel.text = "\(amount * gram)公克"
 
             let eatenCalories = food.calories ?? 0
-            self.foodNutrientsSuperView.nutrientsView.eatenLabel.text = "\(amount * eatenCalories)大卡"
+            self.foodNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "\(amount * eatenCalories)大卡"
 
             let  carbohydrate = food.carbohydrate ?? 0
             self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(amount * carbohydrate)g"

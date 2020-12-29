@@ -6,15 +6,15 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireObjectMapper
 
-class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate {
+class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate, NewRecordVCDelegate {
+
     
     @IBOutlet weak var addBtn: UIButton!
     
-//    var userInfo: UserInfo?
-    
-    
-    var diary: [Any] = []
+    var records: [Record] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,16 +22,39 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         self.navigationItem.hidesBackButton = true
         //self.tableView.dataSource = self
-
+        let today = Date()
+        self.title = today.getFormattedDate(format: "今天MM/dd")
         
         addBtn.layer.cornerRadius = 15.0
         addBtn.layer.masksToBounds = false
         
-        
-        
+        obtainRecord()
         
     }
     
+    func obtainRecord() {
+        // 準備參數
+        let parameters: [String: Any] = [
+            "user_unique_id": MemoryData.userInfo?.unique_id ?? ""
+            //            "start_date": profileUrl,
+            //            "end_date": userName
+        ]
+        
+        // 呼叫API
+        Alamofire.request(URLs.mealRecordsURL, parameters: parameters).responseObject { (response: DataResponse<RecordData>) in
+            if response.result.isSuccess {
+                let recordData = response.result.value
+//                let recordJSON = recordData?.toJSON()
+//                print(recordJSON)
+            }
+        }
+    }
+    
+    func didFinishUpdate(record : Record)  {
+    
+    }
+
+        
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -41,7 +64,7 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
         if section == 0 {
             return 1
         } else {
-            return 1 //self.diary.count
+            return self.records.count
         }
     }
     
@@ -66,6 +89,14 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
         
         segue.destination.preferredContentSize = CGSize(width: 390, height: 400)
         segue.destination.popoverPresentationController?.delegate = self
+        
+        if segue.identifier == "addSegue"{
+            let newVC = segue.destination as! NewRecordVC
+//            if let indexPath = self.tableView.indexPathForSelectedRow {
+//                let record = self.records[indexPath.row]
+//                newVC.delegate = self
+//            }
+        }
     }
 
     //MARK: - UIPresentationController
@@ -74,3 +105,5 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
     }
 
 }
+
+

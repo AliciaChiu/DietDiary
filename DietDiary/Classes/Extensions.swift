@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Date {
    func getFormattedDate(format: String) -> String {
@@ -14,6 +15,7 @@ extension Date {
         return dateformat.string(from: self)
     }
 }
+
 
 extension String {
     // 從字串轉換成Date
@@ -35,5 +37,14 @@ extension String {
         
         // 回傳
         return age ?? 1
+    }
+}
+
+extension UITextField {
+    func datePicker<T>(target: T,
+                       doneAction: Selector,
+                       cancelAction: Selector,
+                       datePickerMode: UIDatePicker.Mode = .date) {
+        // Code goes here
     }
 }
