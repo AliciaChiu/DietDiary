@@ -11,6 +11,7 @@ import AlamofireObjectMapper
 
 class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate, NewRecordVCDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var addBtn: UIButton!
     
@@ -44,14 +45,20 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
         Alamofire.request(URLs.mealRecordsURL, parameters: parameters).responseObject { (response: DataResponse<RecordData>) in
             if response.result.isSuccess {
                 let recordData = response.result.value
-//                let recordJSON = recordData?.toJSON()
-//                print(recordJSON)
+                self.records = recordData?.data ?? []
+                //let recordJSON = recordData?.toJSON()
+                self.tableView.reloadData()
             }
         }
     }
     
     func didFinishUpdate(record : Record)  {
-    
+        
+        obtainRecord()
+
+//        let indexPath = IndexPath(row: self.records.count - 1, section: 1)
+//        //reload tableView
+//        self.tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 
         
@@ -75,6 +82,11 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "diaryCell", for: indexPath) as! DiaryTableViewCell
+            let mealName = self.records[indexPath.row].getMealName()
+            let time = self.records[indexPath.row].date?.substring(with: 11..<16)
+            cell.mealLabel.text = mealName + "  " + time!
+            cell.foodPicture.image = self.records[indexPath.row].meal_images?.first?.image_content?.convertBase64StringToImage()
+            
             return cell
         }
     }
@@ -92,10 +104,7 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
         
         if segue.identifier == "addSegue"{
             let newVC = segue.destination as! NewRecordVC
-//            if let indexPath = self.tableView.indexPathForSelectedRow {
-//                let record = self.records[indexPath.row]
-//                newVC.delegate = self
-//            }
+            newVC.delegate = self
         }
     }
 

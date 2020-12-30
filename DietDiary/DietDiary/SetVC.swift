@@ -39,10 +39,13 @@ class SetVC: UIViewController, LoginButtonDelegate {
     
     @IBOutlet weak var caloriesSuperView: CaloriesSuperView!
     
+    @IBOutlet weak var logoutBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
+        self.logoutBtn.layer.cornerRadius = 25.0
         
         for view in self.userInfoView.subviews {
             view.isUserInteractionEnabled = false
@@ -82,6 +85,8 @@ class SetVC: UIViewController, LoginButtonDelegate {
         self.nutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.userInfo?.oilsAmount ?? 0)份"
         
         self.caloriesSuperView.caloriesView.setLabel()
+        
+        self.nameLabel.text = MemoryData.userInfo?.user_name
         
         
     }

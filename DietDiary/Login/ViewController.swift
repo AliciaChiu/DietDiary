@@ -29,7 +29,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
 //        Firestore.firestore().settings = settings
 //        db = Firestore.firestore()
         
-        self.fbLoginButton.layer.cornerRadius = 15.0
+        self.fbLoginButton.layer.cornerRadius = 25.0
         
     }
     

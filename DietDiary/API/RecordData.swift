@@ -31,9 +31,8 @@ class Record: Mappable,Equatable {
     var id: Int?
     var date: String?
     var meal: Int?
-    var created_at: String?
-    var updated_at: String?
     var user_unique_id: String?
+    var note: String?
     var delete_meal_records: [Int]?
     var delete_meal_images: [Int]?
     var meal_images: [MealImage]?
@@ -46,15 +45,31 @@ class Record: Mappable,Equatable {
         id <- map["id"]
         date <- map["date"]
         meal <- map["meal"]
-        created_at <- map["created_at"]
-        updated_at <- map["updated_at"]
         user_unique_id <- map["user_unique_id"]
+        note <- map["note"]
         delete_meal_records <- map["delete_meal_records"]
         delete_meal_images <- map["delete_meal_images"]
         meal_images <- map["meal_images"]
         meal_records <- map["meal_records"]
         
         
+    }
+    
+    func getMealName() -> String {
+        var mealName = ""
+        switch self.meal {
+        case 1:
+            mealName = "早餐"
+        case 2:
+            mealName = "午餐"
+        case 3:
+            mealName = "晚餐"
+        case 4:
+            mealName = "點心"
+        default:
+            mealName = ""
+        }
+        return mealName
     }
 }
 

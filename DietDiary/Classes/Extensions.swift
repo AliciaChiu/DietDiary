@@ -38,6 +38,27 @@ extension String {
         // 回傳
         return age ?? 1
     }
+    
+    func index(from: Int) -> Index {
+        return self.index(startIndex, offsetBy: from)
+    }
+
+    func substring(from: Int) -> String {
+        let fromIndex = index(from: from)
+        return String(self[fromIndex...])
+    }
+
+    func substring(to: Int) -> String {
+        let toIndex = index(from: to)
+        return String(self[..<toIndex])
+    }
+
+    func substring(with r: Range<Int>) -> String {
+        let startIndex = index(from: r.lowerBound)
+        let endIndex = index(from: r.upperBound)
+        return String(self[startIndex..<endIndex])
+    }
+    
 }
 
 extension UITextField {
@@ -46,5 +67,14 @@ extension UITextField {
                        cancelAction: Selector,
                        datePickerMode: UIDatePicker.Mode = .date) {
         // Code goes here
+    }
+}
+
+extension String {
+    
+    func convertBase64StringToImage () -> UIImage? {
+        let imageData = Data.init(base64Encoded: self, options: .init(rawValue: 0))
+        let image = UIImage(data: imageData!)
+        return image
     }
 }

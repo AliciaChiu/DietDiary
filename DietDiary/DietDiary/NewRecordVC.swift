@@ -8,16 +8,25 @@
 import UIKit
 import Alamofire
 import AlamofireObjectMapper
+import WXImageCompress
 
 protocol NewRecordVCDelegate : class{
     func didFinishUpdate(record : Record)
 }
 
+enum Meal: Int {
+    case Breakfast = 1
+    case Lunch = 2
+    case Dinner = 3
+    case Dessert = 4
+}
 
 class NewRecordVC: UIViewController {
    
     @IBOutlet weak var foodImageView: UIImageView!
 
+    @IBOutlet weak var noteTextView: UITextView!
+    
     @IBOutlet weak var dayTxt: UITextField!
     
     @IBOutlet weak var timeTxt: UITextField!
@@ -25,34 +34,20 @@ class NewRecordVC: UIViewController {
     var diary: DiaryTableViewCell?
     
     weak var delegate : NewRecordVCDelegate?
-    
-    var mealName: String?
-    
-    enum Meal: Int {
-        case Breakfast = 1
-        case Lunch = 2
-        case Dinner = 3
-        case Dessert = 4
-    }
-    
+   
     @IBAction func mealMayValueChanged(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
-        case 1:
+        case 0:
             MemoryData.record.meal = Meal.Breakfast.rawValue
-            mealName = "早餐"
-        case 2:
+        case 1:
             MemoryData.record.meal = Meal.Lunch.rawValue
-            mealName = "午餐"
-        case 3:
+        case 2:
             MemoryData.record.meal = Meal.Dinner.rawValue
-            mealName = "晚餐"
-        case 4:
+        case 3:
             MemoryData.record.meal = Meal.Dessert.rawValue
-            mealName = "點心"
         default:
             MemoryData.record.meal = Meal.Breakfast.rawValue
-            mealName = "早餐"
         }
     }
     
@@ -66,8 +61,14 @@ class NewRecordVC: UIViewController {
         self.timeTxt.text = today.getFormattedDate(format: "HH:mm")
         
         
-
-        }
+        MemoryData.record = Record()
+        MemoryData.record.meal = Meal.Breakfast.rawValue
+        MemoryData.record.meal_images = []
+        MemoryData.record.meal_records = []
+        MemoryData.record.delete_meal_images = []
+        MemoryData.record.delete_meal_records = []
+        
+    }
 
     //準備相機
     @IBAction func camera(_ sender: Any) {
@@ -112,14 +113,13 @@ class NewRecordVC: UIViewController {
     @IBAction func done(_ sender: Any) {
         
         // 準備要存的資料
-        MemoryData.record = Record()
-        MemoryData.record.date = self.dayTxt.text
-        MemoryData.record.meal = 1
-        MemoryData.record.created_at = self.timeTxt.text
-        MemoryData.record.updated_at = self.timeTxt.text
+        MemoryData.record.user_unique_id = MemoryData.userInfo?.unique_id
+        MemoryData.record.note = self.noteTextView.text
+        MemoryData.record.date = self.dayTxt.text! + " " + self.timeTxt.text!
         
         if let image = self.foodImageView.image {
-            let imageBase64 = image.jpegData(compressionQuality: 0.5)?.base64EncodedString() ?? ""
+            let thumbImage = image.wxCompress()
+            let imageBase64 = thumbImage.jpegData(compressionQuality: 0.0)?.base64EncodedString() ?? ""
 
             let mealImage = MealImage()
             mealImage.image_content = imageBase64
@@ -149,20 +149,24 @@ class NewRecordVC: UIViewController {
 //        })
         
         let parameters = MemoryData.record.toJSON()
-        
+//        print(parameters)
         // 呼叫API
         
-        Alamofire.request(URLs.mealRecordsURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<RecordData>) in
+        Alamofire.request(URLs.mealRecordsURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<BaseResponseData>) in
             
             //self.indicatorView.stopAnimating()
 
             if response.result.isSuccess {
-                print(response.result.value)
+                print(response.result.value?.toJSON())
+                self.delegate?.didFinishUpdate(record: MemoryData.record)
+                self.navigationController?.popViewController(animated: true)
             }
         }
-        self.diary?.foodPicture.image = self.foodImageView.image
-        self.diary?.mealLabel.text = self.mealName! + "" + self.timeTxt.text! 
-        self.navigationController?.popViewController(animated: true)
+        
+        
+        
+        
+        
     }
     
     

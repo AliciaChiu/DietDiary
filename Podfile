@@ -20,6 +20,8 @@ pod 'IQKeyboardManagerSwift'
 pod 'Alamofire'
 pod 'AlamofireObjectMapper', '~> 5.2'
 
+pod 'WXImageCompress', '~> 0.1.1'
+
   target 'DietDiaryTests' do
     inherit! :search_paths
     # Pods for testing
