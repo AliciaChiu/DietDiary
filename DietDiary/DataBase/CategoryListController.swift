@@ -9,6 +9,10 @@ import UIKit
 import Alamofire
 import AlamofireObjectMapper
 
+protocol CategoryListControllerDelegate {
+    func addNewFood()
+}
+
 class CategoryListController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -16,8 +20,9 @@ class CategoryListController: UIViewController {
     @IBOutlet weak var finishAddBtn: UIButton!
     
     var categories: [Category] = []
-
     
+    var delegate: CategoryListControllerDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
@@ -35,6 +40,7 @@ class CategoryListController: UIViewController {
 
    
     @IBAction func finishAdd(_ sender: Any) {
+        self.delegate?.addNewFood()
         self.navigationController?.popViewController(animated: true)
     }
     

@@ -13,7 +13,8 @@ class DiaryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var foodPicture: UIImageView!
     
-
+    @IBOutlet weak var noteTextView: UITextView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

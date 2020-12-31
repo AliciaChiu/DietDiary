@@ -15,6 +15,8 @@ class FoodListViewController: UIViewController {
     
     var foodCatogory = ""
     var foods: [Food] = []
+    var selectedFoods: [Food] = []
+    
 
    
     
@@ -35,7 +37,6 @@ class FoodListViewController: UIViewController {
         }else{
             self.reloadFoodData()
         }
-        
     }
     
     func reloadFoodData() {
@@ -46,7 +47,12 @@ class FoodListViewController: UIViewController {
         //indicatorView.stopAnimating()
     }
     
-
+    @IBAction func finish(_ sender: Any) {
+        
+        let index = (self.navigationController?.viewControllers.count ?? 0) - 3
+        self.navigationController?.popToViewController((self.navigationController?.viewControllers[index])!, animated: true)
+    }
+    
     
     // MARK: - Navigation
 

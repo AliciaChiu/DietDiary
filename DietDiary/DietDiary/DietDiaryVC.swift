@@ -86,7 +86,10 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
             let time = self.records[indexPath.row].date?.substring(with: 11..<16)
             cell.mealLabel.text = mealName + "  " + time!
             cell.foodPicture.image = self.records[indexPath.row].meal_images?.first?.image_content?.convertBase64StringToImage()
-            
+            if self.records[indexPath.row].note != nil {
+                cell.noteTextView.text = self.records[indexPath.row].note
+                cell.noteTextView.isHidden = false
+            }
             return cell
         }
     }

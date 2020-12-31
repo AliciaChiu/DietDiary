@@ -22,6 +22,8 @@ pod 'AlamofireObjectMapper', '~> 5.2'
 
 pod 'WXImageCompress', '~> 0.1.1'
 
+pod 'TagListView', '~> 1.0'
+
   target 'DietDiaryTests' do
     inherit! :search_paths
     # Pods for testing

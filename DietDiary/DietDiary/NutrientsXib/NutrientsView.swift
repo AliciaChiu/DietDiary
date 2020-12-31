@@ -33,7 +33,6 @@ class NutrientsView: UIView {
 //        categoryView.layer.borderColor = UIColor(red: 255/255, green: 167/255, blue: 38/255, alpha: 1).cgColor
 //        self.sendSubviewToBack(categoryView)
        
-        
     }
     
     

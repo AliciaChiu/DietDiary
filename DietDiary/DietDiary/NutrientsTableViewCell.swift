@@ -16,7 +16,7 @@ class NutrientsTableViewCell: UITableViewCell {
 
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        //displayValue()
+
     }
     
     override func awakeFromNib() {

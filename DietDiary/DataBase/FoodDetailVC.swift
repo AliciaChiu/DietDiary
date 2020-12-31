@@ -42,6 +42,29 @@ class FoodDetailVC: UIViewController {
         }
     }
     
+    @IBAction func addFood(_ sender: Any) {
+        
+        let mealRecord = MealRecord()
+        mealRecord.food_name = self.food.name
+        mealRecord.eaten_calories = Double(self.food.calories!)
+        mealRecord.grains = 1.0
+        mealRecord.meats = 2.0
+        mealRecord.oils = 3.0
+        mealRecord.milk = 1.1
+        mealRecord.vegetables = 2.2
+        mealRecord.fruits = 1.1
+        
+        if let carbohydrate = self.food.carbohydrate, let protein = self.food.protein, let fat = self.food.fat {
+            mealRecord.threeCalories = Double(carbohydrate * 4 + protein * 4 + fat * 9)
+            mealRecord.carbohydrate = Double(carbohydrate)
+            mealRecord.protein = Double(protein)
+            mealRecord.fat = Double(fat)
+        }
+       MemoryData.record.meal_records?.append(mealRecord)
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
     
 

@@ -9,6 +9,7 @@ import UIKit
 import Alamofire
 import AlamofireObjectMapper
 import WXImageCompress
+import TagListView
 
 protocol NewRecordVCDelegate : class{
     func didFinishUpdate(record : Record)
@@ -21,7 +22,7 @@ enum Meal: Int {
     case Dessert = 4
 }
 
-class NewRecordVC: UIViewController {
+class NewRecordVC: UIViewController, CategoryListControllerDelegate {
    
     @IBOutlet weak var foodImageView: UIImageView!
 
@@ -31,7 +32,11 @@ class NewRecordVC: UIViewController {
     
     @IBOutlet weak var timeTxt: UITextField!
     
-    var diary: DiaryTableViewCell?
+    @IBOutlet weak var addFoodView: TagListView!
+    
+    @IBOutlet weak var nutrientsSuperView: NutrientsSuperView!
+    
+    @IBOutlet weak var caloriesSuperView: CaloriesSuperView!
     
     weak var delegate : NewRecordVCDelegate?
    
@@ -60,7 +65,15 @@ class NewRecordVC: UIViewController {
         self.dayTxt.text = today.getFormattedDate(format: "yyyy-MM-dd")
         self.timeTxt.text = today.getFormattedDate(format: "HH:mm")
         
-        
+        self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取0大卡"
+        self.nutrientsSuperView.nutrientsView.grainsLabel.text = "0份"
+        self.nutrientsSuperView.nutrientsView.meatsLabel.text = "0份"
+        self.nutrientsSuperView.nutrientsView.milkLabel.text = "0份"
+        self.nutrientsSuperView.nutrientsView.vegetablesLabel.text = "0份"
+        self.nutrientsSuperView.nutrientsView.fruitsLabel.text = "0份"
+        self.nutrientsSuperView.nutrientsView.oilsLabel.text = "0份"
+        self.caloriesSuperView.caloriesView.setLabel()
+
         MemoryData.record = Record()
         MemoryData.record.meal = Meal.Breakfast.rawValue
         MemoryData.record.meal_images = []
@@ -109,12 +122,29 @@ class NewRecordVC: UIViewController {
         
     }
     
+    func addNewFood() {
 
+        addFoodView.textFont = UIFont.systemFont(ofSize: 15)
+        addFoodView.alignment = .left // possible values are [.leading, .trailing, .left, .center, .right]
+        
+        var foodNames: [String] = []
+        for n in MemoryData.record.meal_records ?? [] {
+            foodNames.append(n.food_name ?? "")
+        }
+        addFoodView.addTags(foodNames)
+
+        //addFoodView.insertTag("This should be the second tag", at: 1)
+    }
+    
     @IBAction func done(_ sender: Any) {
         
         // 準備要存的資料
         MemoryData.record.user_unique_id = MemoryData.userInfo?.unique_id
-        MemoryData.record.note = self.noteTextView.text
+        if self.noteTextView.text != "" {
+            MemoryData.record.note = self.noteTextView.text
+        } else {
+            MemoryData.record.note = nil
+        }
         MemoryData.record.date = self.dayTxt.text! + " " + self.timeTxt.text!
         
         if let image = self.foodImageView.image {
@@ -126,22 +156,6 @@ class NewRecordVC: UIViewController {
             MemoryData.record.meal_images?.append(mealImage)
         }
 
-        
-        let mealRecord = MealRecord()
-        mealRecord.food_name = "珍珠奶茶"
-        mealRecord.eaten_calories = 120.0
-        mealRecord.grains = 1.0
-        mealRecord.meats = 2.0
-        mealRecord.oils = 3.0
-        mealRecord.milk = 1.1
-        mealRecord.vegetables = 2.2
-        mealRecord.fruits = 1.1
-        mealRecord.threeCalories = 2.2
-        mealRecord.carbohydrate = 1.1
-        mealRecord.protein = 2.2
-        mealRecord.fat = 1.1
-
-        MemoryData.record.meal_records?.append(mealRecord)
 
 //        MemoryData.record.delete_meal_records = [3]
 //        MemoryData.record.meal_records?.removeAll(where: { (mr) -> Bool in
@@ -171,15 +185,17 @@ class NewRecordVC: UIViewController {
     
     
     
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "categoriesSegue" {
+            if let vc = segue.destination as? CategoryListController {
+                vc.delegate = self
+            }
+        }
     }
-    */
+
 
 }
 

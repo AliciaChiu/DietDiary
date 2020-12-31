@@ -21,6 +21,8 @@ class DailyDetailVC: UIViewController {
         
         setInitialValue()
         
+        self.dailyCaloriesSuperView.caloriesView.setLabel()
+        
     }
     
     func setInitialValue() {
@@ -35,7 +37,6 @@ class DailyDetailVC: UIViewController {
         self.dailyNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(MemoryData.userInfo?.fruitsAmount ?? 0)份"
         self.dailyNutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.userInfo?.oilsAmount ?? 0)份"
         
-        self.dailyCaloriesSuperView.caloriesView.setLabel()
     }
 
 
