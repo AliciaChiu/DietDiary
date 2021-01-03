@@ -32,15 +32,15 @@ class NutrientsTableViewCell: UITableViewCell {
     
     func displayNutrientsValue(){
         
-        self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "剩餘\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
+        self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(MemoryData.record.eatenCalories)大卡\n剩餘\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
         
         MemoryData.userInfo?.calculateAmount()
-        self.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(MemoryData.userInfo?.grainsAmount ?? 0)份"
-        self.dailyNutrientsSuperView.nutrientsView.meatsLabel.text = "\(MemoryData.userInfo?.meatsAmount ?? 0)份"
-        self.dailyNutrientsSuperView.nutrientsView.milkLabel.text = "\(MemoryData.userInfo?.milkAmount ?? 0)份"
-        self.dailyNutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(MemoryData.userInfo?.vegetablesAmount ?? 0)份"
-        self.dailyNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(MemoryData.userInfo?.fruitsAmount ?? 0)份"
-        self.dailyNutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.userInfo?.oilsAmount ?? 0)份"
+        self.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(MemoryData.record.eatenGrains)份/\(MemoryData.userInfo?.grainsAmount ?? 0)份"
+        self.dailyNutrientsSuperView.nutrientsView.meatsLabel.text = "\(MemoryData.record.eatenMeats)份/\(MemoryData.userInfo?.meatsAmount ?? 0)份"
+        self.dailyNutrientsSuperView.nutrientsView.milkLabel.text = "\(MemoryData.record.eatenMilk)份/\(MemoryData.userInfo?.milkAmount ?? 0)份"
+        self.dailyNutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(MemoryData.record.eatenVegetables)份/\(MemoryData.userInfo?.vegetablesAmount ?? 0)份"
+        self.dailyNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(MemoryData.record.eatenFruits)份/\(MemoryData.userInfo?.fruitsAmount ?? 0)份"
+        self.dailyNutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.record.eatenOils)份/\(MemoryData.userInfo?.oilsAmount ?? 0)份"
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

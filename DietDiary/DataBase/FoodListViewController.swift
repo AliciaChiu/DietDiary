@@ -9,6 +9,10 @@ import UIKit
 import Alamofire
 import AlamofireObjectMapper
 
+protocol FoodListViewControllerDelegate {
+    func addNewFood()
+}
+
 class FoodListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -16,6 +20,7 @@ class FoodListViewController: UIViewController {
     var foodCatogory = ""
     var foods: [Food] = []
     var selectedFoods: [Food] = []
+    var delegate: FoodListViewControllerDelegate?
     
 
    
@@ -39,6 +44,11 @@ class FoodListViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
+    }
+    
     func reloadFoodData() {
         self.foods = MemoryData.foods.filter { (food) -> Bool in
             return food.category == self.foodCatogory
@@ -48,7 +58,6 @@ class FoodListViewController: UIViewController {
     }
     
     @IBAction func finish(_ sender: Any) {
-        
         let index = (self.navigationController?.viewControllers.count ?? 0) - 3
         self.navigationController?.popToViewController((self.navigationController?.viewControllers[index])!, animated: true)
     }
@@ -77,6 +86,13 @@ extension FoodListViewController: UITableViewDelegate, UITableViewDataSource {
         
         let food = self.foods[indexPath.row]
         cell.detailTextLabel?.text = "\(food.category!),每份重\(food.weight!)公克,\(food.calories!)大卡"
+        
+        if MemoryData.record.foodNames.contains(food.name ?? "") {
+            cell.accessoryType = .checkmark
+        }else{
+            cell.accessoryType = .disclosureIndicator
+        }
+        
         
         return cell
     }

@@ -27,9 +27,9 @@ class CaloriesView: UIView {
     
     func setLabel() {
         self.caloriesLabel.text = "0大卡"
-        self.carbohydrateLabel.text = "醣類\n0大卡"
-        self.proteinLabel.text = "蛋白質\n0大卡"
-        self.fatLabel.text = "脂肪\n0大卡"
+        self.carbohydrateLabel.text = "醣類\n0公克"
+        self.proteinLabel.text = "蛋白質\n0公克"
+        self.fatLabel.text = "脂肪\n0公克"
     }
 
     

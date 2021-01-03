@@ -9,24 +9,19 @@ import UIKit
 import Alamofire
 import AlamofireObjectMapper
 
-protocol CategoryListControllerDelegate {
-    func addNewFood()
-}
+
 
 class CategoryListController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var finishAddBtn: UIButton!
-    
     var categories: [Category] = []
     
-    var delegate: CategoryListControllerDelegate?
+    var delegate: FoodListViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
-        self.finishAddBtn.layer.cornerRadius = 15.0
         self.title = "食物資料庫"
         
         Alamofire.request(URLs.categoryURL).responseObject { (response: DataResponse<CategoriesData>) in
@@ -36,12 +31,6 @@ class CategoryListController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-    }
-
-   
-    @IBAction func finishAdd(_ sender: Any) {
-        self.delegate?.addNewFood()
-        self.navigationController?.popViewController(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

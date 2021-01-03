@@ -34,18 +34,28 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
     }
     
     func obtainRecord() {
+//        let start_date =  self.records.first?.date
+        
         // 準備參數
-        let parameters: [String: Any] = [
-            "user_unique_id": MemoryData.userInfo?.unique_id ?? ""
-            //            "start_date": profileUrl,
+        var parameters: [String: Any] = [
+            "user_unique_id": MemoryData.userInfo?.unique_id ?? "",
             //            "end_date": userName
         ]
+//        if let start_date = start_date {
+//            parameters["start_date"] = start_date
+//        }
         
         // 呼叫API
         Alamofire.request(URLs.mealRecordsURL, parameters: parameters).responseObject { (response: DataResponse<RecordData>) in
             if response.result.isSuccess {
                 let recordData = response.result.value
-                self.records = recordData?.data ?? []
+//                if start_date == nil {
+                    self.records = recordData?.data ?? []
+//                }else{
+//                    var newData = (recordData?.data ?? [])
+////                    newData.removeLast()
+//                    self.records = newData + self.records
+//                }
                 //let recordJSON = recordData?.toJSON()
                 self.tableView.reloadData()
             }
@@ -53,12 +63,7 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
     }
     
     func didFinishUpdate(record : Record)  {
-        
         obtainRecord()
-
-//        let indexPath = IndexPath(row: self.records.count - 1, section: 1)
-//        //reload tableView
-//        self.tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 
         
@@ -89,6 +94,9 @@ class DietDiaryVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
             if self.records[indexPath.row].note != nil {
                 cell.noteTextView.text = self.records[indexPath.row].note
                 cell.noteTextView.isHidden = false
+            }else{
+                cell.noteTextView.text = nil
+                cell.noteTextView.isHidden = true
             }
             return cell
         }

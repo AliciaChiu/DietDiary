@@ -22,15 +22,17 @@ enum Meal: Int {
     case Dessert = 4
 }
 
-class NewRecordVC: UIViewController, CategoryListControllerDelegate {
+class NewRecordVC: UIViewController, FoodListViewControllerDelegate {
    
     @IBOutlet weak var foodImageView: UIImageView!
 
     @IBOutlet weak var noteTextView: UITextView!
     
     @IBOutlet weak var dayTxt: UITextField!
-    
     @IBOutlet weak var timeTxt: UITextField!
+    let datePicker = UIDatePicker()
+    let timePicker = UIDatePicker()
+    
     
     @IBOutlet weak var addFoodView: TagListView!
     
@@ -81,8 +83,103 @@ class NewRecordVC: UIViewController, CategoryListControllerDelegate {
         MemoryData.record.delete_meal_images = []
         MemoryData.record.delete_meal_records = []
         
+        createDatePicker()
+        createTimePicker()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addNewFood()
+    }
+    
+    //用餐日期的
+    func createDatePicker() {
+        
+        dayTxt.textAlignment = .center
+        
+        //toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        //bar button
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneAction))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelBtn = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(cancelAction))
+        toolbar.setItems([cancelBtn, flexibleSpace, doneBtn], animated: true)
+        
+        //assign toolbar
+        self.dayTxt.inputAccessoryView = toolbar
+        
+        //assign date picker to the text field.
+        self.dayTxt.inputView = datePicker
+        
+        //date picker mode
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        
+    }
+    
+    @objc func doneAction() {
+        //formatter
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "zh_TW")
+        
+        dayTxt.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+    }
+    
+    @objc func cancelAction() {
+        self.dayTxt.resignFirstResponder()
+    }
+
+    
+    //用餐時間的
+    func createTimePicker() {
+        
+        timeTxt.textAlignment = .center
+        
+        //toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        //bar button
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelBtn = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(cancelPressed))
+        toolbar.setItems([cancelBtn, flexibleSpace, doneBtn], animated: true)
+        
+        //assign toolbar
+        self.timeTxt.inputAccessoryView = toolbar
+        
+        //assign date picker to the text field.
+        self.timeTxt.inputView = timePicker
+        
+        //date picker mode
+        timePicker.preferredDatePickerStyle = .wheels
+        timePicker.datePickerMode = .time
+        
+    }
+    
+    @objc func donePressed() {
+        //formatter
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.dateFormat = "HH:mm"
+        formatter.locale = Locale(identifier: "zh_TW")
+        
+        timeTxt.text = formatter.string(from: timePicker.date)
+        self.view.endEditing(true)
+    }
+    
+    @objc func cancelPressed() {
+        self.timeTxt.resignFirstResponder()
+    }
+
+    
     //準備相機
     @IBAction func camera(_ sender: Any) {
         
@@ -126,13 +223,26 @@ class NewRecordVC: UIViewController, CategoryListControllerDelegate {
 
         addFoodView.textFont = UIFont.systemFont(ofSize: 15)
         addFoodView.alignment = .left // possible values are [.leading, .trailing, .left, .center, .right]
-        
-        var foodNames: [String] = []
-        for n in MemoryData.record.meal_records ?? [] {
-            foodNames.append(n.food_name ?? "")
-        }
-        addFoodView.addTags(foodNames)
+       
 
+        addFoodView.removeAllTags()
+        addFoodView.addTags(MemoryData.record.foodNames)
+        
+        print(MemoryData.record.foodNames)
+
+        self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(Int(MemoryData.record.eatenCalories))大卡"
+        self.nutrientsSuperView.nutrientsView.grainsLabel.text = "\(MemoryData.record.eatenGrains)份"
+        self.nutrientsSuperView.nutrientsView.meatsLabel.text = "\(MemoryData.record.eatenMeats)份"
+        self.nutrientsSuperView.nutrientsView.milkLabel.text = "\(MemoryData.record.eatenMilk)份"
+        self.nutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(MemoryData.record.eatenVegetables)份"
+        self.nutrientsSuperView.nutrientsView.fruitsLabel.text = "\(MemoryData.record.eatenFruits)份"
+        self.nutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.record.eatenOils)份"
+
+        self.caloriesSuperView.caloriesView.caloriesLabel.text = "\(Int(MemoryData.record.eatenThreeCalories))大卡"
+        self.caloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(Int(MemoryData.record.eatenCarbohydrate))公克"
+        self.caloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(Int(MemoryData.record.eatenProtein))公克"
+        self.caloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(Int(MemoryData.record.eatenFat))公克"
+        
         //addFoodView.insertTag("This should be the second tag", at: 1)
     }
     
@@ -140,11 +250,13 @@ class NewRecordVC: UIViewController, CategoryListControllerDelegate {
         
         // 準備要存的資料
         MemoryData.record.user_unique_id = MemoryData.userInfo?.unique_id
+        //有問題
         if self.noteTextView.text != "" {
             MemoryData.record.note = self.noteTextView.text
         } else {
             MemoryData.record.note = nil
         }
+        
         MemoryData.record.date = self.dayTxt.text! + " " + self.timeTxt.text!
         
         if let image = self.foodImageView.image {
@@ -176,11 +288,6 @@ class NewRecordVC: UIViewController, CategoryListControllerDelegate {
                 self.navigationController?.popViewController(animated: true)
             }
         }
-        
-        
-        
-        
-        
     }
     
     
@@ -189,13 +296,12 @@ class NewRecordVC: UIViewController, CategoryListControllerDelegate {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "categoriesSegue" {
-            if let vc = segue.destination as? CategoryListController {
-                vc.delegate = self
-            }
-        }
+//        if segue.identifier == "foodListSegue" {
+//            if let vc = segue.destination as? FoodListViewController {
+//                vc.delegate = self
+//            }
+//        }
     }
-
 
 }
 

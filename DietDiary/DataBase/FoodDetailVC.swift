@@ -46,13 +46,14 @@ class FoodDetailVC: UIViewController {
         
         let mealRecord = MealRecord()
         mealRecord.food_name = self.food.name
+        print(mealRecord.food_name)
         mealRecord.eaten_calories = Double(self.food.calories!)
         mealRecord.grains = 1.0
         mealRecord.meats = 2.0
         mealRecord.oils = 3.0
-        mealRecord.milk = 1.1
-        mealRecord.vegetables = 2.2
-        mealRecord.fruits = 1.1
+        mealRecord.milk = 1.0
+        mealRecord.vegetables = 2.0
+        mealRecord.fruits = 1.0
         
         if let carbohydrate = self.food.carbohydrate, let protein = self.food.protein, let fat = self.food.fat {
             mealRecord.threeCalories = Double(carbohydrate * 4 + protein * 4 + fat * 9)
@@ -60,8 +61,9 @@ class FoodDetailVC: UIViewController {
             mealRecord.protein = Double(protein)
             mealRecord.fat = Double(fat)
         }
-       MemoryData.record.meal_records?.append(mealRecord)
-        
+        MemoryData.record.meal_records?.append(mealRecord)
+        //print(MemoryData.record.meal_records)
+        MemoryData.record.getEatenFoodDetails()
         self.navigationController?.popViewController(animated: true)
     }
     

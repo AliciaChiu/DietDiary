@@ -71,6 +71,109 @@ class Record: Mappable,Equatable {
         }
         return mealName
     }
+    
+    var foodNames: [String] = []
+    var foodCalories: [Double] = []
+    var foodGrains: [Double] = []
+    var foodMeats: [Double] = []
+    var foodOils: [Double] = []
+    var foodMilk: [Double] = []
+    var foodVegetables: [Double] = []
+    var foodFruits: [Double] = []
+    var foodThreeCalories: [Double] = []
+    var foodCarbohydrate: [Double] = []
+    var foodProtein: [Double] = []
+    var foodFat: [Double] = []
+    
+    var eatenCalories = 0.0
+    var eatenGrains = 0.0
+    var eatenMeats = 0.0
+    var eatenOils = 0.0
+    var eatenMilk = 0.0
+    var eatenVegetables = 0.0
+    var eatenFruits = 0.0
+    var eatenThreeCalories = 0.0
+    var eatenCarbohydrate = 0.0
+    var eatenProtein = 0.0
+    var eatenFat = 0.0
+    
+    
+    
+    
+    func getEatenFoodDetails() {
+        self.foodNames = []
+        self.foodCalories = []
+        self.foodGrains = []
+        self.foodMeats = []
+        self.foodOils = []
+        self.foodMilk = []
+        self.foodVegetables = []
+        self.foodFruits = []
+        self.foodThreeCalories = []
+        self.foodCarbohydrate = []
+        self.foodProtein = []
+        self.foodFat = []
+
+        for food in MemoryData.record.meal_records ?? [] {
+            print(MemoryData.record.meal_records)
+            foodNames.append(food.food_name ?? "")
+            foodCalories.append(food.eaten_calories ?? 0)
+            foodGrains.append(food.grains ?? 0)
+            foodMeats.append(food.meats ?? 0)
+            foodOils.append(food.oils ?? 0)
+            foodMilk.append(food.milk ?? 0)
+            foodVegetables.append(food.vegetables ?? 0)
+            foodFruits.append(food.fruits ?? 0)
+            foodThreeCalories.append(food.threeCalories ?? 0)
+            foodCarbohydrate.append(food.carbohydrate ?? 0)
+            foodProtein.append(food.protein ?? 0)
+            foodFat.append(food.fat ?? 0)
+        }
+
+        for a in foodCalories {
+            eatenCalories = eatenCalories + a
+        }
+        
+        for b in foodGrains {
+            eatenGrains = eatenGrains + b
+        }
+
+        for c in foodMeats {
+            eatenMeats = eatenMeats + c
+        }
+
+        for d in foodMilk {
+            eatenMilk = eatenMilk + d
+        }
+
+        for e in foodVegetables {
+            eatenVegetables = eatenVegetables + e
+        }
+
+        for f in foodFruits {
+            eatenFruits = eatenFruits + f
+        }
+
+        for g in foodOils {
+            eatenOils = eatenOils + g
+        }
+
+        for h in foodThreeCalories {
+            eatenThreeCalories = eatenThreeCalories + h
+        }
+
+        for i in foodCarbohydrate {
+            eatenCarbohydrate = eatenCarbohydrate + i
+        }
+       
+        for j in foodProtein {
+            eatenProtein = eatenProtein + j
+        }
+       
+        for k in foodFat {
+            eatenFat = eatenFat + k
+        }
+    }
 }
 
 class MealImage: Mappable {
