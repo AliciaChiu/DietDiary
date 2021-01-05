@@ -16,8 +16,6 @@ class CategoryListController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var categories: [Category] = []
-    
-    var delegate: FoodListViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()

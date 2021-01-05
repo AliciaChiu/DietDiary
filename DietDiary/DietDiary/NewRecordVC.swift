@@ -22,17 +22,15 @@ enum Meal: Int {
     case Dessert = 4
 }
 
-class NewRecordVC: UIViewController, FoodListViewControllerDelegate {
+class NewRecordVC: UIViewController {
    
     @IBOutlet weak var foodImageView: UIImageView!
 
     @IBOutlet weak var noteTextView: UITextView!
     
     @IBOutlet weak var dayTxt: UITextField!
-    @IBOutlet weak var timeTxt: UITextField!
-    let datePicker = UIDatePicker()
-    let timePicker = UIDatePicker()
     
+    @IBOutlet weak var timeTxt: UITextField!
     
     @IBOutlet weak var addFoodView: TagListView!
     
@@ -41,31 +39,21 @@ class NewRecordVC: UIViewController, FoodListViewControllerDelegate {
     @IBOutlet weak var caloriesSuperView: CaloriesSuperView!
     
     weak var delegate : NewRecordVCDelegate?
+    
+    var date = Date()
+    
+    let datePicker = UIDatePicker()
+    let timePicker = UIDatePicker()
    
-    @IBAction func mealMayValueChanged(_ sender: UISegmentedControl) {
-        
-        switch sender.selectedSegmentIndex {
-        case 0:
-            MemoryData.record.meal = Meal.Breakfast.rawValue
-        case 1:
-            MemoryData.record.meal = Meal.Lunch.rawValue
-        case 2:
-            MemoryData.record.meal = Meal.Dinner.rawValue
-        case 3:
-            MemoryData.record.meal = Meal.Dessert.rawValue
-        default:
-            MemoryData.record.meal = Meal.Breakfast.rawValue
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
-        let today = Date()
-        self.title = today.getFormattedDate(format: "今天MM/dd")
-        self.dayTxt.text = today.getFormattedDate(format: "yyyy-MM-dd")
-        self.timeTxt.text = today.getFormattedDate(format: "HH:mm")
+        
+        self.title = self.date.getFormattedDate(format: "今天MM/dd")
+        self.dayTxt.text = self.date.getFormattedDate(format: "yyyy-MM-dd")
+        self.timeTxt.text = self.date.getFormattedDate(format: "HH:mm")
         
         self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取0大卡"
         self.nutrientsSuperView.nutrientsView.grainsLabel.text = "0份"
@@ -92,7 +80,27 @@ class NewRecordVC: UIViewController, FoodListViewControllerDelegate {
         addNewFood()
     }
     
-    //用餐日期的
+    // MARK: - Choose meal.
+    
+    @IBAction func mealMayValueChanged(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            MemoryData.record.meal = Meal.Breakfast.rawValue
+        case 1:
+            MemoryData.record.meal = Meal.Lunch.rawValue
+        case 2:
+            MemoryData.record.meal = Meal.Dinner.rawValue
+        case 3:
+            MemoryData.record.meal = Meal.Dessert.rawValue
+        default:
+            MemoryData.record.meal = Meal.Breakfast.rawValue
+        }
+    }
+    
+    // MARK: - Choose date and time.
+    
+    //Meal Date.
     func createDatePicker() {
         
         dayTxt.textAlignment = .center
@@ -128,6 +136,8 @@ class NewRecordVC: UIViewController, FoodListViewControllerDelegate {
         formatter.locale = Locale(identifier: "zh_TW")
         
         dayTxt.text = formatter.string(from: datePicker.date)
+        self.date = datePicker.date
+        self.title = self.date.getFormattedDate(format: "MM/dd")
         self.view.endEditing(true)
     }
     
@@ -136,7 +146,7 @@ class NewRecordVC: UIViewController, FoodListViewControllerDelegate {
     }
 
     
-    //用餐時間的
+    //Meal Time.
     func createTimePicker() {
         
         timeTxt.textAlignment = .center
@@ -180,7 +190,7 @@ class NewRecordVC: UIViewController, FoodListViewControllerDelegate {
     }
 
     
-    //準備相機
+    // MARK: - Prepare camera.
     @IBAction func camera(_ sender: Any) {
         
         let photoSourceRequestController = UIAlertController(title: "", message: "請選擇使用相機或相簿", preferredStyle: .actionSheet)
@@ -219,12 +229,12 @@ class NewRecordVC: UIViewController, FoodListViewControllerDelegate {
         
     }
     
+    
+    // MARK: - Add selected foods.
     func addNewFood() {
 
         addFoodView.textFont = UIFont.systemFont(ofSize: 15)
-        addFoodView.alignment = .left // possible values are [.leading, .trailing, .left, .center, .right]
-       
-
+        addFoodView.alignment = .left 
         addFoodView.removeAllTags()
         addFoodView.addTags(MemoryData.record.foodNames)
         
@@ -246,6 +256,7 @@ class NewRecordVC: UIViewController, FoodListViewControllerDelegate {
         //addFoodView.insertTag("This should be the second tag", at: 1)
     }
     
+    // MARK: - Post to database.
     @IBAction func done(_ sender: Any) {
         
         // 準備要存的資料
@@ -276,12 +287,9 @@ class NewRecordVC: UIViewController, FoodListViewControllerDelegate {
         
         let parameters = MemoryData.record.toJSON()
 //        print(parameters)
-        // 呼叫API
         
+        // 呼叫API
         Alamofire.request(URLs.mealRecordsURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<BaseResponseData>) in
-            
-            //self.indicatorView.stopAnimating()
-
             if response.result.isSuccess {
                 print(response.result.value?.toJSON())
                 self.delegate?.didFinishUpdate(record: MemoryData.record)
@@ -304,6 +312,7 @@ class NewRecordVC: UIViewController, FoodListViewControllerDelegate {
     }
 
 }
+
 
 extension NewRecordVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     

@@ -32,6 +32,8 @@ class NutrientsTableViewCell: UITableViewCell {
     
     func displayNutrientsValue(){
         
+        getEatenFoodDetails()
+        
         self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(MemoryData.record.eatenCalories)大卡\n剩餘\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
         
         MemoryData.userInfo?.calculateAmount()

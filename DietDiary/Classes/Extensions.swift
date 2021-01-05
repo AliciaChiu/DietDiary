@@ -12,7 +12,34 @@ extension Date {
    func getFormattedDate(format: String) -> String {
         let dateformat = DateFormatter()
         dateformat.dateFormat = format
+        dateformat.locale = Locale(identifier: "zh_TW")
         return dateformat.string(from: self)
+    }
+    
+    func getWeekdayIndex() -> Int {
+        
+        let calendar = Calendar.current
+        let weekday = calendar.component(.weekday, from: self)
+        var index = 0
+        switch weekday {
+        case 2:
+            index = 0
+        case 3:
+            index = 1
+        case 4:
+            index = 2
+        case 5:
+            index = 3
+        case 6:
+            index = 4
+        case 7:
+            index = 5
+        case 1:
+            index = 6
+        default:
+            index = 0
+        }
+        return index
     }
 }
 
@@ -65,57 +92,3 @@ extension String {
         return image
     }
 }
-
-//extension UITextField {
-//
-//
-//
-//    func datePicker<T>(target: T,
-//                       doneAction: Selector,
-//                       cancelAction: Selector,
-//                       datePickerMode: UIDatePicker.Mode = .date) {
-//
-//        let screenWidth = UIScreen.main.bounds.width
-//
-//        func buttonItem(withSystemItemStyle style: UIBarButtonItem.SystemItem) -> UIBarButtonItem {
-//            let buttonTarget = style == .flexibleSpace ? nil : target
-//            let action: Selector? = {
-//                switch style {
-//                case .cancel:
-//                    return cancelAction
-//                case .done:
-//                    return doneAction
-//                default:
-//                    return nil
-//                }
-//            }()
-//
-//            let barButtonItem = UIBarButtonItem(barButtonSystemItem: style,
-//                                                target: buttonTarget,
-//                                                action: action)
-//
-//            return barButtonItem
-//        }
-//
-//        let datePicker = UIDatePicker(frame: CGRect(x: 0,
-//                                                    y: 0,
-//                                                    width: screenWidth,
-//                                                    height: 216))
-//        datePicker.datePickerMode = datePickerMode
-//        datePicker.preferredDatePickerStyle = .wheels
-//        self.inputView = datePicker
-//
-//        let toolBar = UIToolbar(frame: CGRect(x: 0,
-//                                              y: 0,
-//                                              width: screenWidth,
-//                                              height: 44))
-//        toolBar.setItems([buttonItem(withSystemItemStyle: .cancel),
-//                          buttonItem(withSystemItemStyle: .flexibleSpace),
-//                          buttonItem(withSystemItemStyle: .done)],
-//                         animated: true)
-//        self.inputAccessoryView = toolBar
-//        
-//    }
-//
-//
-//}

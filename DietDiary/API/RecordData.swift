@@ -97,10 +97,8 @@ class Record: Mappable,Equatable {
     var eatenProtein = 0.0
     var eatenFat = 0.0
     
-    
-    
-    
     func getEatenFoodDetails() {
+        
         self.foodNames = []
         self.foodCalories = []
         self.foodGrains = []
@@ -113,9 +111,21 @@ class Record: Mappable,Equatable {
         self.foodCarbohydrate = []
         self.foodProtein = []
         self.foodFat = []
+        
+        eatenCalories = 0.0
+        eatenGrains = 0.0
+        eatenMeats = 0.0
+        eatenOils = 0.0
+        eatenMilk = 0.0
+        eatenVegetables = 0.0
+        eatenFruits = 0.0
+        eatenThreeCalories = 0.0
+        eatenCarbohydrate = 0.0
+        eatenProtein = 0.0
+        eatenFat = 0.0
 
-        for food in MemoryData.record.meal_records ?? [] {
-            print(MemoryData.record.meal_records)
+        for food in self.meal_records ?? [] {
+            
             foodNames.append(food.food_name ?? "")
             foodCalories.append(food.eaten_calories ?? 0)
             foodGrains.append(food.grains ?? 0)

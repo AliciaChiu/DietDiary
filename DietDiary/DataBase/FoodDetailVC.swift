@@ -10,8 +10,6 @@ import UIKit
 class FoodDetailVC: UIViewController {
     
     var food: Food!
-
-    var delegate: FoodListViewController?
     
     @IBOutlet weak var amounTxt: UITextField!
     
@@ -34,6 +32,14 @@ class FoodDetailVC: UIViewController {
         self.gramLabel.text = "\(self.food.weight!)公克"
         self.foodNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "\(self.food.calories!)大卡"
         
+        self.food.getNutrientsAmoumt()
+        self.foodNutrientsSuperView.nutrientsView.grainsLabel.text = "\(self.food.grains!)份"
+        self.foodNutrientsSuperView.nutrientsView.meatsLabel.text = "\(self.food.meats!)份"
+        self.foodNutrientsSuperView.nutrientsView.milkLabel.text = "\(self.food.milk!)份"
+        self.foodNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(self.food.fruits!)份"
+        self.foodNutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(self.food.vegetables!)份"
+        self.foodNutrientsSuperView.nutrientsView.oilsLabel.text = "\(self.food.oils!)份"
+        
         if let carbohydrate = self.food.carbohydrate, let protein = self.food.protein, let fat = self.food.fat {
             self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(carbohydrate)g"
             self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(protein)g"
@@ -48,12 +54,12 @@ class FoodDetailVC: UIViewController {
         mealRecord.food_name = self.food.name
         print(mealRecord.food_name)
         mealRecord.eaten_calories = Double(self.food.calories!)
-        mealRecord.grains = 1.0
-        mealRecord.meats = 2.0
-        mealRecord.oils = 3.0
-        mealRecord.milk = 1.0
-        mealRecord.vegetables = 2.0
-        mealRecord.fruits = 1.0
+        mealRecord.grains = self.food.grains
+        mealRecord.meats = self.food.meats
+        mealRecord.oils = self.food.oils
+        mealRecord.milk = self.food.milk
+        mealRecord.vegetables = self.food.vegetables
+        mealRecord.fruits = self.food.fruits
         
         if let carbohydrate = self.food.carbohydrate, let protein = self.food.protein, let fat = self.food.fat {
             mealRecord.threeCalories = Double(carbohydrate * 4 + protein * 4 + fat * 9)

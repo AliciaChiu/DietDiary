@@ -15,6 +15,8 @@ class DiaryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var noteTextView: UITextView!
     
+    @IBOutlet weak var foodLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

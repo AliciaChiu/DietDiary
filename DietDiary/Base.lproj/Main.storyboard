@@ -871,6 +871,9 @@
                                     <segment title="日"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" red="0.907075264084507" green="0.60007702464788737" blue="0.80567781690140849" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="weekdayMayChanged:" destination="qmf-CL-Rrd" eventType="valueChanged" id="gST-fK-6Rg"/>
+                                </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cur-ck-AyQ">
                                 <rect key="frame" x="0.0" y="769" width="390" height="75"/>
@@ -909,7 +912,7 @@
                                         </constraints>
                                         <state key="normal" image="calendar1"/>
                                         <connections>
-                                            <segue destination="xMv-Jp-d3R" kind="popoverPresentation" popoverAnchorView="3dq-Ec-ahc" id="HvZ-YG-QsK">
+                                            <segue destination="xMv-Jp-d3R" kind="popoverPresentation" identifier="calendarSegue" popoverAnchorView="3dq-Ec-ahc" id="HvZ-YG-QsK">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -999,26 +1002,52 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwZ-Pa-X6x">
-                                                            <rect key="frame" x="0.0" y="30" width="390" height="50"/>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwZ-Pa-X6x">
+                                                            <rect key="frame" x="0.0" y="30" width="390" height="60"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="390" id="3mV-51-Rfx"/>
-                                                                <constraint firstAttribute="height" constant="50" id="XBn-OP-9ne"/>
+                                                                <constraint firstAttribute="width" constant="390" id="B7F-jq-4ai"/>
+                                                                <constraint firstAttribute="height" constant="60" id="MPA-2w-dT4"/>
                                                             </constraints>
                                                             <color key="textColor" systemColor="labelColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="96n-23-x2V">
-                                                            <rect key="frame" x="0.0" y="30" width="390" height="410"/>
-                                                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8L-cI-BH4">
+                                                            <rect key="frame" x="0.0" y="90" width="390" height="350"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="96n-23-x2V">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="350"/>
+                                                                    <color key="backgroundColor" red="0.62741011898104615" green="1" blue="0.94367895348834263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNW-xC-kYC">
+                                                                    <rect key="frame" x="165.66666666666666" y="160" width="59" height="30"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="360" id="0Y0-fV-9lb"/>
-                                                                <constraint firstAttribute="width" constant="390" id="kWh-KI-wHb"/>
+                                                                <constraint firstItem="DNW-xC-kYC" firstAttribute="centerY" secondItem="U8L-cI-BH4" secondAttribute="centerY" id="HlC-7A-anm"/>
+                                                                <constraint firstAttribute="trailing" secondItem="96n-23-x2V" secondAttribute="trailing" id="JM2-Sg-Njh"/>
+                                                                <constraint firstItem="DNW-xC-kYC" firstAttribute="centerX" secondItem="U8L-cI-BH4" secondAttribute="centerX" id="Mw6-Ss-DXq"/>
+                                                                <constraint firstAttribute="height" constant="410" id="OcX-R1-7if"/>
+                                                                <constraint firstAttribute="width" constant="390" id="PH7-aN-99I"/>
+                                                                <constraint firstAttribute="bottom" secondItem="96n-23-x2V" secondAttribute="bottom" id="ULf-nL-3Qc"/>
+                                                                <constraint firstItem="96n-23-x2V" firstAttribute="leading" secondItem="U8L-cI-BH4" secondAttribute="leading" id="lEQ-fl-Yi8"/>
+                                                                <constraint firstItem="96n-23-x2V" firstAttribute="top" secondItem="U8L-cI-BH4" secondAttribute="top" id="yjC-f0-lrx"/>
                                                             </constraints>
-                                                        </imageView>
+                                                        </view>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="dwZ-Pa-X6x" secondAttribute="trailing" id="4wU-nR-q2r"/>
+                                                        <constraint firstAttribute="trailing" secondItem="U8L-cI-BH4" secondAttribute="trailing" id="9IA-mD-F8Y"/>
+                                                        <constraint firstItem="dwZ-Pa-X6x" firstAttribute="leading" secondItem="uA2-qa-odp" secondAttribute="leading" id="BQH-2J-neE"/>
+                                                        <constraint firstAttribute="bottom" secondItem="U8L-cI-BH4" secondAttribute="bottom" id="QV1-Qy-qN9"/>
+                                                        <constraint firstItem="U8L-cI-BH4" firstAttribute="leading" secondItem="uA2-qa-odp" secondAttribute="leading" id="bMd-L3-acZ"/>
+                                                        <constraint firstItem="dwZ-Pa-X6x" firstAttribute="top" secondItem="Aqw-2E-HCm" secondAttribute="bottom" id="fpN-cl-xav"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -1029,6 +1058,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="foodLabel" destination="DNW-xC-kYC" id="DEB-lK-xkS"/>
                                             <outlet property="foodPicture" destination="96n-23-x2V" id="PrX-dW-x9l"/>
                                             <outlet property="mealLabel" destination="Aqw-2E-HCm" id="Sgm-lS-Vlb"/>
                                             <outlet property="noteTextView" destination="dwZ-Pa-X6x" id="crc-30-odT"/>
@@ -1062,12 +1092,13 @@
                     <size key="freeformSize" width="390" height="844"/>
                     <connections>
                         <outlet property="addBtn" destination="Xjk-UR-bCP" id="af3-TL-u0T"/>
+                        <outlet property="segmentedControl" destination="rnr-FB-F9u" id="KXZ-Wu-lT0"/>
                         <outlet property="tableView" destination="q6U-1f-5xt" id="nmm-Zv-7pQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wtA-lz-xOY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4674" y="-120"/>
+            <point key="canvasLocation" x="4673.8461538461534" y="-120.14218009478672"/>
         </scene>
         <!--CalendarVC-->
         <scene sceneID="518-MM-4xW">
@@ -1101,6 +1132,9 @@
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="wgi-Qh-VRt">
                                 <rect key="frame" x="10" y="50" width="370" height="706"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="selectDate:" destination="xMv-Jp-d3R" eventType="valueChanged" id="hxb-c9-exn"/>
+                                </connections>
                             </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lX7-rg-fX7"/>
@@ -1117,6 +1151,9 @@
                             <constraint firstItem="lX7-rg-fX7" firstAttribute="bottom" secondItem="wgi-Qh-VRt" secondAttribute="bottom" id="zZ8-VN-Uo0"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="datePicker" destination="wgi-Qh-VRt" id="3Ec-9q-L0U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CKg-fg-4hK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

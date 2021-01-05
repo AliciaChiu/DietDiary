@@ -7,12 +7,24 @@
 
 import UIKit
 
+protocol CalendarVCDelegate {
+    func loadSelectedDateRecords(date: Date)
+}
+
 class CalendarVC: UIViewController {
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
+    var date: Date?
+    
+    var delegate: CalendarVCDelegate?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
+        datePicker.date = self.date ?? Date()
     }
     
     @IBAction func close(_ sender: Any) {
@@ -20,6 +32,27 @@ class CalendarVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
         
     }
+    
+    
+    @IBAction func selectDate(_ sender: UIDatePicker) {
+
+        self.date = sender.date
+        print(self.date)
+        self.delegate?.loadSelectedDateRecords(date: self.date!)
+        
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /*
     // MARK: - Navigation
 
