@@ -38,6 +38,9 @@ class NewRecordVC: UIViewController {
     
     @IBOutlet weak var caloriesSuperView: CaloriesSuperView!
     
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     weak var delegate : NewRecordVCDelegate?
     
     var date = Date()
@@ -45,31 +48,55 @@ class NewRecordVC: UIViewController {
     let datePicker = UIDatePicker()
     let timePicker = UIDatePicker()
    
+    var record: Record?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         
-        self.title = self.date.getFormattedDate(format: "今天MM/dd")
-        self.dayTxt.text = self.date.getFormattedDate(format: "yyyy-MM-dd")
-        self.timeTxt.text = self.date.getFormattedDate(format: "HH:mm")
-        
-        self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取0大卡"
-        self.nutrientsSuperView.nutrientsView.grainsLabel.text = "0份"
-        self.nutrientsSuperView.nutrientsView.meatsLabel.text = "0份"
-        self.nutrientsSuperView.nutrientsView.milkLabel.text = "0份"
-        self.nutrientsSuperView.nutrientsView.vegetablesLabel.text = "0份"
-        self.nutrientsSuperView.nutrientsView.fruitsLabel.text = "0份"
-        self.nutrientsSuperView.nutrientsView.oilsLabel.text = "0份"
-        self.caloriesSuperView.caloriesView.setLabel()
+        if let record = self.record {
+            MemoryData.record = record
+            addNewFood()
+            self.noteTextView.text = MemoryData.record.note
+            self.foodImageView.image = MemoryData.record.meal_images?.first?.image_content?.convertBase64StringToImage()
+            self.title = MemoryData.record.date?.substring(with: 5..<10)
+            self.dayTxt.text = MemoryData.record.date?.substring(with: 0..<10)
+            self.timeTxt.text = MemoryData.record.date?.substring(with: 11..<16)
+            let mealName = MemoryData.record.getMealName()
+            switch mealName {
+            case "早餐":
+                self.segmentedControl.selectedSegmentIndex = 0
+            case "午餐":
+                self.segmentedControl.selectedSegmentIndex = 1
+            case "晚餐":
+                self.segmentedControl.selectedSegmentIndex = 2
+            case "點心":
+                self.segmentedControl.selectedSegmentIndex = 3
+            default:
+                self.segmentedControl.selectedSegmentIndex = 0
+            }
+        } else {
+            self.title = self.date.getFormattedDate(format: "今天MM/dd")
+            self.dayTxt.text = self.date.getFormattedDate(format: "yyyy-MM-dd")
+            self.timeTxt.text = self.date.getFormattedDate(format: "HH:mm")
+            
+            self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取0大卡"
+            self.nutrientsSuperView.nutrientsView.grainsLabel.text = "0份"
+            self.nutrientsSuperView.nutrientsView.meatsLabel.text = "0份"
+            self.nutrientsSuperView.nutrientsView.milkLabel.text = "0份"
+            self.nutrientsSuperView.nutrientsView.vegetablesLabel.text = "0份"
+            self.nutrientsSuperView.nutrientsView.fruitsLabel.text = "0份"
+            self.nutrientsSuperView.nutrientsView.oilsLabel.text = "0份"
+            self.caloriesSuperView.caloriesView.setLabel()
 
-        MemoryData.record = Record()
-        MemoryData.record.meal = Meal.Breakfast.rawValue
-        MemoryData.record.meal_images = []
-        MemoryData.record.meal_records = []
-        MemoryData.record.delete_meal_images = []
-        MemoryData.record.delete_meal_records = []
+            MemoryData.record = Record()
+            MemoryData.record.meal = Meal.Breakfast.rawValue
+            MemoryData.record.meal_images = []
+            MemoryData.record.meal_records = []
+            MemoryData.record.delete_meal_images = []
+            MemoryData.record.delete_meal_records = []
+        }
         
         createDatePicker()
         createTimePicker()
@@ -240,18 +267,18 @@ class NewRecordVC: UIViewController {
         
         print(MemoryData.record.foodNames)
 
-        self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(Int(MemoryData.record.eatenCalories))大卡"
-        self.nutrientsSuperView.nutrientsView.grainsLabel.text = "\(MemoryData.record.eatenGrains)份"
-        self.nutrientsSuperView.nutrientsView.meatsLabel.text = "\(MemoryData.record.eatenMeats)份"
-        self.nutrientsSuperView.nutrientsView.milkLabel.text = "\(MemoryData.record.eatenMilk)份"
-        self.nutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(MemoryData.record.eatenVegetables)份"
-        self.nutrientsSuperView.nutrientsView.fruitsLabel.text = "\(MemoryData.record.eatenFruits)份"
-        self.nutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.record.eatenOils)份"
+        self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(MemoryData.record.eatenCalories.rounding(toDecimal: 1))大卡"
+        self.nutrientsSuperView.nutrientsView.grainsLabel.text = "\(MemoryData.record.eatenGrains.rounding(toDecimal: 1))份"
+        self.nutrientsSuperView.nutrientsView.meatsLabel.text = "\(MemoryData.record.eatenMeats.rounding(toDecimal: 1))份"
+        self.nutrientsSuperView.nutrientsView.milkLabel.text = "\(MemoryData.record.eatenMilk.rounding(toDecimal: 1))份"
+        self.nutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(MemoryData.record.eatenVegetables.rounding(toDecimal: 1))份"
+        self.nutrientsSuperView.nutrientsView.fruitsLabel.text = "\(MemoryData.record.eatenFruits.rounding(toDecimal: 1))份"
+        self.nutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.record.eatenOils.rounding(toDecimal: 1))份"
 
-        self.caloriesSuperView.caloriesView.caloriesLabel.text = "\(Int(MemoryData.record.eatenThreeCalories))大卡"
-        self.caloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(Int(MemoryData.record.eatenCarbohydrate))公克"
-        self.caloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(Int(MemoryData.record.eatenProtein))公克"
-        self.caloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(Int(MemoryData.record.eatenFat))公克"
+        self.caloriesSuperView.caloriesView.caloriesLabel.text = "\(MemoryData.record.eatenThreeCalories.rounding(toDecimal: 1))大卡"
+        self.caloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(MemoryData.record.eatenCarbohydrate.rounding(toDecimal: 1))公克"
+        self.caloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(MemoryData.record.eatenProtein.rounding(toDecimal: 1))公克"
+        self.caloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(MemoryData.record.eatenFat.rounding(toDecimal: 1))公克"
         
         //addFoodView.insertTag("This should be the second tag", at: 1)
     }
@@ -261,7 +288,7 @@ class NewRecordVC: UIViewController {
         
         // 準備要存的資料
         MemoryData.record.user_unique_id = MemoryData.userInfo?.unique_id
-        //有問題
+
         if self.noteTextView.text != "" {
             MemoryData.record.note = self.noteTextView.text
         } else {
@@ -292,6 +319,7 @@ class NewRecordVC: UIViewController {
         Alamofire.request(URLs.mealRecordsURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<BaseResponseData>) in
             if response.result.isSuccess {
                 print(response.result.value?.toJSON())
+                
                 self.delegate?.didFinishUpdate(record: MemoryData.record)
                 self.navigationController?.popViewController(animated: true)
             }

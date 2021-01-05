@@ -33,18 +33,18 @@ class FoodDetailVC: UIViewController {
         self.foodNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "\(self.food.calories!)大卡"
         
         self.food.getNutrientsAmoumt()
-        self.foodNutrientsSuperView.nutrientsView.grainsLabel.text = "\(self.food.grains!)份"
-        self.foodNutrientsSuperView.nutrientsView.meatsLabel.text = "\(self.food.meats!)份"
-        self.foodNutrientsSuperView.nutrientsView.milkLabel.text = "\(self.food.milk!)份"
-        self.foodNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(self.food.fruits!)份"
-        self.foodNutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(self.food.vegetables!)份"
-        self.foodNutrientsSuperView.nutrientsView.oilsLabel.text = "\(self.food.oils!)份"
+        self.foodNutrientsSuperView.nutrientsView.grainsLabel.text = "\(self.food.grains!.rounding(toDecimal: 1))份"
+        self.foodNutrientsSuperView.nutrientsView.meatsLabel.text = "\(self.food.meats!.rounding(toDecimal: 1))份"
+        self.foodNutrientsSuperView.nutrientsView.milkLabel.text = "\(self.food.milk!.rounding(toDecimal: 1))份"
+        self.foodNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(self.food.fruits!.rounding(toDecimal: 1))份"
+        self.foodNutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(self.food.vegetables!.rounding(toDecimal: 1))份"
+        self.foodNutrientsSuperView.nutrientsView.oilsLabel.text = "\(self.food.oils!.rounding(toDecimal: 1))份"
         
         if let carbohydrate = self.food.carbohydrate, let protein = self.food.protein, let fat = self.food.fat {
-            self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(carbohydrate)g"
-            self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(protein)g"
-            self.foodCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(fat)g"
-            self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\(carbohydrate * 4 + protein * 4 + fat * 9)大卡"
+            self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(carbohydrate.rounding(toDecimal: 1))g"
+            self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(protein.rounding(toDecimal: 1))g"
+            self.foodCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(fat.rounding(toDecimal: 1))g"
+            self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\((carbohydrate * 4 + protein * 4 + fat * 9).rounding(toDecimal: 1))大卡"
         }
     }
     
@@ -53,7 +53,7 @@ class FoodDetailVC: UIViewController {
         let mealRecord = MealRecord()
         mealRecord.food_name = self.food.name
         print(mealRecord.food_name)
-        mealRecord.eaten_calories = Double(self.food.calories!)
+        mealRecord.eaten_calories = self.food.calories!
         mealRecord.grains = self.food.grains
         mealRecord.meats = self.food.meats
         mealRecord.oils = self.food.oils
@@ -62,10 +62,10 @@ class FoodDetailVC: UIViewController {
         mealRecord.fruits = self.food.fruits
         
         if let carbohydrate = self.food.carbohydrate, let protein = self.food.protein, let fat = self.food.fat {
-            mealRecord.threeCalories = Double(carbohydrate * 4 + protein * 4 + fat * 9)
-            mealRecord.carbohydrate = Double(carbohydrate)
-            mealRecord.protein = Double(protein)
-            mealRecord.fat = Double(fat)
+            mealRecord.threeCalories = carbohydrate * 4 + protein * 4 + fat * 9
+            mealRecord.carbohydrate = carbohydrate
+            mealRecord.protein = protein
+            mealRecord.fat = fat
         }
         MemoryData.record.meal_records?.append(mealRecord)
         //print(MemoryData.record.meal_records)
@@ -95,7 +95,7 @@ extension FoodDetailVC: UITextFieldDelegate {
         if let text = textField.text, let range = Range(range, in: text) {
             let newText = text.replacingCharacters(in: range, with: string)
             
-            let amount = Int(newText) ?? 1
+            let amount = Float(newText) ?? 1
             let gram = food.weight ?? 0
             self.gramLabel.text = "\(amount * gram)公克"
 

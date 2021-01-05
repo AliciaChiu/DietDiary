@@ -11,7 +11,7 @@ import AlamofireObjectMapper
 
 class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, NewRecordVCDelegate, CalendarVCDelegate {
     
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var addBtn: UIButton!
@@ -19,6 +19,26 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var records: [Record] = []
+    
+    let userInfoCalories = MemoryData.userInfo?.dailyCalories ?? 0
+    let userInfoGrains = MemoryData.userInfo?.grainsAmount ?? 0
+    let userInfoMeats = MemoryData.userInfo?.meatsAmount ?? 0
+    let userInfoMilk = MemoryData.userInfo?.milkAmount ?? 0
+    let userInfoVegetables = MemoryData.userInfo?.vegetablesAmount ?? 0
+    let userInfoFruits = MemoryData.userInfo?.fruitsAmount ?? 0
+    let userInfoOils = MemoryData.userInfo?.oilsAmount ?? 0
+    
+    var dailyTotalCalories: Float = 0.0
+    var dailyTotalGrains: Float = 0.0
+    var dailyTotalMeats: Float = 0.0
+    var dailyTotalOils: Float = 0.0
+    var dailyTotalMilk: Float = 0.0
+    var dailyTotalVegetables: Float = 0.0
+    var dailyTotalFruits: Float = 0.0
+    var dailyTotalThreeCalories: Float = 0.0
+    var dailyTotalCarbohydrate: Float = 0.0
+    var dailyTotalProtein: Float = 0.0
+    var dailyTotalFat: Float = 0.0
     
     var date = Date()
     
@@ -33,6 +53,8 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         
         addBtn.layer.cornerRadius = 15.0
         addBtn.layer.masksToBounds = false
+        
+        
         
         obtainRecord()
         
@@ -55,6 +77,7 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         self.date = Calendar.current.date(byAdding: dateComponent, to: self.date)!
         self.title = self.date.getFormattedDate(format: "MM/dd")
         obtainRecord()
+
     }
     
     //MARK: Call API, obtain records.
@@ -77,9 +100,43 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
                 self.records = recordData?.data ?? []
                 print("get records length => \(self.records.count)")
 
+                self.getDailyTotalAmount()
                 //let recordJSON = recordData?.toJSON()
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    // MARk: - Get daily total amounts.
+    func getDailyTotalAmount() {
+        
+        dailyTotalCalories = 0.0
+        dailyTotalGrains = 0.0
+        dailyTotalMeats = 0.0
+        dailyTotalOils = 0.0
+        dailyTotalMilk = 0.0
+        dailyTotalVegetables = 0.0
+        dailyTotalFruits = 0.0
+        dailyTotalThreeCalories = 0.0
+        dailyTotalCarbohydrate = 0.0
+        dailyTotalProtein = 0.0
+        dailyTotalFat = 0.0
+  
+        for record in self.records {
+            
+            record.getEatenFoodDetails()
+            dailyTotalCalories = dailyTotalCalories + record.eatenCalories
+            dailyTotalGrains = dailyTotalGrains + record.eatenGrains
+            dailyTotalMeats = dailyTotalMeats + record.eatenMeats
+            dailyTotalOils = dailyTotalOils + record.eatenOils
+            dailyTotalMilk = dailyTotalMilk + record.eatenMilk
+            dailyTotalVegetables = dailyTotalVegetables + record.eatenVegetables
+            dailyTotalFruits = dailyTotalFruits + record.eatenFruits
+            dailyTotalThreeCalories = dailyTotalThreeCalories + record.eatenThreeCalories
+            dailyTotalCarbohydrate = dailyTotalCarbohydrate + record.eatenCarbohydrate
+            dailyTotalProtein = dailyTotalProtein + record.eatenProtein
+            dailyTotalFat = dailyTotalFat + record.eatenFat
+            
         }
     }
     
@@ -96,9 +153,9 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         self.title = self.date.getFormattedDate(format: "MM/dd")
         obtainRecord()
     }
+
+
     
-
-
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,6 +170,19 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
             let newVC = segue.destination as! CalendarVC
             newVC.delegate = self
             newVC.date = self.date
+        } else if segue.identifier == "detailSegue"{
+            let newVC = segue.destination as! DailyDetailVC
+            newVC.dailyTotalCalories = self.dailyTotalCalories
+            newVC.dailyTotalGrains = self.dailyTotalGrains
+            newVC.dailyTotalMeats = self.dailyTotalMeats
+            newVC.dailyTotalOils = self.dailyTotalOils
+            newVC.dailyTotalMilk = self.dailyTotalMilk
+            newVC.dailyTotalVegetables = self.dailyTotalVegetables
+            newVC.dailyTotalFruits = self.dailyTotalFruits
+            newVC.dailyTotalThreeCalories = self.dailyTotalThreeCalories
+            newVC.dailyTotalCarbohydrate = self.dailyTotalCarbohydrate
+            newVC.dailyTotalProtein = self.dailyTotalProtein
+            newVC.dailyTotalFat = self.dailyTotalFat
         }
     }
 
@@ -142,37 +212,23 @@ extension DietDiaryVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "nutrientsCell", for: indexPath) as! NutrientsTableViewCell
-            cell.displayNutrientsValue()
+      
+            //self.getDailyTotalAmount()
+            cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(self.dailyTotalCalories.rounding(toDecimal: 1))大卡\n剩餘\((self.userInfoCalories.rounding(toDecimal: 1)) - (self.dailyTotalCalories.rounding(toDecimal: 1)))大卡"
+            
+            
+            cell.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(self.dailyTotalGrains.rounding(toDecimal: 1))份/\(self.userInfoGrains)份"
+            cell.dailyNutrientsSuperView.nutrientsView.meatsLabel.text = "\(self.dailyTotalMeats.rounding(toDecimal: 1))份/\(self.userInfoMeats)份"
+            cell.dailyNutrientsSuperView.nutrientsView.milkLabel.text = "\(self.dailyTotalMilk.rounding(toDecimal: 1))份/\(self.userInfoMilk)份"
+            cell.dailyNutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(self.dailyTotalVegetables.rounding(toDecimal: 1))份/\(self.userInfoVegetables)份"
+            cell.dailyNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(self.dailyTotalFruits.rounding(toDecimal: 1))份/\(self.userInfoFruits)份"
+            cell.dailyNutrientsSuperView.nutrientsView.oilsLabel.text = "\(self.dailyTotalOils.rounding(toDecimal: 1))份/\(self.userInfoOils)份"
             return cell
         } else {
             let data = self.records[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: "diaryCell", for: indexPath) as! DiaryTableViewCell
-            let mealName = data.getMealName()
-            let time = data.date?.substring(with: 11..<16)
-            cell.mealLabel.text = mealName + "  " + time!
-            let image = data.meal_images?.first?.image_content?.convertBase64StringToImage()
-            
-            if image != nil {
-                cell.foodLabel.isHidden = true
-                cell.foodPicture.image = image
-            } else {
-                cell.foodLabel.isHidden = false
-                var foodNames = ""
-                data.getEatenFoodDetails()
-                for t in data.foodNames {
-                    foodNames = foodNames + "\n" + t
-                }
-                print(foodNames)
-                cell.foodLabel.text = foodNames
-            }
-            
-            if data.note != nil {
-                cell.noteTextView.text = self.records[indexPath.row].note
-                cell.noteTextView.isHidden = false
-            }else{
-                cell.noteTextView.text = nil
-                cell.noteTextView.isHidden = true
-            }
+            cell.loadCellContent(data)
+            cell.delegate = self
             return cell
         }
     }
@@ -180,5 +236,35 @@ extension DietDiaryVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+    
+}
+
+// MARK: - DiaryTableViewCellDelegate
+
+extension DietDiaryVC: DiaryTableViewCellDelegate {
+
+    func editting(record: Record) {
+        
+        let alertController = UIAlertController(title: nil, message: "我想要", preferredStyle: .actionSheet)
+        let editAction = UIAlertAction(title: "編輯紀錄", style: .default) { (action) in
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "NewRecordVC") as! NewRecordVC
+            vc.modalPresentationStyle = .currentContext
+            self.navigationController?.pushViewController(vc, animated: true)
+            vc.delegate = self
+            vc.record = record
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+            alertController.resignFirstResponder()
+        }
+        let deleteAction = UIAlertAction(title: "刪除紀錄", style: .destructive) { (action) in
+            //
+        }
+        alertController.addAction(editAction)
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     
 }

@@ -73,29 +73,29 @@ class Record: Mappable,Equatable {
     }
     
     var foodNames: [String] = []
-    var foodCalories: [Double] = []
-    var foodGrains: [Double] = []
-    var foodMeats: [Double] = []
-    var foodOils: [Double] = []
-    var foodMilk: [Double] = []
-    var foodVegetables: [Double] = []
-    var foodFruits: [Double] = []
-    var foodThreeCalories: [Double] = []
-    var foodCarbohydrate: [Double] = []
-    var foodProtein: [Double] = []
-    var foodFat: [Double] = []
+    var foodCalories: [Float] = []
+    var foodGrains: [Float] = []
+    var foodMeats: [Float] = []
+    var foodOils: [Float] = []
+    var foodMilk: [Float] = []
+    var foodVegetables: [Float] = []
+    var foodFruits: [Float] = []
+    var foodThreeCalories: [Float] = []
+    var foodCarbohydrate: [Float] = []
+    var foodProtein: [Float] = []
+    var foodFat: [Float] = []
     
-    var eatenCalories = 0.0
-    var eatenGrains = 0.0
-    var eatenMeats = 0.0
-    var eatenOils = 0.0
-    var eatenMilk = 0.0
-    var eatenVegetables = 0.0
-    var eatenFruits = 0.0
-    var eatenThreeCalories = 0.0
-    var eatenCarbohydrate = 0.0
-    var eatenProtein = 0.0
-    var eatenFat = 0.0
+    var eatenCalories: Float = 0.0
+    var eatenGrains: Float = 0.0
+    var eatenMeats: Float = 0.0
+    var eatenOils: Float = 0.0
+    var eatenMilk: Float = 0.0
+    var eatenVegetables: Float = 0.0
+    var eatenFruits: Float = 0.0
+    var eatenThreeCalories: Float = 0.0
+    var eatenCarbohydrate: Float = 0.0
+    var eatenProtein: Float = 0.0
+    var eatenFat: Float = 0.0
     
     func getEatenFoodDetails() {
         
@@ -210,17 +210,17 @@ class MealRecord: Mappable {
     var id: Int?
     var post_id: Int?
     var food_name: String?
-    var eaten_calories: Double?
-    var grains: Double?
-    var meats: Double?
-    var oils: Double?
-    var milk: Double?
-    var vegetables: Double?
-    var fruits: Double?
-    var threeCalories: Double?
-    var carbohydrate: Double?
-    var protein: Double?
-    var fat: Double?
+    var eaten_calories: Float?
+    var grains: Float?
+    var meats: Float?
+    var oils: Float?
+    var milk: Float?
+    var vegetables: Float?
+    var fruits: Float?
+    var threeCalories: Float?
+    var carbohydrate: Float?
+    var protein: Float?
+    var fat: Float?
     
     required init?(map: Map) {}
     required init() {}

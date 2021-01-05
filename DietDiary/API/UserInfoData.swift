@@ -40,10 +40,10 @@ class UserInformation: Mappable {
     var user_name: String?
     var gender: Int?
     var birthday: String?
-    var nowHeight: Double?
-    var nowWeight: Double?
-    var goalWeight: Double?
-    var monthlyDecrease: Double?
+    var nowHeight: Float?
+    var nowWeight: Float?
+    var goalWeight: Float?
+    var monthlyDecrease: Float?
     var exerciseDegree: Int?
 
     
@@ -77,18 +77,18 @@ class UserInformation: Mappable {
             return calculateTimeNeeded()
         }
     }
-    var dailyCalories: Double? {
+    var dailyCalories: Float? {
         get {
             return calculateBMR()
         }
     }
     
-    var grainsAmount: Double?
-    var meatsAmount: Double?
-    var oilsAmount: Double?
-    var milkAmount: Double?
-    var fruitsAmount: Double?
-    var vegetablesAmount: Double?
+    var grainsAmount: Float?
+    var meatsAmount: Float?
+    var oilsAmount: Float?
+    var milkAmount: Float?
+    var fruitsAmount: Float?
+    var vegetablesAmount: Float?
     
    
     
@@ -126,11 +126,11 @@ class UserInformation: Mappable {
         return 0
     }
     
-    func calculateBMR() -> Double {
+    func calculateBMR() -> Float {
         
-        var base = 1.3
-        var ree = 0.0
-        var bmr = 0.0
+        var base: Float = 1.3
+        var ree: Float = 0.0
+        var bmr: Float = 0.0
 
         if let weight = self.nowWeight,
            let height = self.nowHeight,
@@ -140,7 +140,7 @@ class UserInformation: Mappable {
             let dailyDecreaseCalories = monthlyDecreaseWeight * 7700 / 30
             let weighPara = 10 * weight
             let heightPara = 6.25 * height
-            let agePara = Double(5 * age)
+            let agePara = Float(5 * age)
 
             if gender == Gender.Female.rawValue {
                 ree = weighPara + heightPara - agePara - 161

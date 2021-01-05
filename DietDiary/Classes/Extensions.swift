@@ -92,3 +92,14 @@ extension String {
         return image
     }
 }
+
+extension Float {
+    func rounding(toDecimal decimal: Int) -> Float {
+        let numberOfDigits = pow(10.0, Float(decimal))
+        return (self * numberOfDigits).rounded(.toNearestOrAwayFromZero) / numberOfDigits
+    }
+    
+}
+
+
+

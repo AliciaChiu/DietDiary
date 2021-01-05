@@ -60,7 +60,7 @@ class UserInfoVC: UIViewController {
     @IBOutlet weak var monthlyLabel: UILabel!
     
     @IBAction func monthlyDecreaseValueChanged(_ sender: UIStepper) {
-        MemoryData.userInfo?.monthlyDecrease = sender.value
+        MemoryData.userInfo?.monthlyDecrease = Float(sender.value)
         self.monthlyLabel.text = "\(sender.value)"
         
         MemoryData.userInfo?.calculateTimeNeeded()
@@ -130,6 +130,7 @@ class UserInfoVC: UIViewController {
             if response.result.isSuccess {
                 let userInfoData = response.result.value
                 MemoryData.userInfo = userInfoData?.data
+                MemoryData.userInfo?.calculateAmount()
             }
         }
     }
@@ -156,11 +157,11 @@ extension UserInfoVC: UITextFieldDelegate {
             let newText = text.replacingCharacters(in: range, with: string)
             
             if textField == self.weightTxt {
-                MemoryData.userInfo?.nowWeight = Double(newText)
+                MemoryData.userInfo?.nowWeight = Float(newText)
             }else if textField == self.goalWeightTxt {
-                MemoryData.userInfo?.goalWeight = Double(newText)
+                MemoryData.userInfo?.goalWeight = Float(newText)
             }else if textField == self.heightTxt {
-                MemoryData.userInfo?.nowHeight = Double(newText)
+                MemoryData.userInfo?.nowHeight = Float(newText)
             }
             if !(MemoryData.userInfo?.planName.isEmpty ?? true) {
                 self.planLabel.text = MemoryData.userInfo?.planName

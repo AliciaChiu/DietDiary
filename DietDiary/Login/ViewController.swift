@@ -125,7 +125,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
                         let sb = UIStoryboard(name: "Main", bundle: nil)
                         let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController
                         vc.modalPresentationStyle = .currentContext
-                        
+                        MemoryData.userInfo?.calculateAmount()
                         let dietDiaryVC = sb.instantiateViewController(withIdentifier: "DietDiaryVC")
                         vc.viewControllers.append(dietDiaryVC)
                         self.present(vc, animated: true, completion: nil)
