@@ -101,6 +101,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Nsy-Kp-H0k"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="使用Facebook登入">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -169,7 +170,7 @@
         <!--UserInfoVC-->
         <scene sceneID="WBE-gf-XMa">
             <objects>
-                <viewController title="UserInfoVC" id="7CU-1i-sqJ" customClass="UserInfoVC" customModule="DietDiary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserInfoVC" title="UserInfoVC" id="7CU-1i-sqJ" customClass="UserInfoVC" customModule="DietDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8pE-0I-e4Z">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -810,7 +811,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="finishUserInfo:" destination="7CU-1i-sqJ" eventType="touchUpInside" id="nlN-tF-XYb"/>
-                                                    <segue destination="qmf-CL-Rrd" kind="show" identifier="UserInfoSegue" id="MBF-bh-xgr"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -859,7 +859,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rnr-FB-F9u">
-                                <rect key="frame" x="0.0" y="88" width="390" height="32"/>
+                                <rect key="frame" x="0.0" y="44" width="390" height="32"/>
                                 <color key="backgroundColor" red="0.907075264084507" green="0.8170939700704225" blue="0.854340889084507" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <segments>
                                     <segment title="一"/>
@@ -930,7 +930,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q6U-1f-5xt">
-                                <rect key="frame" x="0.0" y="119" width="390" height="650"/>
+                                <rect key="frame" x="0.0" y="75" width="390" height="694"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -1188,7 +1188,7 @@
             <objects>
                 <viewController title="SetVC" id="IHE-Q7-VhY" customClass="SetVC" customModule="DietDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="Tfw-FG-CAT">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ht4-ss-YPx">
@@ -1817,7 +1817,7 @@
             <objects>
                 <viewController storyboardIdentifier="NewRecordVC" title="NewRecordVC" id="AQd-O1-scK" customClass="NewRecordVC" customModule="DietDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hQ7-bu-zhB">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" directionalLockEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="taB-bT-cr7">
@@ -2249,11 +2249,11 @@
             <objects>
                 <viewController title="CategoryListController" id="WGs-hD-Vaq" customClass="CategoryListController" customModule="DietDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uzo-K8-ZhW">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rNy-HL-syN">
-                                <rect key="frame" x="0.0" y="88" width="390" height="756"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="foodCatogoryCell" textLabel="Mhx-Df-Mik" style="IBUITableViewCellStyleDefault" id="EeS-Db-GpK">
@@ -2310,11 +2310,11 @@
             <objects>
                 <viewController title="FoodListViewController" id="Ln9-tg-HdN" customClass="FoodListViewController" customModule="DietDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2sd-rg-uhz">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fD5-aO-19d">
-                                <rect key="frame" x="0.0" y="88" width="390" height="681"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="715"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="foodCell" textLabel="TAB-CO-X6W" detailTextLabel="SA4-Ue-MzN" style="IBUITableViewCellStyleSubtitle" id="y6B-gx-kDW">
@@ -2353,7 +2353,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-YJ-9J9">
-                                <rect key="frame" x="0.0" y="769" width="390" height="75"/>
+                                <rect key="frame" x="0.0" y="715" width="390" height="75"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVB-W6-YNU">
                                         <rect key="frame" x="145" y="15" width="100" height="30"/>
@@ -2412,11 +2412,11 @@
             <objects>
                 <viewController storyboardIdentifier="FoodDetailVC" title="FoodDetailVC" id="b5m-Rq-lV4" customClass="FoodDetailVC" customModule="DietDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4jQ-68-usW">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9M-RI-W8L">
-                                <rect key="frame" x="0.0" y="88" width="390" height="681"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="715"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="6ZA-wl-gho">
                                         <rect key="frame" x="35" y="35" width="320" height="800"/>
@@ -2437,7 +2437,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trempettes" translatesAutoresizingMaskIntoConstraints="NO" id="mc7-ba-iTJ">
-                                                                        <rect key="frame" x="12.666666666666664" y="12.666666666666657" width="25" height="25"/>
+                                                                        <rect key="frame" x="12.666666666666664" y="12.666666666666664" width="25" height="25"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="25" id="Ou1-0h-65P"/>
                                                                             <constraint firstAttribute="width" constant="25" id="Xgi-tS-eVA"/>
@@ -2497,7 +2497,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weighing-machine2" translatesAutoresizingMaskIntoConstraints="NO" id="sA9-nh-vpY">
-                                                                        <rect key="frame" x="12.666666666666664" y="12.666666666666657" width="25" height="25"/>
+                                                                        <rect key="frame" x="12.666666666666664" y="12.666666666666671" width="25" height="25"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="25" id="GqD-gI-9e1"/>
                                                                             <constraint firstAttribute="width" constant="25" id="Pbj-Vp-cde"/>
@@ -2598,7 +2598,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Zpq-yR-2P4"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8u-ju-g9U">
-                                <rect key="frame" x="0.0" y="769" width="390" height="75"/>
+                                <rect key="frame" x="0.0" y="715" width="390" height="75"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txa-4H-Utr">
                                         <rect key="frame" x="145" y="15" width="100" height="30"/>
@@ -2657,7 +2657,7 @@
             <objects>
                 <viewController title="DailyDetailVC" id="SZO-8o-iB8" customClass="DailyDetailVC" customModule="DietDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dej-Ya-31q">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mLY-AB-us0">

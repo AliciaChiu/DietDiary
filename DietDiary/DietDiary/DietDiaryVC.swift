@@ -73,7 +73,14 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         var dateComponent = DateComponents()
         dateComponent.day = day_diff
         self.date = Calendar.current.date(byAdding: dateComponent, to: self.date)!
-        self.title = self.date.getFormattedDate(format: "MM/dd")
+        
+        let dateString = self.date.getFormattedDate(format: "yyyy-MM-dd")
+        let todayString = Date().getFormattedDate(format: "yyyy-MM-dd")
+        if  dateString == todayString {
+            self.title = self.date.getFormattedDate(format: "今天MM/dd")
+        }else{
+            self.title = self.date.getFormattedDate(format: "MM/dd")
+        }
         obtainRecord()
 
     }
@@ -148,7 +155,13 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
     
     func loadSelectedDateRecords(date: Date) {
         self.date = date
-        self.title = self.date.getFormattedDate(format: "MM/dd")
+        let dateString = self.date.getFormattedDate(format: "yyyy-MM-dd")
+        let todayString = Date().getFormattedDate(format: "yyyy-MM-dd")
+        if  dateString == todayString {
+            self.title = self.date.getFormattedDate(format: "今天MM/dd")
+        }else{
+            self.title = self.date.getFormattedDate(format: "MM/dd")
+        }
         obtainRecord()
     }
 
@@ -234,10 +247,11 @@ extension DietDiaryVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "nutrientsCell", for: indexPath) as! NutrientsTableViewCell
-      
-            //self.getDailyTotalAmount()
+
             if self.dailyTotalCalories > self.userInfoCalories {
                 cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.textColor = .red
+            }else{
+                cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.textColor = .black
             }
             cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(self.dailyTotalCalories.rounding(toDecimal: 1))大卡\n剩餘\((self.userInfoCalories.rounding(toDecimal: 1)) - (self.dailyTotalCalories.rounding(toDecimal: 1)))大卡"
             

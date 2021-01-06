@@ -100,19 +100,19 @@ extension FoodDetailVC: UITextFieldDelegate {
             self.gramLabel.text = "\(amount * gram)公克"
 
             let eatenCalories = food.calories ?? 0
-            self.foodNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "\(amount * eatenCalories)大卡"
+            self.foodNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "\((amount * eatenCalories).rounding(toDecimal: 1))大卡"
 
             let  carbohydrate = food.carbohydrate ?? 0
-            self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(amount * carbohydrate)g"
+            self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\((amount * carbohydrate).rounding(toDecimal: 1))g"
 
             let  protein = food.protein ?? 0
-            self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(amount * protein)g"
+            self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\((amount * protein).rounding(toDecimal: 1))g"
 
             let  fat = food.fat ?? 0
-            self.foodCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(amount * fat)g"
+            self.foodCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\((amount * fat).rounding(toDecimal: 1))g"
             
             let threeCalories = (carbohydrate * 4) + (protein * 4) + (fat * 9)
-            self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\(amount * threeCalories)大卡"
+            self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\((amount * threeCalories).rounding(toDecimal: 1))大卡"
     
         }
         return true

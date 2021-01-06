@@ -38,13 +38,13 @@ class UserInformation: Mappable {
     var unique_id: String?
     var profile_url: String?
     var user_name: String?
-    var gender: Int?
-    var birthday: String?
+    var gender: Int? = 1
+    var birthday: String? = Date().getFormattedDate(format: "yyyy-MM-dd")
     var nowHeight: Float?
     var nowWeight: Float?
     var goalWeight: Float?
-    var monthlyDecrease: Float?
-    var exerciseDegree: Int?
+    var monthlyDecrease: Float? = 0.0
+    var exerciseDegree: Int? = 1
 
     
     required init?(map: Map) {}

@@ -47,6 +47,13 @@
 		F2F10575258D011E00C7A7BA /* NutrientsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F10574258D011E00C7A7BA /* NutrientsView.xib */; };
 		F2F1057A258D013E00C7A7BA /* NutrientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F10579258D013E00C7A7BA /* NutrientsView.swift */; };
 		F2F1057F258D077C00C7A7BA /* NutrientsSuperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F1057E258D077C00C7A7BA /* NutrientsSuperView.swift */; };
+		F2F210D625A619BB000024AF /* MPLUSRounded1c-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2F210CF25A619B9000024AF /* MPLUSRounded1c-Thin.ttf */; };
+		F2F210D725A619BB000024AF /* MPLUSRounded1c-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2F210D025A619BA000024AF /* MPLUSRounded1c-Regular.ttf */; };
+		F2F210D825A619BB000024AF /* MPLUSRounded1c-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2F210D125A619BA000024AF /* MPLUSRounded1c-ExtraBold.ttf */; };
+		F2F210D925A619BB000024AF /* MPLUSRounded1c-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2F210D225A619BA000024AF /* MPLUSRounded1c-Bold.ttf */; };
+		F2F210DA25A619BB000024AF /* MPLUSRounded1c-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2F210D325A619BB000024AF /* MPLUSRounded1c-Medium.ttf */; };
+		F2F210DB25A619BB000024AF /* MPLUSRounded1c-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2F210D425A619BB000024AF /* MPLUSRounded1c-Light.ttf */; };
+		F2F210DC25A619BB000024AF /* MPLUSRounded1c-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2F210D525A619BB000024AF /* MPLUSRounded1c-Black.ttf */; };
 		F2F3CB8225852627002D1090 /* DietDiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F3CB8125852627002D1090 /* DietDiaryVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +126,13 @@
 		F2F10574258D011E00C7A7BA /* NutrientsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NutrientsView.xib; sourceTree = "<group>"; };
 		F2F10579258D013E00C7A7BA /* NutrientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientsView.swift; sourceTree = "<group>"; };
 		F2F1057E258D077C00C7A7BA /* NutrientsSuperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientsSuperView.swift; sourceTree = "<group>"; };
+		F2F210CF25A619B9000024AF /* MPLUSRounded1c-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Thin.ttf"; sourceTree = "<group>"; };
+		F2F210D025A619BA000024AF /* MPLUSRounded1c-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Regular.ttf"; sourceTree = "<group>"; };
+		F2F210D125A619BA000024AF /* MPLUSRounded1c-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-ExtraBold.ttf"; sourceTree = "<group>"; };
+		F2F210D225A619BA000024AF /* MPLUSRounded1c-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Bold.ttf"; sourceTree = "<group>"; };
+		F2F210D325A619BB000024AF /* MPLUSRounded1c-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Medium.ttf"; sourceTree = "<group>"; };
+		F2F210D425A619BB000024AF /* MPLUSRounded1c-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Light.ttf"; sourceTree = "<group>"; };
+		F2F210D525A619BB000024AF /* MPLUSRounded1c-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Black.ttf"; sourceTree = "<group>"; };
 		F2F3CB8125852627002D1090 /* DietDiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietDiaryVC.swift; sourceTree = "<group>"; };
 		FAD466FD98B2BE62B9D51401 /* Pods-DietDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-DietDiaryTests/Pods-DietDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -221,6 +235,7 @@
 		F23C542F258260BA000D6281 /* DietDiary */ = {
 			isa = PBXGroup;
 			children = (
+				F2F210CE25A61984000024AF /* Font */,
 				F217E56C25983DCA00F8BE0C /* Classes */,
 				F217E56B25983D7100F8BE0C /* API */,
 				F28E8F68259058C500C2C82A /* Login */,
@@ -311,6 +326,20 @@
 				F236614A258B2F72006437DC /* SetVC.swift */,
 			);
 			path = DietDiary;
+			sourceTree = "<group>";
+		};
+		F2F210CE25A61984000024AF /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				F2F210D525A619BB000024AF /* MPLUSRounded1c-Black.ttf */,
+				F2F210D025A619BA000024AF /* MPLUSRounded1c-Regular.ttf */,
+				F2F210D225A619BA000024AF /* MPLUSRounded1c-Bold.ttf */,
+				F2F210D125A619BA000024AF /* MPLUSRounded1c-ExtraBold.ttf */,
+				F2F210D425A619BB000024AF /* MPLUSRounded1c-Light.ttf */,
+				F2F210D325A619BB000024AF /* MPLUSRounded1c-Medium.ttf */,
+				F2F210CF25A619B9000024AF /* MPLUSRounded1c-Thin.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		F2F3CB89258529BA002D1090 /* UserInfo */ = {
@@ -432,14 +461,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2F210D825A619BB000024AF /* MPLUSRounded1c-ExtraBold.ttf in Resources */,
 				F23C5440258260BE000D6281 /* LaunchScreen.storyboard in Resources */,
 				F2A344A125924473009B4C81 /* data.json in Resources */,
 				F23C54A825826665000D6281 /* GoogleService-Info.plist in Resources */,
 				F2DF3A40258E54A0006B4361 /* CaloriesView.xib in Resources */,
 				F23C543D258260BE000D6281 /* Assets.xcassets in Resources */,
+				F2F210D725A619BB000024AF /* MPLUSRounded1c-Regular.ttf in Resources */,
 				F2A344B625924DF2009B4C81 /* categories.json in Resources */,
 				F23C54B925826715000D6281 /* Main.storyboard in Resources */,
+				F2F210DC25A619BB000024AF /* MPLUSRounded1c-Black.ttf in Resources */,
+				F2F210DB25A619BB000024AF /* MPLUSRounded1c-Light.ttf in Resources */,
 				F2F10575258D011E00C7A7BA /* NutrientsView.xib in Resources */,
+				F2F210D625A619BB000024AF /* MPLUSRounded1c-Thin.ttf in Resources */,
+				F2F210D925A619BB000024AF /* MPLUSRounded1c-Bold.ttf in Resources */,
+				F2F210DA25A619BB000024AF /* MPLUSRounded1c-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,8 +33,8 @@ class Record: Mappable,Equatable {
     var meal: Int?
     var user_unique_id: String?
     var note: String?
-    var delete_meal_records: [Int]?
-    var delete_meal_images: [Int]?
+    var delete_meal_records: [Int] = []
+    var delete_meal_images: [Int] = []
     var meal_images: [MealImage]?
     var meal_records: [MealRecord]?
     

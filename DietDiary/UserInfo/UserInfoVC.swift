@@ -67,7 +67,7 @@ class UserInfoVC: UIViewController {
         self.timeNeededLabel.text = "\(Int(MemoryData.userInfo?.timeNeeded ?? 0))天"
         
         MemoryData.userInfo?.calculateBMR()
-        self.dailyCaloriesLabel.text = "\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
+        self.dailyCaloriesLabel.text = "\((Float(MemoryData.userInfo?.dailyCalories ?? 0)).rounding(toDecimal: 1))大卡"
 
     }
     
@@ -82,7 +82,7 @@ class UserInfoVC: UIViewController {
         }
         
         MemoryData.userInfo?.calculateBMR()
-        self.dailyCaloriesLabel.text = "\(Int(MemoryData.userInfo?.dailyCalories ?? 0) ?? 0)大卡"
+        self.dailyCaloriesLabel.text = "\((Float(MemoryData.userInfo?.dailyCalories ?? 0)).rounding(toDecimal: 1))大卡"
 
     }
     
@@ -95,44 +95,64 @@ class UserInfoVC: UIViewController {
         case 2:
             MemoryData.userInfo?.exerciseDegree = ExerciseDegree.HighActivity.rawValue
         default:
-            print("Please choose an activity level. ")
+            MemoryData.userInfo?.exerciseDegree = ExerciseDegree.LowActivity.rawValue
         }
         
         MemoryData.userInfo?.calculateBMR()
-        self.dailyCaloriesLabel.text = "\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
+        self.dailyCaloriesLabel.text = "\((Float(MemoryData.userInfo?.dailyCalories ?? 0)).rounding(toDecimal: 1))大卡"
   
     }
     
     @IBAction func finishUserInfo(_ sender: Any) {
         
-        // 準備登入資料
-        let parameters: [String: Any] = [
-            "unique_id": MemoryData.userInfo?.unique_id ?? "",
-            "profile_url": MemoryData.userInfo?.profile_url ?? "",
-            "user_name": MemoryData.userInfo?.user_name ?? "",
-            "gender": MemoryData.userInfo?.gender ?? 1,
-            "birthday": MemoryData.userInfo?.birthday ?? "",
-            "nowHeight": MemoryData.userInfo?.nowHeight ?? 0,
-            "nowWeight": MemoryData.userInfo?.nowWeight ?? 0,
-            "goalWeight": MemoryData.userInfo?.goalWeight ?? 0,
-            "monthlyDecrease": MemoryData.userInfo?.monthlyDecrease ?? 1,
-            "exerciseDegree": MemoryData.userInfo?.exerciseDegree ?? 1
-        ]
-        
-        // 呼叫API
-        //self.indicatorView.startAnimating()
-        print(parameters)
-        
-        Alamofire.request(URLs.userInfoURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<UserInfoData>) in
+        let height = self.heightTxt.text ?? ""
+        let weight = self.weightTxt.text ?? ""
+        let goalWeight = self.goalWeightTxt.text ?? ""
+    
+        if !height.isEmpty && !weight.isEmpty && !goalWeight.isEmpty {
             
-            //self.indicatorView.stopAnimating()
-            print(response.result.value)
-            if response.result.isSuccess {
-                let userInfoData = response.result.value
-                MemoryData.userInfo = userInfoData?.data
-                MemoryData.userInfo?.calculateAmount()
+            // 準備登入資料
+            let parameters: [String: Any] = [
+                "unique_id": MemoryData.userInfo?.unique_id ?? "",
+                "profile_url": MemoryData.userInfo?.profile_url ?? "",
+                "user_name": MemoryData.userInfo?.user_name ?? "",
+                "gender": MemoryData.userInfo?.gender ?? 1,
+                "birthday": MemoryData.userInfo?.birthday ?? "",
+                "nowHeight": MemoryData.userInfo?.nowHeight ?? 0,
+                "nowWeight": MemoryData.userInfo?.nowWeight ?? 0,
+                "goalWeight": MemoryData.userInfo?.goalWeight ?? 0,
+                "monthlyDecrease": MemoryData.userInfo?.monthlyDecrease ?? 1,
+                "exerciseDegree": MemoryData.userInfo?.exerciseDegree ?? 1
+            ]
+            
+            // 呼叫API
+            //self.indicatorView.startAnimating()
+            print(parameters)
+            
+            Alamofire.request(URLs.userInfoURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<UserInfoData>) in
+                
+                //self.indicatorView.stopAnimating()
+                print(response.result.value)
+                if response.result.isSuccess {
+                    let userInfoData = response.result.value
+                    MemoryData.userInfo = userInfoData?.data
+                    MemoryData.userInfo?.calculateAmount()
+                }
             }
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "DietDiaryVC") as! DietDiaryVC
+            vc.modalPresentationStyle = .currentContext
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let alertController = UIAlertController(title: nil, message: "還有資料沒填寫完畢喔！", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "填資料去～", style: .default) { (action) in
+                alertController.resignFirstResponder()
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
         }
+        
+
     }
     
 
@@ -141,13 +161,13 @@ class UserInfoVC: UIViewController {
     
     // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "UserInfoSegue" {
-            if let vc = segue.destination as? DietDiaryVC {
-             
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "UserInfoSegue" {
+//            if let vc = segue.destination as? DietDiaryVC {
+//             
+//            }
+//        }
+//    }
 }
 
 extension UserInfoVC: UITextFieldDelegate {

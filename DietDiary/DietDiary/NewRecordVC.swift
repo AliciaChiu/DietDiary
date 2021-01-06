@@ -309,20 +309,29 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
         //addFoodView.insertTag("This should be the second tag", at: 1)
     }
     
-    func tagPressed(title: String, tagView: TagView, sender: TagListView) {
-        deleteFoods()
-    }
-    
-    func deleteFoods() {
-        let index = addFoodView.tag
+    func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        print("Tag pressed: \(title)")
+        let alertController = UIAlertController(title: "刪除", message: "確定要刪除這項食物嗎？", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "是的", style: .default) { (action) in
+            if let index = self.record?.meal_records?.firstIndex(where: { (mealRecord) -> Bool in
+                return mealRecord.food_name == title
+            }) {
+                let mealRecord = self.record?.meal_records?[index]
+                if let id = mealRecord?.id {
+                    MemoryData.record.delete_meal_records.append(id)
+                }
+                self.record?.meal_records?.remove(at: index)
+                self.addFoodView.removeTag(title)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+            alertController.resignFirstResponder()
+        }
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
 
-        MemoryData.record.delete_meal_records = [index]
-        MemoryData.record.meal_records?.removeAll(where: { (mr) -> Bool in
-            return mr.id == index
-        })
-        addFoodView.removeTag(MemoryData.record.foodNames[index])
     }
-    
     
     // MARK: - Post to database.
     @IBAction func done(_ sender: Any) {
@@ -346,12 +355,9 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
             mealImage.image_content = imageBase64
             MemoryData.record.meal_images?.append(mealImage)
         }
-
-
-
         
         let parameters = MemoryData.record.toJSON()
-//        print(parameters)
+        print(parameters)
         
         // 呼叫API
         Alamofire.request(URLs.mealRecordsURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<BaseResponseData>) in
