@@ -54,8 +54,6 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         addBtn.layer.cornerRadius = 15.0
         addBtn.layer.masksToBounds = false
         
-        
-        
         obtainRecord()
         
     }
@@ -154,6 +152,30 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         obtainRecord()
     }
 
+    // MARK: - Delete records
+    func deleteRecods(record: Record) {
+     
+        // 準備參數
+        let parameters: [String: Any] = [
+            "id": record.id ?? 0,
+        ]
+        print("parameters", parameters)
+        // 呼叫API
+        
+        Alamofire.request(URLs.mealRecordsURL, method: .delete, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<BaseResponseData>) in
+            
+            //self.indicatorView.stopAnimating()
+            //print(response.result.value)
+            if response.result.isSuccess {
+                let index = self.records.firstIndex(of: record)
+                self.records.remove(at: index ?? 0 )
+                
+                self.getDailyTotalAmount()
+                self.tableView.reloadData()
+                print("刪除ok")
+            }
+        }
+    }
 
     
     // MARK: - Navigation
@@ -214,8 +236,10 @@ extension DietDiaryVC: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "nutrientsCell", for: indexPath) as! NutrientsTableViewCell
       
             //self.getDailyTotalAmount()
+            if self.dailyTotalCalories > self.userInfoCalories {
+                cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.textColor = .red
+            }
             cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(self.dailyTotalCalories.rounding(toDecimal: 1))大卡\n剩餘\((self.userInfoCalories.rounding(toDecimal: 1)) - (self.dailyTotalCalories.rounding(toDecimal: 1)))大卡"
-            
             
             cell.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(self.dailyTotalGrains.rounding(toDecimal: 1))份/\(self.userInfoGrains)份"
             cell.dailyNutrientsSuperView.nutrientsView.meatsLabel.text = "\(self.dailyTotalMeats.rounding(toDecimal: 1))份/\(self.userInfoMeats)份"
@@ -258,7 +282,17 @@ extension DietDiaryVC: DiaryTableViewCellDelegate {
             alertController.resignFirstResponder()
         }
         let deleteAction = UIAlertAction(title: "刪除紀錄", style: .destructive) { (action) in
-            //
+            let deleteAlertController = UIAlertController(title: "確定要刪除此筆紀錄嗎？", message: nil, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "確定", style: .default) { (action) in
+                self.deleteRecods(record: record)
+            }
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                deleteAlertController.resignFirstResponder()
+            }
+            deleteAlertController.addAction(okAction)
+            deleteAlertController.addAction(cancelAction)
+            self.present(deleteAlertController, animated: true, completion: nil)
+
         }
         alertController.addAction(editAction)
         alertController.addAction(cancelAction)

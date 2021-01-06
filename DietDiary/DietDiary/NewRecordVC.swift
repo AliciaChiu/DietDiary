@@ -22,7 +22,7 @@ enum Meal: Int {
     case Dessert = 4
 }
 
-class NewRecordVC: UIViewController {
+class NewRecordVC: UIViewController, TagListViewDelegate {
    
     @IBOutlet weak var foodImageView: UIImageView!
 
@@ -55,6 +55,15 @@ class NewRecordVC: UIViewController {
 
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         
+        if let navigationController = self.navigationController {
+                    // 修改返回鍵
+                    if navigationController.viewControllers.count > 1 && self.navigationItem.hidesBackButton == false {
+                        let item = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.backBtnPressed))
+                        self.navigationItem.leftBarButtonItem = item
+                    }
+                }
+        
+        // 顯示所選record的資料
         if let record = self.record {
             MemoryData.record = record
             addNewFood()
@@ -100,12 +109,29 @@ class NewRecordVC: UIViewController {
         
         createDatePicker()
         createTimePicker()
+        
+        addFoodView.delegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         addNewFood()
     }
+    
+    // MARK: - Back button alertController
+    @objc func backBtnPressed() {
+        let alertController = UIAlertController(title: "確定要返回上一頁嗎？", message: "返回將不會保留您所做的編輯", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "是的", style: .default) { (action) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+            alertController.resignFirstResponder()
+        }
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+        }
     
     // MARK: - Choose meal.
     
@@ -283,6 +309,21 @@ class NewRecordVC: UIViewController {
         //addFoodView.insertTag("This should be the second tag", at: 1)
     }
     
+    func tagPressed(title: String, tagView: TagView, sender: TagListView) {
+        deleteFoods()
+    }
+    
+    func deleteFoods() {
+        let index = addFoodView.tag
+
+        MemoryData.record.delete_meal_records = [index]
+        MemoryData.record.meal_records?.removeAll(where: { (mr) -> Bool in
+            return mr.id == index
+        })
+        addFoodView.removeTag(MemoryData.record.foodNames[index])
+    }
+    
+    
     // MARK: - Post to database.
     @IBAction func done(_ sender: Any) {
         
@@ -307,10 +348,7 @@ class NewRecordVC: UIViewController {
         }
 
 
-//        MemoryData.record.delete_meal_records = [3]
-//        MemoryData.record.meal_records?.removeAll(where: { (mr) -> Bool in
-//            return mr.id == 3
-//        })
+
         
         let parameters = MemoryData.record.toJSON()
 //        print(parameters)

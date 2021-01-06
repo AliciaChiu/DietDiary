@@ -45,7 +45,7 @@ class DiaryTableViewCell: UITableViewCell {
             }
             print(foodNames)
             self.foodLabel.text = foodNames
-            self.foodPicture.image = UIImage()
+            self.foodPicture.image = UIImage(named: "defult")
         }
         
         if data.note != nil {

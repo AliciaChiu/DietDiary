@@ -990,9 +990,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="uA2-qa-odp">
-                                                    <rect key="frame" x="0.0" y="10" width="390" height="440"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="450"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="230" translatesAutoresizingMaskIntoConstraints="NO" id="wu7-gn-BJ2">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="wu7-gn-BJ2">
                                                             <rect key="frame" x="0.0" y="0.0" width="390" height="40"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/30  午餐" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aqw-2E-HCm">
@@ -1006,9 +1006,10 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUp-2H-NAy">
-                                                                    <rect key="frame" x="350" y="0.0" width="40" height="40"/>
+                                                                    <rect key="frame" x="360" y="5" width="30" height="30"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="40" id="NqT-do-2qQ"/>
+                                                                        <constraint firstAttribute="width" constant="30" id="SDE-Ti-ZxL"/>
+                                                                        <constraint firstAttribute="height" constant="30" id="aze-PF-22S"/>
                                                                     </constraints>
                                                                     <state key="normal" image="pencil"/>
                                                                     <connections>
@@ -1016,8 +1017,11 @@
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
+                                                            <color key="backgroundColor" red="0.98543287788276568" green="1" blue="0.89803983064910275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="OUp-2H-NAy" secondAttribute="bottom" constant="5" id="0xx-fD-poL"/>
                                                                 <constraint firstAttribute="height" constant="40" id="IM3-YU-CJO"/>
+                                                                <constraint firstItem="OUp-2H-NAy" firstAttribute="top" secondItem="wu7-gn-BJ2" secondAttribute="top" constant="5" id="Iyz-gM-smd"/>
                                                             </constraints>
                                                         </stackView>
                                                         <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwZ-Pa-X6x">
@@ -1032,14 +1036,14 @@
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8L-cI-BH4">
-                                                            <rect key="frame" x="0.0" y="40" width="390" height="400"/>
+                                                            <rect key="frame" x="0.0" y="40" width="390" height="410"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="96n-23-x2V">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="400"/>
-                                                                    <color key="backgroundColor" red="0.62741011898104615" green="1" blue="0.94367895348834263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0c5e689403c94381a4275040d6b12b38" translatesAutoresizingMaskIntoConstraints="NO" id="96n-23-x2V">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="410"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNW-xC-kYC">
-                                                                    <rect key="frame" x="165.66666666666666" y="185" width="59" height="30"/>
+                                                                    <rect key="frame" x="165.66666666666666" y="190" width="59" height="30"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -1072,9 +1076,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="uA2-qa-odp" secondAttribute="bottom" id="6Am-Hy-wC2"/>
-                                                <constraint firstItem="uA2-qa-odp" firstAttribute="top" secondItem="SxS-0c-6Pc" secondAttribute="topMargin" constant="-1" id="Aek-xt-waM"/>
                                                 <constraint firstItem="uA2-qa-odp" firstAttribute="leading" secondItem="SxS-0c-6Pc" secondAttribute="leading" id="JG4-gY-jH1"/>
                                                 <constraint firstAttribute="trailing" secondItem="uA2-qa-odp" secondAttribute="trailing" id="hOY-nG-uOZ"/>
+                                                <constraint firstItem="uA2-qa-odp" firstAttribute="top" secondItem="SxS-0c-6Pc" secondAttribute="top" id="psC-a3-xYo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -2751,7 +2755,13 @@
             <point key="canvasLocation" x="3025" y="-120"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Bmi-Dt-P8s">
+            <size key="intrinsicContentSize" width="300" height="22"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="0c5e689403c94381a4275040d6b12b38" width="390" height="410"/>
         <image name="181142491f7d901137daa7690fc43d68" width="564" height="1002"/>
         <image name="achievement" width="128" height="128"/>
         <image name="addfood" width="128" height="128"/>
