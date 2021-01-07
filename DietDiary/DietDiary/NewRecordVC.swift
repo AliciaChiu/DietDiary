@@ -58,7 +58,10 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
         if let navigationController = self.navigationController {
                     // 修改返回鍵
                     if navigationController.viewControllers.count > 1 && self.navigationItem.hidesBackButton == false {
-                        let item = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.backBtnPressed))
+                        let cancelBtn = UIButton()
+                        cancelBtn.setTitle("取消", for: .normal)
+                        cancelBtn.addTarget(self, action: #selector(self.backBtnPressed), for: .touchUpInside)
+                        let item = UIBarButtonItem(customView: cancelBtn)
                         self.navigationItem.leftBarButtonItem = item
                     }
                 }
@@ -69,7 +72,8 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
             addNewFood()
             self.noteTextView.text = MemoryData.record.note
             self.foodImageView.image = MemoryData.record.meal_images?.first?.image_content?.convertBase64StringToImage()
-            self.title = MemoryData.record.date?.substring(with: 5..<10)
+            let dateString = MemoryData.record.date?.getDate(format: "yyyy-MM-dd HH:mm:ss")?.getFormattedDate(format: "MM/dd")
+            self.title = dateString
             self.dayTxt.text = MemoryData.record.date?.substring(with: 0..<10)
             self.timeTxt.text = MemoryData.record.date?.substring(with: 11..<16)
             let mealName = MemoryData.record.getMealName()
@@ -86,6 +90,8 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
                 self.segmentedControl.selectedSegmentIndex = 0
             }
         } else {
+            
+
             self.title = self.date.getFormattedDate(format: "今天MM/dd")
             self.dayTxt.text = self.date.getFormattedDate(format: "yyyy-MM-dd")
             self.timeTxt.text = self.date.getFormattedDate(format: "HH:mm")
@@ -187,10 +193,17 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
         formatter.timeStyle = .none
         formatter.dateFormat = "yyyy-MM-dd"
         formatter.locale = Locale(identifier: "zh_TW")
-        
         dayTxt.text = formatter.string(from: datePicker.date)
         self.date = datePicker.date
-        self.title = self.date.getFormattedDate(format: "MM/dd")
+        
+        let dateString = self.date.getFormattedDate(format: "yyyy-MM-dd")
+        let todayString = Date().getFormattedDate(format: "yyyy-MM-dd")
+        if  dateString == todayString {
+            self.title = self.date.getFormattedDate(format: "今天MM/dd")
+        }else{
+            self.title = self.date.getFormattedDate(format: "MM/dd")
+        }
+        
         self.view.endEditing(true)
     }
     
@@ -293,7 +306,9 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
         
         print(MemoryData.record.foodNames)
 
-        self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(MemoryData.record.eatenCalories.rounding(toDecimal: 1))大卡"
+        let eatenCalories = MemoryData.record.eatenCalories.rounding(toDecimal: 1)
+        
+        self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(eatenCalories)大卡"
         self.nutrientsSuperView.nutrientsView.grainsLabel.text = "\(MemoryData.record.eatenGrains.rounding(toDecimal: 1))份"
         self.nutrientsSuperView.nutrientsView.meatsLabel.text = "\(MemoryData.record.eatenMeats.rounding(toDecimal: 1))份"
         self.nutrientsSuperView.nutrientsView.milkLabel.text = "\(MemoryData.record.eatenMilk.rounding(toDecimal: 1))份"
@@ -301,12 +316,17 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
         self.nutrientsSuperView.nutrientsView.fruitsLabel.text = "\(MemoryData.record.eatenFruits.rounding(toDecimal: 1))份"
         self.nutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.record.eatenOils.rounding(toDecimal: 1))份"
 
-        self.caloriesSuperView.caloriesView.caloriesLabel.text = "\(MemoryData.record.eatenThreeCalories.rounding(toDecimal: 1))大卡"
+        let eatenThreeCalories = MemoryData.record.eatenThreeCalories.rounding(toDecimal: 1)
+        if eatenThreeCalories > eatenCalories {
+            self.caloriesSuperView.caloriesView.caloriesLabel.text = "\(eatenCalories)大卡"
+        }else{
+            self.caloriesSuperView.caloriesView.caloriesLabel.text = "\(eatenThreeCalories)大卡"
+        }
+        
         self.caloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(MemoryData.record.eatenCarbohydrate.rounding(toDecimal: 1))公克"
         self.caloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(MemoryData.record.eatenProtein.rounding(toDecimal: 1))公克"
         self.caloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(MemoryData.record.eatenFat.rounding(toDecimal: 1))公克"
-        
-        //addFoodView.insertTag("This should be the second tag", at: 1)
+
     }
     
     func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
@@ -376,11 +396,7 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "foodListSegue" {
-//            if let vc = segue.destination as? FoodListViewController {
-//                vc.delegate = self
-//            }
-//        }
+
     }
 
 }

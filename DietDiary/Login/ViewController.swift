@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Alamofire
@@ -16,19 +15,13 @@ class ViewController: UIViewController, LoginButtonDelegate {
 //    var db: Firestore!
     
     @IBOutlet weak var fbLoginButton: UIButton!
-    
-    @IBOutlet weak var loginView: UIView!
-    
-    @IBOutlet weak var userNameTxt: UITextField!
-    
-    @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var fbLogo: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let settings = FirestoreSettings()
-//        Firestore.firestore().settings = settings
-//        db = Firestore.firestore()
         
+        self.fbLoginButton.isHidden = true
+        self.fbLogo.isHidden = true
         self.fbLoginButton.layer.cornerRadius = 25.0
         
     }
@@ -49,48 +42,8 @@ class ViewController: UIViewController, LoginButtonDelegate {
         
     }
     
-    //    @objc func updateProfile() {
-    //        if let profile = Profile.current {
-    //            let userId = profile.userID
-    //            let profileUrl = profile.linkURL
-    //            let userName = <#value#>
-    //
-    //
-    //
-    //            checkSignUp(userId: userId, profileUrl: String, userName: String)
-    //
-    //            //requestMe()
-    //        }
-    //    }
-    
-    //    func requestMe(){
-    //        //先判斷是否有token存在,有Token表示使用者有login
-    //        if AccessToken.current != nil {
-    //            let request = GraphRequest(graphPath: "me",
-    //                                       parameters:["fields":"email,birthday"])
-    //            request.start(completionHandler: { (connection, result, error) -> Void in
-    //                print(result)
-    //                let info = result as! Dictionary<String,AnyObject>
-    //                if let email = info["email"] {
-    //                    print("email  = \(email)")
-    //                }
-    //                if let birthday = info["birthday"] {
-    //                    print("birthday = \(birthday)")
-    //                }
-    //            })
-    //            let sb = UIStoryboard(name: "Main", bundle: nil)
-    //            let vc = sb.instantiateViewController(identifier: "UserInfoOneVCNav") as! UINavigationController
-    //            vc.modalPresentationStyle = .overFullScreen
-    //            self.present(vc, animated: true, completion: nil)
-    //        }
-    //    }
     
     @objc func checkSignUp() {
-//        Profile.loadCurrentProfile { (profile, error) in
-//            if let profile = profile {
-//                let imageURL = profile.imageURL(forMode: .square, size: CGSize(width: 200.0, height: 200.0))
-//            }
-//        }
         
         if let profile = Profile.current {
             let userId = profile.userID
@@ -130,74 +83,21 @@ class ViewController: UIViewController, LoginButtonDelegate {
                         
                         let dietDiaryVC = sb.instantiateViewController(withIdentifier: "DietDiaryVC")
                         vc.viewControllers.append(dietDiaryVC)
-                        self.present(vc, animated: true, completion: nil)
+                        self.present(vc, animated: false, completion: nil)
                     }
                 }
+                self.fbLoginButton.isHidden = false
+                self.fbLogo.isHidden = false
             }
+        }else{
+            self.fbLoginButton.isHidden = false
+            self.fbLogo.isHidden = false
         }
     }
     
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-        
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController
-//        vc.modalPresentationStyle = .overFullScreen
-//        self.present(vc, animated: true, completion: nil)
-        /*
-        
-         Auth.auth().signIn(with: credential) { (authResult, error) in
-         if let error = error {
-         let authError = error as NSError
-         if (isMFAEnabled && authError.code == AuthErrorCode.secondFactorRequired.rawValue) {
-         // The user is a multi-factor user. Second factor challenge is required.
-         let resolver = authError.userInfo[AuthErrorUserInfoMultiFactorResolverKey] as! MultiFactorResolver
-         var displayNameString = ""
-         for tmpFactorInfo in (resolver.hints) {
-         displayNameString += tmpFactorInfo.displayName ?? ""
-         displayNameString += " "
-         }
-         self.showTextInputPrompt(withMessage: "Select factor to sign in\n\(displayNameString)", completionBlock: { userPressedOK, displayName in
-         var selectedHint: PhoneMultiFactorInfo?
-         for tmpFactorInfo in resolver.hints {
-         if (displayName == tmpFactorInfo.displayName) {
-         selectedHint = tmpFactorInfo as? PhoneMultiFactorInfo
-         }
-         }
-         PhoneAuthProvider.provider().verifyPhoneNumber(with: selectedHint!, uiDelegate: nil, multiFactorSession: resolver.session) { verificationID, error in
-         if error != nil {
-         print("Multi factor start sign in failed. Error: \(error.debugDescription)")
-         } else {
-         self.showTextInputPrompt(withMessage: "Verification code for \(selectedHint?.displayName ?? "")", completionBlock: { userPressedOK, verificationCode in
-         let credential: PhoneAuthCredential? = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: verificationCode!)
-         let assertion: MultiFactorAssertion? = PhoneMultiFactorGenerator.assertion(with: credential!)
-         resolver.resolveSignIn(with: assertion!) { authResult, error in
-         if error != nil {
-         print("Multi factor finanlize sign in failed. Error: \(error.debugDescription)")
-         } else {
-         self.navigationController?.popViewController(animated: true)
-         }
-         }
-         })
-         }
-         }
-         })
-         } else {
-         self.showMessagePrompt(error.localizedDescription)
-         return
-         }
-         // ...
-         return
-         }
-         // User is signed in
-         // ...
-         }
-         */
+
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {

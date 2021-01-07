@@ -15,7 +15,7 @@ class UserInfoVC: UIViewController {
     
     @IBOutlet weak var genderSC: UISegmentedControl!
     
-    @IBOutlet weak var birthdayPicker: UIDatePicker!
+    @IBOutlet weak var birthdayTxt: UITextField!
     
     @IBOutlet weak var heightTxt: UITextField!
 
@@ -33,6 +33,7 @@ class UserInfoVC: UIViewController {
     
     @IBOutlet weak var finishBtn: UIButton!
     
+    let datePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +50,51 @@ class UserInfoVC: UIViewController {
             MemoryData.userInfo?.unique_id = profile.userID
         }
 
+        createDatePicker()
+        
+    }
+
+    func createDatePicker() {
+        
+        birthdayTxt.textAlignment = .right
+        
+        //toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        //bar button
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneAction))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelBtn = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(cancelAction))
+        toolbar.setItems([cancelBtn, flexibleSpace, doneBtn], animated: true)
+        
+        //assign toolbar
+        self.birthdayTxt.inputAccessoryView = toolbar
+        
+        //assign date picker to the text field.
+        self.birthdayTxt.inputView = datePicker
+        
+        //date picker mode
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
         
     }
     
-   
-    @IBAction func birthday(_ sender: UIDatePicker) {
-        MemoryData.userInfo?.birthday = sender.date.getFormattedDate(format: "yyyy-MM-dd")
+    @objc func doneAction() {
+        //formatter
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "zh_TW")
+        
+        birthdayTxt.text = formatter.string(from: datePicker.date)
+        MemoryData.userInfo?.birthday = birthdayTxt.text
+        self.view.endEditing(true)
+    }
+    
+    @objc func cancelAction() {
+        self.birthdayTxt.resignFirstResponder()
     }
     
     @IBOutlet weak var monthlyLabel: UILabel!
@@ -143,6 +183,7 @@ class UserInfoVC: UIViewController {
             let vc = sb.instantiateViewController(identifier: "DietDiaryVC") as! DietDiaryVC
             vc.modalPresentationStyle = .currentContext
             self.navigationController?.pushViewController(vc, animated: true)
+            //self.present(vc, animated: true, completion: nil)
         } else {
             let alertController = UIAlertController(title: nil, message: "還有資料沒填寫完畢喔！", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "填資料去～", style: .default) { (action) in

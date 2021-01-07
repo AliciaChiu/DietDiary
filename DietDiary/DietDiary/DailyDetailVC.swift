@@ -47,7 +47,9 @@ class DailyDetailVC: UIViewController {
     
     func setInitialValue() {
         
-        self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(self.dailyTotalCalories.rounding(toDecimal: 1))大卡\n剩餘\((self.userInfoCalories.rounding(toDecimal: 1)) - (self.dailyTotalCalories.rounding(toDecimal: 1)))大卡"
+        let userInfoCalories = self.userInfoCalories.rounding(toDecimal: 1)
+        let dailyTotalCalories = self.dailyTotalCalories.rounding(toDecimal: 1)
+        self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(dailyTotalCalories)大卡\n剩餘\(userInfoCalories - dailyTotalCalories)大卡"
         
 
         self.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(self.dailyTotalGrains.rounding(toDecimal: 1))份/\(self.userInfoGrains)份"
@@ -57,22 +59,16 @@ class DailyDetailVC: UIViewController {
         self.dailyNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(self.dailyTotalFruits.rounding(toDecimal: 1))份/\(self.userInfoFruits)份"
         self.dailyNutrientsSuperView.nutrientsView.oilsLabel.text = "\(self.dailyTotalOils.rounding(toDecimal: 1))份/\(self.userInfoOils)份"
         
-        self.dailyCaloriesSuperView.caloriesView.caloriesLabel.text = "\(self.dailyTotalThreeCalories.rounding(toDecimal: 1))大卡"
+        let dailyTotalThreeCalories = self.dailyTotalThreeCalories.rounding(toDecimal: 1)
+        if dailyTotalThreeCalories > dailyTotalCalories {
+            self.dailyCaloriesSuperView.caloriesView.caloriesLabel.text = "\(dailyTotalCalories)大卡"
+        }else{
+            self.dailyCaloriesSuperView.caloriesView.caloriesLabel.text = "\(dailyTotalThreeCalories)大卡"
+        }
+        
         self.dailyCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(self.dailyTotalCarbohydrate.rounding(toDecimal: 1))公克"
         self.dailyCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(self.dailyTotalProtein.rounding(toDecimal: 1))公克"
         self.dailyCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(self.dailyTotalFat.rounding(toDecimal: 1))公克"
         
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

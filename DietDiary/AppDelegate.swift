@@ -7,7 +7,6 @@
 
 import UIKit
 import CoreData
-import Firebase
 import FBSDKCoreKit
 import Reachability
 import IQKeyboardManagerSwift
@@ -54,7 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            print("error while init Reachability \(error)")
         }
         
-        FirebaseApp.configure()
         return true
     }
     

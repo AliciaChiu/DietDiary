@@ -30,7 +30,9 @@ class FoodDetailVC: UIViewController {
         self.amounTxt.delegate = self
         
         self.gramLabel.text = "\(self.food.weight!)公克"
-        self.foodNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "\(self.food.calories!)大卡"
+        
+        let foodCalories = self.food.calories!
+        self.foodNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "\(foodCalories)大卡"
         
         self.food.getNutrientsAmoumt()
         self.foodNutrientsSuperView.nutrientsView.grainsLabel.text = "\(self.food.grains!.rounding(toDecimal: 1))份"
@@ -44,7 +46,15 @@ class FoodDetailVC: UIViewController {
             self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(carbohydrate.rounding(toDecimal: 1))g"
             self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(protein.rounding(toDecimal: 1))g"
             self.foodCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(fat.rounding(toDecimal: 1))g"
-            self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\((carbohydrate * 4 + protein * 4 + fat * 9).rounding(toDecimal: 1))大卡"
+            
+            let foodThreeCalories = (carbohydrate * 4 + protein * 4 + fat * 9).rounding(toDecimal: 1)
+            
+            if foodThreeCalories > foodCalories {
+                self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\(foodCalories)大卡"
+            }else{
+                self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\(foodThreeCalories)大卡"
+            }
+            
         }
     }
     
@@ -72,20 +82,6 @@ class FoodDetailVC: UIViewController {
         MemoryData.record.getEatenFoodDetails()
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension FoodDetailVC: UITextFieldDelegate {
@@ -100,19 +96,29 @@ extension FoodDetailVC: UITextFieldDelegate {
             self.gramLabel.text = "\(amount * gram)公克"
 
             let eatenCalories = food.calories ?? 0
-            self.foodNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "\((amount * eatenCalories).rounding(toDecimal: 1))大卡"
+            let amountEatenCalories = (amount * eatenCalories).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "\(amountEatenCalories)大卡"
 
-            let  carbohydrate = food.carbohydrate ?? 0
-            self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\((amount * carbohydrate).rounding(toDecimal: 1))g"
+            let carbohydrate = food.carbohydrate ?? 0
+            let amountEatenCarbohydrate = (amount * carbohydrate).rounding(toDecimal: 1)
+            self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(amountEatenCarbohydrate)g"
 
-            let  protein = food.protein ?? 0
-            self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\((amount * protein).rounding(toDecimal: 1))g"
+            let protein = food.protein ?? 0
+            let amountEatenProtein = (amount * protein).rounding(toDecimal: 1)
+            self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(amountEatenProtein)g"
 
-            let  fat = food.fat ?? 0
-            self.foodCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\((amount * fat).rounding(toDecimal: 1))g"
+            let fat = food.fat ?? 0
+            let amountEatenFat = (amount * fat).rounding(toDecimal: 1)
+            self.foodCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(amountEatenFat)g"
             
             let threeCalories = (carbohydrate * 4) + (protein * 4) + (fat * 9)
-            self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\((amount * threeCalories).rounding(toDecimal: 1))大卡"
+            let amountEatenThreeCalories = (amount * threeCalories).rounding(toDecimal: 1)
+            if amountEatenThreeCalories > amountEatenCalories {
+                self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\(amountEatenCalories)大卡"
+            }else{
+                self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\(amountEatenThreeCalories)大卡"
+            }
+            
     
         }
         return true

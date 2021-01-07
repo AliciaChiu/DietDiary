@@ -127,7 +127,6 @@ extension FoodListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if searchController.isActive {
-//        if let controller = searchController, controller.isActive {
             return searchResults.count
         } else {
             return self.foods.count

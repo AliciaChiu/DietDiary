@@ -51,6 +51,8 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         // default
         self.title = self.date.getFormattedDate(format: "今天MM/dd")
         
+        self.tableView.separatorStyle = .none
+        
         addBtn.layer.cornerRadius = 15.0
         addBtn.layer.masksToBounds = false
         

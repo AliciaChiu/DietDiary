@@ -53,8 +53,10 @@ class SetVC: UIViewController, LoginButtonDelegate {
         
         if MemoryData.userInfo?.gender == 1 {
             self.genderTxt.text = "男性"
+            self.profileImageView.image = UIImage(named: "boy")
         } else {
             self.genderTxt.text = "女性"
+            self.profileImageView.image = UIImage(named: "girl")
         }
         
         self.birthdayTxt.text = MemoryData.userInfo?.birthday
@@ -106,7 +108,7 @@ class SetVC: UIViewController, LoginButtonDelegate {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "LoginVC") as! UIViewController
         vc.modalPresentationStyle = .currentContext
-        self.present(vc, animated: true, completion: nil)
+        self.present(vc, animated: false, completion: nil)
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
