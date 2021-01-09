@@ -41,6 +41,9 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    
+    @IBOutlet weak var finishBarButtonItem: UIBarButtonItem!
+    
     weak var delegate : NewRecordVCDelegate?
     
     var date = Date()
@@ -60,6 +63,7 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
                     if navigationController.viewControllers.count > 1 && self.navigationItem.hidesBackButton == false {
                         let cancelBtn = UIButton()
                         cancelBtn.setTitle("取消", for: .normal)
+                        cancelBtn.titleLabel?.font = UIFont(name: "jf-openhuninn-1.1", size: 17)
                         cancelBtn.addTarget(self, action: #selector(self.backBtnPressed), for: .touchUpInside)
                         let item = UIBarButtonItem(customView: cancelBtn)
                         self.navigationItem.leftBarButtonItem = item
@@ -117,6 +121,21 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
         createTimePicker()
         
         addFoodView.delegate = self
+        
+        //MARK: - 點擊刪除照片
+        
+        // 單指輕點
+        let singleFinger = UITapGestureRecognizer(target:self, action:#selector(singleTap))
+
+        // 點幾下才觸發 設置 1 時 則是要點兩下才會觸發 依此類推
+        singleFinger.numberOfTapsRequired = 1
+
+        // 幾根指頭觸發
+        singleFinger.numberOfTouchesRequired = 1
+
+        // 為視圖加入監聽手勢
+        self.foodImageView.addGestureRecognizer(singleFinger)
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -157,7 +176,186 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
         }
     }
     
-    // MARK: - Choose date and time.
+    // MARK: - Add selected foods.
+    func addNewFood() {
+
+        addFoodView.alignment = .left 
+        addFoodView.removeAllTags()
+        self.displayEatenDetail()
+        addFoodView.addTags(MemoryData.record.foodNames)
+        
+
+    }
+    
+    func displayEatenDetail(){
+        
+        MemoryData.record.getEatenFoodDetails()
+        
+        let eatenCalories = MemoryData.record.eatenCalories.rounding(toDecimal: 1)
+        
+        self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(eatenCalories)大卡"
+        self.nutrientsSuperView.nutrientsView.grainsLabel.text = "\(MemoryData.record.eatenGrains.rounding(toDecimal: 1))份"
+        self.nutrientsSuperView.nutrientsView.meatsLabel.text = "\(MemoryData.record.eatenMeats.rounding(toDecimal: 1))份"
+        self.nutrientsSuperView.nutrientsView.milkLabel.text = "\(MemoryData.record.eatenMilk.rounding(toDecimal: 1))份"
+        self.nutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(MemoryData.record.eatenVegetables.rounding(toDecimal: 1))份"
+        self.nutrientsSuperView.nutrientsView.fruitsLabel.text = "\(MemoryData.record.eatenFruits.rounding(toDecimal: 1))份"
+        self.nutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.record.eatenOils.rounding(toDecimal: 1))份"
+
+        let eatenThreeCalories = MemoryData.record.eatenThreeCalories.rounding(toDecimal: 1)
+        if eatenThreeCalories > eatenCalories {
+            self.caloriesSuperView.caloriesView.caloriesLabel.text = "\(eatenCalories)大卡"
+        }else{
+            self.caloriesSuperView.caloriesView.caloriesLabel.text = "\(eatenThreeCalories)大卡"
+        }
+        
+        self.caloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(MemoryData.record.eatenCarbohydrate.rounding(toDecimal: 1))公克"
+        self.caloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(MemoryData.record.eatenProtein.rounding(toDecimal: 1))公克"
+        self.caloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(MemoryData.record.eatenFat.rounding(toDecimal: 1))公克"
+    }
+    
+    
+    
+    // MARK: - Delete selected foods.
+    
+    func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        print("Tag pressed: \(title)")
+        let alertController = UIAlertController(title: "刪除", message: "確定要刪除這項食物嗎？", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "是的", style: .default) { (action) in
+            if let index = MemoryData.record.meal_records?.firstIndex(where: { (mealRecord) -> Bool in
+                return mealRecord.food_name == title
+            }) {
+                let mealRecord = MemoryData.record.meal_records?[index]
+                if let id = mealRecord?.id {
+                    MemoryData.record.delete_meal_records.append(id)
+                }
+                MemoryData.record.meal_records?.remove(at: index)
+                self.displayEatenDetail()
+                self.addFoodView.removeTag(title)
+                
+            }
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+            alertController.resignFirstResponder()
+        }
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+
+    }
+    
+    //MARK: - Delete picture.
+    
+    // 觸發單指輕點兩下手勢後 執行的動作
+    @objc func singleTap(recognizer:UITapGestureRecognizer){
+       
+        if self.foodImageView.image != nil {
+            let alertController = UIAlertController(title: "刪除", message: "確定要刪除這張照片嗎？", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "是的", style: .default) { (action) in
+                
+                if let image = self.foodImageView.image {
+                   
+                    if let id = MemoryData.record.meal_images?.first?.id {
+                        self.foodImageView.image = nil
+                        MemoryData.record.meal_images?.removeAll()
+                        MemoryData.record.delete_meal_images = [id]
+                        print("刪除成功")
+                    }
+                }
+            }
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                alertController.resignFirstResponder()
+            }
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - Post to database.
+    @IBAction func done(_ sender: Any) {
+        
+        // 準備要存的資料
+        MemoryData.record.user_unique_id = MemoryData.userInfo?.unique_id
+
+        if self.noteTextView.text != "" {
+            MemoryData.record.note = self.noteTextView.text
+        } else {
+            MemoryData.record.note = nil
+        }
+        
+        MemoryData.record.date = self.dayTxt.text! + " " + self.timeTxt.text!
+        
+        if let image = self.foodImageView.image {
+            let thumbImage = image.wxCompress()
+            let imageBase64 = thumbImage.jpegData(compressionQuality: 0.0)?.base64EncodedString() ?? ""
+
+            let mealImage = MealImage()
+            mealImage.image_content = imageBase64
+            MemoryData.record.meal_images?.append(mealImage)
+        }
+        
+        let parameters = MemoryData.record.toJSON()
+        print(parameters)
+        
+        // 呼叫API
+        Alamofire.request(URLs.mealRecordsURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<BaseResponseData>) in
+            if response.result.isSuccess {
+                print(response.result.value?.toJSON())
+                
+                self.delegate?.didFinishUpdate(record: MemoryData.record)
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    // MARK: - Prepare camera.
+    @IBAction func camera(_ sender: Any) {
+        
+        let photoSourceRequestController = UIAlertController(title: "", message: "請選擇使用相機或相簿", preferredStyle: .actionSheet)
+        
+        let cameraAction = UIAlertAction(title: "相機", style: .default) { (action) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.allowsEditing = false
+                imagePicker.sourceType = .camera
+                guard UIImagePickerController.isCameraDeviceAvailable(.front) else {
+                    print("Invalid camera device.")
+                    return
+                }
+                imagePicker.cameraDevice = .front
+                imagePicker.cameraCaptureMode = .photo
+                imagePicker.delegate = self
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }
+        
+        let photoLibraryAction = UIAlertAction(title: "相簿", style: .default) { (action) in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.allowsEditing = false
+                imagePicker.sourceType = .photoLibrary
+                imagePicker.delegate = self
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }
+        
+        photoSourceRequestController.addAction(cameraAction)
+        photoSourceRequestController.addAction(photoLibraryAction)
+        
+        present(photoSourceRequestController, animated: true, completion: nil)
+        
+    }
+    
+//    // MARK: - Navigation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//    }
+
+}
+
+// MARK: - Choose date and time.
+
+extension NewRecordVC {
     
     //Meal Date.
     func createDatePicker() {
@@ -254,152 +452,14 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
     @objc func cancelPressed() {
         self.timeTxt.resignFirstResponder()
     }
-
     
-    // MARK: - Prepare camera.
-    @IBAction func camera(_ sender: Any) {
-        
-        let photoSourceRequestController = UIAlertController(title: "", message: "請選擇使用相機或相簿", preferredStyle: .actionSheet)
-        
-        let cameraAction = UIAlertAction(title: "相機", style: .default) { (action) in
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.allowsEditing = false
-                imagePicker.sourceType = .camera
-                guard UIImagePickerController.isCameraDeviceAvailable(.front) else {
-                    print("Invalid camera device.")
-                    return
-                }
-                imagePicker.cameraDevice = .front
-                imagePicker.cameraCaptureMode = .photo
-                imagePicker.delegate = self
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-        }
-
-        
-        let photoLibraryAction = UIAlertAction(title: "相簿", style: .default) { (action) in
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.allowsEditing = false
-                imagePicker.sourceType = .photoLibrary
-                imagePicker.delegate = self
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-        }
-        
-        photoSourceRequestController.addAction(cameraAction)
-        photoSourceRequestController.addAction(photoLibraryAction)
-        
-        present(photoSourceRequestController, animated: true, completion: nil)
-        
-    }
-    
-    
-    // MARK: - Add selected foods.
-    func addNewFood() {
-
-        addFoodView.textFont = UIFont.systemFont(ofSize: 15)
-        addFoodView.alignment = .left 
-        addFoodView.removeAllTags()
-        addFoodView.addTags(MemoryData.record.foodNames)
-        
-        print(MemoryData.record.foodNames)
-
-        let eatenCalories = MemoryData.record.eatenCalories.rounding(toDecimal: 1)
-        
-        self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(eatenCalories)大卡"
-        self.nutrientsSuperView.nutrientsView.grainsLabel.text = "\(MemoryData.record.eatenGrains.rounding(toDecimal: 1))份"
-        self.nutrientsSuperView.nutrientsView.meatsLabel.text = "\(MemoryData.record.eatenMeats.rounding(toDecimal: 1))份"
-        self.nutrientsSuperView.nutrientsView.milkLabel.text = "\(MemoryData.record.eatenMilk.rounding(toDecimal: 1))份"
-        self.nutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(MemoryData.record.eatenVegetables.rounding(toDecimal: 1))份"
-        self.nutrientsSuperView.nutrientsView.fruitsLabel.text = "\(MemoryData.record.eatenFruits.rounding(toDecimal: 1))份"
-        self.nutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.record.eatenOils.rounding(toDecimal: 1))份"
-
-        let eatenThreeCalories = MemoryData.record.eatenThreeCalories.rounding(toDecimal: 1)
-        if eatenThreeCalories > eatenCalories {
-            self.caloriesSuperView.caloriesView.caloriesLabel.text = "\(eatenCalories)大卡"
-        }else{
-            self.caloriesSuperView.caloriesView.caloriesLabel.text = "\(eatenThreeCalories)大卡"
-        }
-        
-        self.caloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(MemoryData.record.eatenCarbohydrate.rounding(toDecimal: 1))公克"
-        self.caloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(MemoryData.record.eatenProtein.rounding(toDecimal: 1))公克"
-        self.caloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(MemoryData.record.eatenFat.rounding(toDecimal: 1))公克"
-
-    }
-    
-    func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
-        print("Tag pressed: \(title)")
-        let alertController = UIAlertController(title: "刪除", message: "確定要刪除這項食物嗎？", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "是的", style: .default) { (action) in
-            if let index = self.record?.meal_records?.firstIndex(where: { (mealRecord) -> Bool in
-                return mealRecord.food_name == title
-            }) {
-                let mealRecord = self.record?.meal_records?[index]
-                if let id = mealRecord?.id {
-                    MemoryData.record.delete_meal_records.append(id)
-                }
-                self.record?.meal_records?.remove(at: index)
-                self.addFoodView.removeTag(title)
-            }
-        }
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
-            alertController.resignFirstResponder()
-        }
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
-
-    }
-    
-    // MARK: - Post to database.
-    @IBAction func done(_ sender: Any) {
-        
-        // 準備要存的資料
-        MemoryData.record.user_unique_id = MemoryData.userInfo?.unique_id
-
-        if self.noteTextView.text != "" {
-            MemoryData.record.note = self.noteTextView.text
-        } else {
-            MemoryData.record.note = nil
-        }
-        
-        MemoryData.record.date = self.dayTxt.text! + " " + self.timeTxt.text!
-        
-        if let image = self.foodImageView.image {
-            let thumbImage = image.wxCompress()
-            let imageBase64 = thumbImage.jpegData(compressionQuality: 0.0)?.base64EncodedString() ?? ""
-
-            let mealImage = MealImage()
-            mealImage.image_content = imageBase64
-            MemoryData.record.meal_images?.append(mealImage)
-        }
-        
-        let parameters = MemoryData.record.toJSON()
-        print(parameters)
-        
-        // 呼叫API
-        Alamofire.request(URLs.mealRecordsURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<BaseResponseData>) in
-            if response.result.isSuccess {
-                print(response.result.value?.toJSON())
-                
-                self.delegate?.didFinishUpdate(record: MemoryData.record)
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-    }
-    
-    
-    
-    
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-    }
-
 }
+
+
+
+
+
+
 
 
 extension NewRecordVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -40,6 +40,7 @@ class UserInfoVC: UIViewController {
         
         self.title = "基本資料"
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
+        
         self.finishBtn.layer.cornerRadius = 25.0
 
         self.weightTxt.delegate = self

@@ -14,6 +14,7 @@ import AlamofireObjectMapper
 class CategoryListController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var categories: [Category] = []
 
@@ -22,7 +23,9 @@ class CategoryListController: UIViewController {
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         self.title = "食物資料庫"
         
+        self.activityIndicator.startAnimating()
         Alamofire.request(URLs.categoryURL).responseObject { (response: DataResponse<CategoriesData>) in
+            self.activityIndicator.stopAnimating()
             if response.result.isSuccess {
                 let categoriesData = response.result.value
                 self.categories = categoriesData?.data ?? []

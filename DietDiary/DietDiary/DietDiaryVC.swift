@@ -18,6 +18,8 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var records: [Record] = []
     
     let userInfoCalories = MemoryData.userInfo?.dailyCalories ?? 0
@@ -100,13 +102,16 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
             "end_date": self.date.getFormattedDate(format: "yyyy-MM-dd 23:59:59")
         ]
         print("parameters", parameters)
+        
+        self.activityIndicator.startAnimating()
+        
         // 呼叫API
         Alamofire.request(URLs.mealRecordsURL, parameters: parameters).responseObject { (response: DataResponse<RecordData>) in
+            self.activityIndicator.stopAnimating()
             if response.result.isSuccess {
                 let recordData = response.result.value
                 self.records = recordData?.data ?? []
-                print("get records length => \(self.records.count)")
-
+                
                 self.getDailyTotalAmount()
                 //let recordJSON = recordData?.toJSON()
                 self.tableView.reloadData()
@@ -176,10 +181,9 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         ]
         print("parameters", parameters)
         // 呼叫API
-        
+        self.activityIndicator.startAnimating()
         Alamofire.request(URLs.mealRecordsURL, method: .delete, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<BaseResponseData>) in
-            
-            //self.indicatorView.stopAnimating()
+            self.activityIndicator.stopAnimating()
             //print(response.result.value)
             if response.result.isSuccess {
                 let index = self.records.firstIndex(of: record)

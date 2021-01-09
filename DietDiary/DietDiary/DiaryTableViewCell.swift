@@ -48,11 +48,11 @@ class DiaryTableViewCell: UITableViewCell {
             self.foodPicture.image = UIImage(named: "defult")
         }
         
-        if data.note != nil {
-            self.noteTextView.text = data.note
+        if self.record.note != nil {
+            self.noteTextView.text = self.record.note
             self.noteTextView.isHidden = false
         }else{
-            self.noteTextView.text = nil
+            self.noteTextView.text = ""
             self.noteTextView.isHidden = true
         }
     }

@@ -11,10 +11,10 @@ import AlamofireObjectMapper
 
 
 class FoodListViewController: UIViewController, UISearchResultsUpdating {
-    
-    
 
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var foodCatogory = ""
     var foods: [Food] = []
@@ -40,7 +40,11 @@ class FoodListViewController: UIViewController, UISearchResultsUpdating {
         searchController.searchBar.barTintColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         
         if MemoryData.foods.isEmpty {
+            self.activityIndicator.startAnimating()
+            
             Alamofire.request(URLs.foodURL).responseObject { (response: DataResponse<FoodsData>) in
+                self.activityIndicator.stopAnimating()
+                
                 if response.result.isSuccess {
                     let foodsData = response.result.value
                     MemoryData.foods = foodsData?.data ?? []

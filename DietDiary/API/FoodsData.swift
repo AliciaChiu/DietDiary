@@ -52,7 +52,7 @@ class Food: Mappable {
     
     func getNutrientsAmoumt() {
         switch category {
-        case "穀物類", "澱粉類", "飲料類":
+        case "穀物類", "澱粉類":
             grains = (carbohydrate ?? 0)/15
             meats = 0.0
             oils = 0.0
@@ -101,7 +101,7 @@ class Food: Mappable {
             milk = 0.0
             vegetables = 0.0
             fruits = 0.0
-        case "加工調理食品類":
+        case "加工調理食品及其他類":
             grains = (carbohydrate ?? 0)/15
             meats = (protein ?? 0)/7
             oils = (fat ?? 0)/5

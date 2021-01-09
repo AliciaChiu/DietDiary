@@ -39,6 +39,8 @@ class CalendarVC: UIViewController {
         self.date = sender.date
         print(self.date)
         self.delegate?.loadSelectedDateRecords(date: self.date!)
+        self.dismiss(animated: true, completion: nil)
+        
         
 
     }

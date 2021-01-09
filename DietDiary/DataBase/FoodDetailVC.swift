@@ -119,7 +119,31 @@ extension FoodDetailVC: UITextFieldDelegate {
                 self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\(amountEatenThreeCalories)大卡"
             }
             
-    
+            self.food.getNutrientsAmoumt()
+            let grains = self.food.grains!
+            let amountEatenGrains = (amount * grains).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.grainsLabel.text = "\(amountEatenGrains)份"
+            
+            let meats = self.food.meats!
+            let amountEatenMeats = (amount * meats).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.meatsLabel.text = "\(amountEatenMeats)份"
+            
+            let milk = self.food.milk!.rounding(toDecimal: 1)
+            let amountEatenMilk = (amount * milk).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.milkLabel.text = "\(amountEatenMilk)份"
+            
+            let fruits = self.food.fruits!
+            let amountEatenFruits = (amount * fruits).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(amountEatenFruits)份"
+            
+            let vegetables = self.food.vegetables!
+            let amountEatenVegetables = (amount * vegetables).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(amountEatenVegetables)份"
+            
+            let oils = self.food.oils!
+            let amountEatenOils = (amount * oils).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.oilsLabel.text = "\(amountEatenOils)份"
+            
         }
         return true
     }

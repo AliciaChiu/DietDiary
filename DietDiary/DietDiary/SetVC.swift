@@ -76,7 +76,7 @@ class SetVC: UIViewController, LoginButtonDelegate {
         
         self.timeNeededTxt.text = "\(MemoryData.userInfo?.timeNeeded ?? 0)天"
         
-        self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "每日攝取\(Int(MemoryData.userInfo?.dailyCalories ?? 0))大卡"
+        self.nutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "每日攝取\((Float(MemoryData.userInfo?.dailyCalories ?? 0)).rounding(toDecimal: 1))大卡"
         
         //MemoryData.userInfo?.calculateAmount()
         self.nutrientsSuperView.nutrientsView.grainsLabel.text = "\(MemoryData.userInfo?.grainsAmount ?? 0)份"
@@ -86,11 +86,24 @@ class SetVC: UIViewController, LoginButtonDelegate {
         self.nutrientsSuperView.nutrientsView.fruitsLabel.text = "\(MemoryData.userInfo?.fruitsAmount ?? 0)份"
         self.nutrientsSuperView.nutrientsView.oilsLabel.text = "\(MemoryData.userInfo?.oilsAmount ?? 0)份"
         
-        self.caloriesSuperView.caloriesView.setLabel()
+        setCaloriesSuperView()
         
         self.nameLabel.text = MemoryData.userInfo?.user_name
         
         
+    }
+    
+    func setCaloriesSuperView() {
+        
+        let caloriesView = self.caloriesSuperView.caloriesView
+        let dailyCalories = (Float(MemoryData.userInfo?.dailyCalories ?? 0)).rounding(toDecimal: 1)
+        
+        //5*4x + 3*4x + 2*9x = dailyCalories
+        caloriesView!.caloriesLabel.text = "\(dailyCalories)大卡"
+        caloriesView!.carbohydrateLabel.text = "醣類\n\((dailyCalories / 50 * 5).rounding(toDecimal: 1))公克"
+        caloriesView!.proteinLabel.text = "蛋白質\n\((dailyCalories / 50 * 3).rounding(toDecimal: 1))公克"
+        caloriesView!.fatLabel.text = "脂肪\n\((dailyCalories / 50 * 2).rounding(toDecimal: 1))公克"
+ 
     }
     
     @IBAction func reset(_ sender: UIBarButtonItem) {
@@ -99,7 +112,6 @@ class SetVC: UIViewController, LoginButtonDelegate {
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
     }
-    
 
     
     @IBAction func logOut(_ sender: UIButton) {
