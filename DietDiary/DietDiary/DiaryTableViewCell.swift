@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol DiaryTableViewCellDelegate {
     func editting(record: Record)
@@ -31,11 +32,16 @@ class DiaryTableViewCell: UITableViewCell {
         let mealName = data.getMealName()
         let time = data.date?.substring(with: 11..<16)
         self.mealLabel.text = mealName + "  " + time!
-        let image = data.meal_images?.first?.image_content?.convertBase64StringToImage()
         
-        if image != nil {
+        let imageContent = data.meal_images?.first?.image_content ?? ""
+        let url = URL(string: imageContent)
+        
+        if url != nil {
             self.foodLabel.isHidden = true
-            self.foodPicture.image = image
+            let path = Bundle.main.path(forResource: "loading", ofType: "gif")!
+            let data = try! Data(contentsOf: URL(fileURLWithPath: path))
+            self.foodPicture.kf.indicatorType = .image(imageData: data)
+            self.foodPicture.kf.setImage(with: url)
         } else {
             self.foodLabel.isHidden = false
             var foodNames = ""
@@ -48,7 +54,7 @@ class DiaryTableViewCell: UITableViewCell {
             self.foodPicture.image = UIImage(named: "defult")
         }
         
-        if self.record.note != nil {
+        if self.record.note != nil && self.record.note != "記錄一下心情吧＾_ ^" {
             self.noteTextView.text = self.record.note
             self.noteTextView.isHidden = false
         }else{

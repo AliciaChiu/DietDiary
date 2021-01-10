@@ -81,6 +81,17 @@ class UserInfoVC: UIViewController {
         
     }
     
+    @IBAction func detailDisclose(_ sender: Any) {
+        
+        let alertController = UIAlertController(title: "活動程度", message: "低：每週運動1~2天\n中：每週運動3~5天\n高：每週運動6~7天", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "我知道了", style: .default) { (action) in
+            alertController.resignFirstResponder()
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+
+    }
+    
     @objc func doneAction() {
         //formatter
         let formatter = DateFormatter()

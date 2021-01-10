@@ -31,14 +31,13 @@
 		F23C54B925826715000D6281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23C54B725826715000D6281 /* Main.storyboard */; };
 		F267B1C7258C8B8700A6A31E /* NutrientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F267B1C6258C8B8700A6A31E /* NutrientsTableViewCell.swift */; };
 		F27AA84D25A988C600EFB64F /* jf-openhuninn-1.1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F27AA84C25A988C600EFB64F /* jf-openhuninn-1.1.ttf */; };
-		F2A344A125924473009B4C81 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = F2A344A025924473009B4C81 /* data.json */; };
 		F2A344A6259244A6009B4C81 /* CategoryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A344A5259244A6009B4C81 /* CategoryListController.swift */; };
 		F2A344AB259244CA009B4C81 /* FoodListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A344AA259244CA009B4C81 /* FoodListViewController.swift */; };
-		F2A344B625924DF2009B4C81 /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = F2A344B525924DF2009B4C81 /* categories.json */; };
 		F2AA2432258FA20D00102A8C /* FoodDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AA2431258FA20D00102A8C /* FoodDetailVC.swift */; };
 		F2AC31D325831E99006B189D /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC31D225831E99006B189D /* UserInfoView.swift */; };
 		F2B6E1F9258274AA0008C3B7 /* UserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B6E1F8258274AA0008C3B7 /* UserInfoVC.swift */; };
 		F2BAA9BA25A83E1E00157206 /* HonyaJi-Re.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2BAA9B925A83E1D00157206 /* HonyaJi-Re.ttf */; };
+		F2D3C42225AAE72700077556 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = F2D3C42125AAE72700077556 /* loading.gif */; };
 		F2DF3A31258E48D2006B4361 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF3A30258E48D2006B4361 /* CalendarVC.swift */; };
 		F2DF3A36258E497D006B4361 /* DiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF3A35258E497D006B4361 /* DiaryTableViewCell.swift */; };
 		F2DF3A3B258E5458006B4361 /* CaloriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF3A3A258E5458006B4361 /* CaloriesView.swift */; };
@@ -105,14 +104,13 @@
 		F23C54B825826715000D6281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F267B1C6258C8B8700A6A31E /* NutrientsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientsTableViewCell.swift; sourceTree = "<group>"; };
 		F27AA84C25A988C600EFB64F /* jf-openhuninn-1.1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "jf-openhuninn-1.1.ttf"; sourceTree = "<group>"; };
-		F2A344A025924473009B4C81 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		F2A344A5259244A6009B4C81 /* CategoryListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListController.swift; sourceTree = "<group>"; };
 		F2A344AA259244CA009B4C81 /* FoodListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodListViewController.swift; sourceTree = "<group>"; };
-		F2A344B525924DF2009B4C81 /* categories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; };
 		F2AA2431258FA20D00102A8C /* FoodDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailVC.swift; sourceTree = "<group>"; };
 		F2AC31D225831E99006B189D /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		F2B6E1F8258274AA0008C3B7 /* UserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVC.swift; sourceTree = "<group>"; };
 		F2BAA9B925A83E1D00157206 /* HonyaJi-Re.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HonyaJi-Re.ttf"; sourceTree = "<group>"; };
+		F2D3C42125AAE72700077556 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		F2DF3A30258E48D2006B4361 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		F2DF3A35258E497D006B4361 /* DiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTableViewCell.swift; sourceTree = "<group>"; };
 		F2DF3A3A258E5458006B4361 /* CaloriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesView.swift; sourceTree = "<group>"; };
@@ -240,6 +238,7 @@
 				F23C5441258260BE000D6281 /* Info.plist */,
 				F23C54A725826665000D6281 /* GoogleService-Info.plist */,
 				F23C5439258260BA000D6281 /* DietDiary.xcdatamodeld */,
+				F2D3C42125AAE72700077556 /* loading.gif */,
 			);
 			path = DietDiary;
 			sourceTree = "<group>";
@@ -288,8 +287,6 @@
 				F2A344A5259244A6009B4C81 /* CategoryListController.swift */,
 				F2A344AA259244CA009B4C81 /* FoodListViewController.swift */,
 				F2AA2431258FA20D00102A8C /* FoodDetailVC.swift */,
-				F2A344A025924473009B4C81 /* data.json */,
-				F2A344B525924DF2009B4C81 /* categories.json */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -445,13 +442,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F23C5440258260BE000D6281 /* LaunchScreen.storyboard in Resources */,
-				F2A344A125924473009B4C81 /* data.json in Resources */,
 				F23C54A825826665000D6281 /* GoogleService-Info.plist in Resources */,
 				F2BAA9BA25A83E1E00157206 /* HonyaJi-Re.ttf in Resources */,
 				F2DF3A40258E54A0006B4361 /* CaloriesView.xib in Resources */,
 				F27AA84D25A988C600EFB64F /* jf-openhuninn-1.1.ttf in Resources */,
 				F23C543D258260BE000D6281 /* Assets.xcassets in Resources */,
-				F2A344B625924DF2009B4C81 /* categories.json in Resources */,
+				F2D3C42225AAE72700077556 /* loading.gif in Resources */,
 				F23C54B925826715000D6281 /* Main.storyboard in Resources */,
 				F2F10575258D011E00C7A7BA /* NutrientsView.xib in Resources */,
 			);

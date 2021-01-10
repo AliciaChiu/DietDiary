@@ -10,6 +10,7 @@ import Alamofire
 import AlamofireObjectMapper
 import WXImageCompress
 import TagListView
+import Kingfisher
 
 protocol NewRecordVCDelegate : class{
     func didFinishUpdate(record : Record)
@@ -75,7 +76,11 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
             MemoryData.record = record
             addNewFood()
             self.noteTextView.text = MemoryData.record.note
-            self.foodImageView.image = MemoryData.record.meal_images?.first?.image_content?.convertBase64StringToImage()
+            
+            let imageContent = MemoryData.record.meal_images?.first?.image_content ?? ""
+            let url = URL(string: imageContent)
+            self.foodImageView.kf.setImage(with: url)
+
             let dateString = MemoryData.record.date?.getDate(format: "yyyy-MM-dd HH:mm:ss")?.getFormattedDate(format: "MM/dd")
             self.title = dateString
             self.dayTxt.text = MemoryData.record.date?.substring(with: 0..<10)
@@ -290,7 +295,7 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
             let imageBase64 = thumbImage.jpegData(compressionQuality: 0.0)?.base64EncodedString() ?? ""
 
             let mealImage = MealImage()
-            mealImage.image_content = imageBase64
+            mealImage.image_content = "data:image/jpeg;base64," + imageBase64
             MemoryData.record.meal_images?.append(mealImage)
         }
         

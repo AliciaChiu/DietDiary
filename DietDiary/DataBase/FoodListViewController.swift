@@ -16,6 +16,8 @@ class FoodListViewController: UIViewController, UISearchResultsUpdating {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var countLabel: UILabel!
+    
     var foodCatogory = ""
     var foods: [Food] = []
 
@@ -31,6 +33,7 @@ class FoodListViewController: UIViewController, UISearchResultsUpdating {
         
         self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         self.title = self.foodCatogory
+
         
         searchController = UISearchController(searchResultsController: nil)
         tableView.tableHeaderView = searchController.searchBar
@@ -59,6 +62,7 @@ class FoodListViewController: UIViewController, UISearchResultsUpdating {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tableView.reloadData()
+        self.countLabel.text = "\(MemoryData.record.meal_records!.count)"
     }
     
     
@@ -68,7 +72,7 @@ class FoodListViewController: UIViewController, UISearchResultsUpdating {
             return food.category == self.foodCatogory
         }
         self.tableView.reloadData()
-        //indicatorView.stopAnimating()
+
     }
     
     func filterContent(for searchText: String) {
@@ -122,6 +126,8 @@ extension FoodListViewController: UITableViewDelegate, UITableViewDataSource {
         
         if MemoryData.record.foodNames.contains(food.name ?? "") {
             cell.accessoryType = .checkmark
+            self.countLabel.text = "\(MemoryData.record.meal_records!.count)"
+            print(MemoryData.record.meal_records!.count)
         }else{
             cell.accessoryType = .disclosureIndicator
         }

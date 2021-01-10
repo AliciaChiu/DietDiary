@@ -16,6 +16,7 @@ PODS:
   - FBSDKLoginKit/Login (6.5.2):
     - FBSDKCoreKit (~> 6.5.2)
   - IQKeyboardManagerSwift (6.5.6)
+  - Kingfisher (6.0.1)
   - ObjectMapper (3.5.3)
   - ReachabilitySwift (5.0.0)
   - TagListView (1.4.1)
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - FBSDKCoreKit/Swift
   - FBSDKLoginKit
   - IQKeyboardManagerSwift
+  - Kingfisher (~> 6.0)
   - ReachabilitySwift
   - TagListView (~> 1.0)
   - WXImageCompress (~> 0.1.1)
@@ -38,6 +40,7 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKLoginKit
     - IQKeyboardManagerSwift
+    - Kingfisher
     - ObjectMapper
     - ReachabilitySwift
     - TagListView
@@ -49,11 +52,12 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: ada5c8a05188daefc9addb985c52b8a1b26da519
   FBSDKLoginKit: caa165495afa29a12324cb2307fe6e5b33783142
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  Kingfisher: adde87a4f74f6a3845395769354efff593581740
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: 8e0487148fbf1f45aaebf639a259d42d02d624dc
+PODFILE CHECKSUM: 8402be7b95762c22094a7e247f95caafc50e4de7
 
 COCOAPODS: 1.10.0

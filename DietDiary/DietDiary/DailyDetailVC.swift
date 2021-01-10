@@ -47,9 +47,15 @@ class DailyDetailVC: UIViewController {
     
     func setInitialValue() {
         
-        let userInfoCalories = self.userInfoCalories.rounding(toDecimal: 1)
-        let dailyTotalCalories = self.dailyTotalCalories.rounding(toDecimal: 1)
-        self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(dailyTotalCalories)大卡\n剩餘\(userInfoCalories - dailyTotalCalories)大卡"
+        let userInfoCalories = self.userInfoCalories
+        let dailyTotalCalories = self.dailyTotalCalories
+        
+        if self.dailyTotalCalories > self.userInfoCalories {
+            self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.textColor = .red
+        }else{
+            self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.textColor = .black
+        }
+        self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(dailyTotalCalories.rounding(toDecimal: 1))大卡\n剩餘\((userInfoCalories - dailyTotalCalories).rounding(toDecimal: 1))大卡"
         
 
         self.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(self.dailyTotalGrains.rounding(toDecimal: 1))份/\(self.userInfoGrains)份"
@@ -61,7 +67,7 @@ class DailyDetailVC: UIViewController {
         
         let dailyTotalThreeCalories = self.dailyTotalThreeCalories.rounding(toDecimal: 1)
         if dailyTotalThreeCalories > dailyTotalCalories {
-            self.dailyCaloriesSuperView.caloriesView.caloriesLabel.text = "\(dailyTotalCalories)大卡"
+            self.dailyCaloriesSuperView.caloriesView.caloriesLabel.text = "\(dailyTotalCalories.rounding(toDecimal: 1))大卡"
         }else{
             self.dailyCaloriesSuperView.caloriesView.caloriesLabel.text = "\(dailyTotalThreeCalories)大卡"
         }
