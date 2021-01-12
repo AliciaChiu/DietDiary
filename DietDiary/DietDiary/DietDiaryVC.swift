@@ -256,10 +256,12 @@ extension DietDiaryVC: UITableViewDataSource, UITableViewDelegate {
 
             if self.dailyTotalCalories > self.userInfoCalories {
                 cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.textColor = .red
+                cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(self.dailyTotalCalories.rounding(toDecimal: 1))大卡\n超過\((self.dailyTotalCalories - self.userInfoCalories).rounding(toDecimal: 1))大卡"
             }else{
                 cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.textColor = .black
+                cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(self.dailyTotalCalories.rounding(toDecimal: 1))大卡\n剩餘\((self.userInfoCalories - self.dailyTotalCalories).rounding(toDecimal: 1))大卡"
             }
-            cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(self.dailyTotalCalories.rounding(toDecimal: 1))大卡\n剩餘\((self.userInfoCalories - self.dailyTotalCalories).rounding(toDecimal: 1))大卡"
+
             
             cell.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(self.dailyTotalGrains.rounding(toDecimal: 1))份/\(self.userInfoGrains)份"
             cell.dailyNutrientsSuperView.nutrientsView.meatsLabel.text = "\(self.dailyTotalMeats.rounding(toDecimal: 1))份/\(self.userInfoMeats)份"

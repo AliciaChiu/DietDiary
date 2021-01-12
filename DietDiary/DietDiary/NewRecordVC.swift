@@ -344,8 +344,13 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
             }
         }
         
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+            photoSourceRequestController.resignFirstResponder()
+        }
+        
         photoSourceRequestController.addAction(cameraAction)
         photoSourceRequestController.addAction(photoLibraryAction)
+        photoSourceRequestController.addAction(cancelAction)
         
         present(photoSourceRequestController, animated: true, completion: nil)
         
