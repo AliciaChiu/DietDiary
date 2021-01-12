@@ -6,11 +6,6 @@ target 'DietDiary' do
   use_frameworks!
 
   # Pods for DietDiary
-#pod 'Firebase/Firestore'
-#pod 'FirebaseFirestoreSwift'
-#pod 'Firebase/Storage'
-#
-#pod 'FirebaseUI/Auth'
 pod 'FBSDKCoreKit/Swift'
 pod 'FBSDKLoginKit'
 pod 'ReachabilitySwift'

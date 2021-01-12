@@ -57,9 +57,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>Diet Diary想取得相機授權以添加照片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>Diet Diary想取得相簿授權以添加照片</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>HonyaJi-Re.ttf</string>
