@@ -69,7 +69,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
                     let userInfoData = response.result.value
                     MemoryData.userInfo = userInfoData?.data
                     
-                    if MemoryData.userInfo?.gender == nil {
+                    if MemoryData.userInfo?.nowHeight == nil {
                         let sb = UIStoryboard(name: "Main", bundle: nil)
                         let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController
                         vc.modalPresentationStyle = .overFullScreen

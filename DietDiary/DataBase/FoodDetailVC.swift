@@ -18,21 +18,7 @@ class FoodDetailVC: UIViewController {
     @IBOutlet weak var foodNutrientsSuperView: NutrientsSuperView!
     
     @IBOutlet weak var foodCaloriesSuperView: CaloriesSuperView!
-    
-    var amountEatenCalories: Float!
-    var amountEatenCarbohydrate: Float!
-    var amountEatenProtein: Float!
-    var amountEatenFat: Float!
-    var amountEatenGrains: Float!
-    var amountEatenMeats: Float!
-    var amountEatenMilk: Float!
-    var amountEatenFruits: Float!
-    var amountEatenVegetables: Float!
-    var amountEatenOils: Float!
-    
-    
-    
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,15 +60,16 @@ class FoodDetailVC: UIViewController {
         let mealRecord = MealRecord()
         mealRecord.food_name = self.food.name
         print(mealRecord.food_name)
-        mealRecord.eaten_calories = self.amountEatenCalories
-        mealRecord.grains = self.amountEatenGrains
-        mealRecord.meats = self.amountEatenMeats
-        mealRecord.oils = self.amountEatenOils
-        mealRecord.milk = self.amountEatenMilk
-        mealRecord.vegetables = self.amountEatenVegetables
-        mealRecord.fruits = self.amountEatenFruits
+        mealRecord.eaten_calories = self.food.calories
+        print(mealRecord.eaten_calories)
+        mealRecord.grains = self.food.grains
+        mealRecord.meats = self.food.meats
+        mealRecord.oils = self.food.oils
+        mealRecord.milk = self.food.milk
+        mealRecord.vegetables = self.food.vegetables
+        mealRecord.fruits = self.food.fruits
         
-        if let carbohydrate = self.amountEatenCarbohydrate, let protein = self.amountEatenProtein, let fat = self.amountEatenFat {
+        if let carbohydrate = self.food.carbohydrate, let protein = self.food.protein, let fat = self.food.fat {
             mealRecord.threeCalories = carbohydrate * 4 + protein * 4 + fat * 9
             mealRecord.carbohydrate = carbohydrate
             mealRecord.protein = protein
@@ -106,53 +93,53 @@ extension FoodDetailVC: UITextFieldDelegate {
             self.gramLabel.text = "\(amount * gram)公克"
 
             let eatenCalories = food.calories ?? 0
-            amountEatenCalories = (amount * eatenCalories).rounding(toDecimal: 1)
-            self.foodNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "\(amountEatenCalories ?? eatenCalories)大卡"
+            let amountEatenCalories = (amount * eatenCalories).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "\(amountEatenCalories)大卡"
 
             let carbohydrate = food.carbohydrate ?? 0
-            amountEatenCarbohydrate = (amount * carbohydrate).rounding(toDecimal: 1)
-            self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(amountEatenCarbohydrate ?? carbohydrate)g"
+            let amountEatenCarbohydrate = (amount * carbohydrate).rounding(toDecimal: 1)
+            self.foodCaloriesSuperView.caloriesView.carbohydrateLabel.text = "醣類\n\(amountEatenCarbohydrate)g"
 
             let protein = food.protein ?? 0
-            amountEatenProtein = (amount * protein).rounding(toDecimal: 1)
-            self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(amountEatenProtein ?? protein)g"
+            let amountEatenProtein = (amount * protein).rounding(toDecimal: 1)
+            self.foodCaloriesSuperView.caloriesView.proteinLabel.text = "蛋白質\n\(amountEatenProtein)g"
 
             let fat = food.fat ?? 0
-            amountEatenFat = (amount * fat).rounding(toDecimal: 1)
-            self.foodCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(amountEatenFat ?? protein)g"
+            let amountEatenFat = (amount * fat).rounding(toDecimal: 1)
+            self.foodCaloriesSuperView.caloriesView.fatLabel.text = "脂肪\n\(amountEatenFat)g"
             
             let threeCalories = (carbohydrate * 4) + (protein * 4) + (fat * 9)
             let amountEatenThreeCalories = (amount * threeCalories).rounding(toDecimal: 1)
             if amountEatenThreeCalories > amountEatenCalories {
-                self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\(amountEatenCalories ?? threeCalories)大卡"
+                self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\(amountEatenCalories)大卡"
             }else{
                 self.foodCaloriesSuperView.caloriesView.caloriesLabel.text = "\(amountEatenThreeCalories)大卡"
             }
             
             self.food.getNutrientsAmoumt()
             let grains = self.food.grains!
-            amountEatenGrains = (amount * grains).rounding(toDecimal: 1)
-            self.foodNutrientsSuperView.nutrientsView.grainsLabel.text = "\(amountEatenGrains ?? grains)份"
+            let amountEatenGrains = (amount * grains).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.grainsLabel.text = "\(amountEatenGrains)份"
             
             let meats = self.food.meats!
-            amountEatenMeats = (amount * meats).rounding(toDecimal: 1)
-            self.foodNutrientsSuperView.nutrientsView.meatsLabel.text = "\(amountEatenMeats ?? meats)份"
+            let amountEatenMeats = (amount * meats).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.meatsLabel.text = "\(amountEatenMeats)份"
             
             let milk = self.food.milk!
-            amountEatenMilk = (amount * milk).rounding(toDecimal: 1)
-            self.foodNutrientsSuperView.nutrientsView.milkLabel.text = "\(amountEatenMilk ?? milk)份"
+            let amountEatenMilk = (amount * milk).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.milkLabel.text = "\(amountEatenMilk)份"
             
             let fruits = self.food.fruits!
-            amountEatenFruits = (amount * fruits).rounding(toDecimal: 1)
-            self.foodNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(amountEatenFruits ?? fruits)份"
+            let amountEatenFruits = (amount * fruits).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(amountEatenFruits)份"
             
             let vegetables = self.food.vegetables!
-            amountEatenVegetables = (amount * vegetables).rounding(toDecimal: 1)
-            self.foodNutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(amountEatenVegetables ?? vegetables)份"
+            let amountEatenVegetables = (amount * vegetables).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(amountEatenVegetables)份"
             
             let oils = self.food.oils!
-            amountEatenOils = (amount * oils).rounding(toDecimal: 1)
-            self.foodNutrientsSuperView.nutrientsView.oilsLabel.text = "\(amountEatenOils ?? oils)份"
+            let amountEatenOils = (amount * oils).rounding(toDecimal: 1)
+            self.foodNutrientsSuperView.nutrientsView.oilsLabel.text = "\(amountEatenOils)份"
             
         }
         return true

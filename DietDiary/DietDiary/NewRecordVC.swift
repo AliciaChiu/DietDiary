@@ -257,15 +257,15 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
             let alertController = UIAlertController(title: "刪除", message: "確定要刪除這張照片嗎？", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "是的", style: .default) { (action) in
                 
-                if let image = self.foodImageView.image {
-                   
-                    if let id = MemoryData.record.meal_images?.first?.id {
-                        self.foodImageView.image = nil
-                        MemoryData.record.meal_images?.removeAll()
-                        MemoryData.record.delete_meal_images = [id]
-                        print("刪除成功")
-                    }
-                }
+                 if let id = MemoryData.record.meal_images?.first?.id {
+                     self.foodImageView.image = nil
+                     MemoryData.record.meal_images?.removeAll()
+                     MemoryData.record.delete_meal_images = [id]
+                     print("刪除成功")
+
+                 }else{
+                    self.foodImageView.image = nil
+                 }
             }
             let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
                 alertController.resignFirstResponder()

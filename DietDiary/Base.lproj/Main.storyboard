@@ -2004,7 +2004,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增食物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQW-C9-l6r">
-                                                                <rect key="frame" x="50" y="16" width="60" height="15"/>
+                                                                <rect key="frame" x="50" y="16" width="60" height="17.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="15"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -2725,11 +2725,6 @@
             <point key="canvasLocation" x="4628" y="-944"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="Bmi-Dt-P8s">
-            <size key="intrinsicContentSize" width="300" height="22"/>
-        </designable>
-    </designables>
     <resources>
         <image name="achievement" width="128" height="128"/>
         <image name="addfood" width="128" height="128"/>
