@@ -23,7 +23,7 @@ class UserInfoView: UIView {
     func addBorder() {
         self.layer.cornerRadius = 15.0
         self.layer.borderWidth = 2.0
-        self.layer.borderColor = UIColor(red: 247/255, green: 194/255, blue: 209/255, alpha: 1).cgColor
+        self.layer.borderColor = UIColor(red: 255/255, green: 189/255, blue: 193/255, alpha: 1).cgColor
         self.clipsToBounds = true
     }
 }

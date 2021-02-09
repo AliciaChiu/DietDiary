@@ -37,11 +37,8 @@ class DailyDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         
         setInitialValue()
-        
-        //self.dailyCaloriesSuperView.caloriesView.setLabel()
         
     }
     
@@ -52,10 +49,12 @@ class DailyDetailVC: UIViewController {
         
         if self.dailyTotalCalories > self.userInfoCalories {
             self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.textColor = .red
+            self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(dailyTotalCalories.rounding(toDecimal: 1))大卡\n超過\((dailyTotalCalories - userInfoCalories).rounding(toDecimal: 1))大卡"
         }else{
             self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.textColor = .black
+            self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(dailyTotalCalories.rounding(toDecimal: 1))大卡\n剩餘\((userInfoCalories - dailyTotalCalories).rounding(toDecimal: 1))大卡"
         }
-        self.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(dailyTotalCalories.rounding(toDecimal: 1))大卡\n剩餘\((userInfoCalories - dailyTotalCalories).rounding(toDecimal: 1))大卡"
+        
         
 
         self.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(self.dailyTotalGrains.rounding(toDecimal: 1))份/\(self.userInfoGrains)份"

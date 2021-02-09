@@ -21,22 +21,17 @@ class NutrientsView: UIView {
     override class func awakeFromNib() {
         super.awakeFromNib()
         
-//        categoryView.layer.borderWidth = 2.0
-//        categoryView.layer.borderColor = UIColor(red: 255/255, green: 167/255, blue: 38/255, alpha: 1).cgColor
-//        categoryView.clipsToBounds = true
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         categoryView.layer.cornerRadius = 100
 //        categoryView.layer.borderWidth = 2.0
-//        categoryView.layer.borderColor = UIColor(red: 255/255, green: 167/255, blue: 38/255, alpha: 1).cgColor
-//        self.sendSubviewToBack(categoryView)
+//        categoryView.layer.borderColor = UIColor(red: 247/255, green: 194/255, blue: 209/255, alpha: 1).cgColor
+//        categoryView.clipsToBounds = true
        
     }
-    
-    
-    
+   
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

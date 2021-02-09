@@ -21,6 +21,8 @@ pod 'TagListView', '~> 1.0'
 
 pod 'Kingfisher', '~> 6.0'
 
+pod 'SideMenu'
+
   target 'DietDiaryTests' do
     inherit! :search_paths
     # Pods for testing

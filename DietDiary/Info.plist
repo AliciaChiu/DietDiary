@@ -21,16 +21,16 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb150438386822703</string>
+				<string>fb1017437969053027</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>150438386822703</string>
+	<string>1017437969053027</string>
 	<key>FacebookDisplayName</key>
-	<string>Diet Diary</string>
+	<string>DietDiary_V1.0.1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

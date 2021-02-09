@@ -13,6 +13,8 @@ protocol DiaryTableViewCellDelegate {
 }
 class DiaryTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var diaryView: UIView!
+    
     @IBOutlet weak var mealLabel: UILabel!
     
     @IBOutlet weak var foodPicture: UIImageView!
@@ -26,6 +28,12 @@ class DiaryTableViewCell: UITableViewCell {
     var delegate: DiaryTableViewCellDelegate?
     
     func loadCellContent(_ data: Record) {
+        
+        self.diaryView.layer.cornerRadius = 15
+        self.diaryView.layer.shadowColor = UIColor.lightGray.cgColor
+        self.diaryView.layer.shadowOpacity = 0.8
+        self.diaryView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.diaryView.layer.masksToBounds = false //系統預設為true，要關掉
         
         self.record = data
         
@@ -61,6 +69,7 @@ class DiaryTableViewCell: UITableViewCell {
             self.noteTextView.text = ""
             self.noteTextView.isHidden = true
         }
+        
     }
     
     

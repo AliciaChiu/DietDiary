@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import AlamofireObjectMapper
+import SideMenu
 
 class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, NewRecordVCDelegate, CalendarVCDelegate {
     
@@ -22,13 +23,13 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
     
     var records: [Record] = []
     
-    let userInfoCalories = MemoryData.userInfo?.dailyCalories ?? 0
-    let userInfoGrains = MemoryData.userInfo?.grainsAmount ?? 0
-    let userInfoMeats = MemoryData.userInfo?.meatsAmount ?? 0
-    let userInfoMilk = MemoryData.userInfo?.milkAmount ?? 0
-    let userInfoVegetables = MemoryData.userInfo?.vegetablesAmount ?? 0
-    let userInfoFruits = MemoryData.userInfo?.fruitsAmount ?? 0
-    let userInfoOils = MemoryData.userInfo?.oilsAmount ?? 0
+    var userInfoCalories: Float?
+    var userInfoGrains: Float?
+    var userInfoMeats: Float?
+    var userInfoMilk: Float?
+    var userInfoVegetables: Float?
+    var userInfoFruits: Float?
+    var userInfoOils: Float?
     
     var dailyTotalCalories: Float = 0.0
     var dailyTotalGrains: Float = 0.0
@@ -46,8 +47,7 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
+
         self.navigationItem.hidesBackButton = true
         
         // default
@@ -57,6 +57,15 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         
         addBtn.layer.cornerRadius = 15.0
         addBtn.layer.masksToBounds = false
+        
+        //MemoryData.userInfo?.calculateAmount()
+        userInfoCalories = MemoryData.userInfo?.dailyCalories ?? 0
+        userInfoGrains = MemoryData.userInfo?.grainsAmount ?? 0
+        userInfoMeats = MemoryData.userInfo?.meatsAmount ?? 0
+        userInfoMilk = MemoryData.userInfo?.milkAmount ?? 0
+        userInfoVegetables = MemoryData.userInfo?.vegetablesAmount ?? 0
+        userInfoFruits = MemoryData.userInfo?.fruitsAmount ?? 0
+        userInfoOils = MemoryData.userInfo?.oilsAmount ?? 0
         
         obtainRecord()
         
@@ -85,9 +94,25 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         }else{
             self.title = self.date.getFormattedDate(format: "MM/dd")
         }
+        
         obtainRecord()
 
     }
+    
+    @IBAction func setBtnPressed(_ sender: Any) {
+        // Define the menu
+        let menu = storyboard!.instantiateViewController(withIdentifier: "LeftMenu") as! SideMenuNavigationController
+
+        present(menu, animated: true, completion: nil)
+       
+        
+    }
+    
+    
+    
+    
+    
+    
     
     //MARK: Call API, obtain records.
     
@@ -254,21 +279,21 @@ extension DietDiaryVC: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "nutrientsCell", for: indexPath) as! NutrientsTableViewCell
 
-            if self.dailyTotalCalories > self.userInfoCalories {
+            if self.dailyTotalCalories > self.userInfoCalories ?? 0 {
                 cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.textColor = .red
-                cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(self.dailyTotalCalories.rounding(toDecimal: 1))大卡\n超過\((self.dailyTotalCalories - self.userInfoCalories).rounding(toDecimal: 1))大卡"
+                cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(self.dailyTotalCalories.rounding(toDecimal: 1))大卡\n超過\((self.dailyTotalCalories - (self.userInfoCalories ?? 0.0)).rounding(toDecimal: 1))大卡"
             }else{
                 cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.textColor = .black
-                cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(self.dailyTotalCalories.rounding(toDecimal: 1))大卡\n剩餘\((self.userInfoCalories - self.dailyTotalCalories).rounding(toDecimal: 1))大卡"
+                cell.dailyNutrientsSuperView.nutrientsView.dailyCaloriesLabel.text = "已攝取\(self.dailyTotalCalories.rounding(toDecimal: 1))大卡\n剩餘\(((self.userInfoCalories ?? 0.0) - self.dailyTotalCalories).rounding(toDecimal: 1))大卡"
             }
 
             
-            cell.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(self.dailyTotalGrains.rounding(toDecimal: 1))份/\(self.userInfoGrains)份"
-            cell.dailyNutrientsSuperView.nutrientsView.meatsLabel.text = "\(self.dailyTotalMeats.rounding(toDecimal: 1))份/\(self.userInfoMeats)份"
-            cell.dailyNutrientsSuperView.nutrientsView.milkLabel.text = "\(self.dailyTotalMilk.rounding(toDecimal: 1))份/\(self.userInfoMilk)份"
-            cell.dailyNutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(self.dailyTotalVegetables.rounding(toDecimal: 1))份/\(self.userInfoVegetables)份"
-            cell.dailyNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(self.dailyTotalFruits.rounding(toDecimal: 1))份/\(self.userInfoFruits)份"
-            cell.dailyNutrientsSuperView.nutrientsView.oilsLabel.text = "\(self.dailyTotalOils.rounding(toDecimal: 1))份/\(self.userInfoOils)份"
+            cell.dailyNutrientsSuperView.nutrientsView.grainsLabel.text = "\(self.dailyTotalGrains.rounding(toDecimal: 1))份/\(self.userInfoGrains!)份"
+            cell.dailyNutrientsSuperView.nutrientsView.meatsLabel.text = "\(self.dailyTotalMeats.rounding(toDecimal: 1))份/\(self.userInfoMeats!)份"
+            cell.dailyNutrientsSuperView.nutrientsView.milkLabel.text = "\(self.dailyTotalMilk.rounding(toDecimal: 1))份/\(self.userInfoMilk!)份"
+            cell.dailyNutrientsSuperView.nutrientsView.vegetablesLabel.text = "\(self.dailyTotalVegetables.rounding(toDecimal: 1))份/\(self.userInfoVegetables!)份"
+            cell.dailyNutrientsSuperView.nutrientsView.fruitsLabel.text = "\(self.dailyTotalFruits.rounding(toDecimal: 1))份/\(self.userInfoFruits!)份"
+            cell.dailyNutrientsSuperView.nutrientsView.oilsLabel.text = "\(self.dailyTotalOils.rounding(toDecimal: 1))份/\(self.userInfoOils!)份"
             return cell
         } else {
             let data = self.records[indexPath.row]
@@ -324,3 +349,4 @@ extension DietDiaryVC: DiaryTableViewCellDelegate {
     
     
 }
+

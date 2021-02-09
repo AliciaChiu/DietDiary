@@ -13,37 +13,37 @@
       "size" : "20x20"
     },
     {
-      "filename" : "Setting@2x.png",
+      "filename" : "Settings@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "Setting@3x.png",
+      "filename" : "Settings@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "SpotLight@2x.png",
+      "filename" : "Spotlight@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "SpotLight@3x.png",
+      "filename" : "Spotlight@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "iphone App@2x.png",
+      "filename" : "App@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "iphone App@3x.png",
+      "filename" : "App@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"

@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let barbuttonFont = UIFont(name: "jf-openhuninn-1.1", size: 17) ?? UIFont.systemFont(ofSize: 17)
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: barbuttonFont], for: .normal)
         
-        UINavigationBar.appearance().barTintColor = UIColor(red: 247/255, green: 194/255, blue: 209/255, alpha: 1)
+        UINavigationBar.appearance().barTintColor = UIColor(red: 255/255, green: 189/255, blue: 193/255, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         if let font = UIFont(name: "jf-openhuninn-1.1", size: 17){

@@ -20,7 +20,6 @@ class CategoryListController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         self.title = "食物資料庫"
         
         self.activityIndicator.startAnimating()

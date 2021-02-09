@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -21,14 +22,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8xq-uu-hHA">
                     <rect key="frame" x="75" y="75" width="200" height="200"/>
                     <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="fhh-Vm-K0B">
+                            <rect key="frame" x="10" y="10" width="180" height="180"/>
+                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已攝取熱量" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yA7-1R-xvh">
-                            <rect key="frame" x="62.5" y="92.5" width="75" height="15"/>
+                            <rect key="frame" x="62.5" y="91.5" width="75" height="17.5"/>
                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZTG-ld-i7d">
-                            <rect key="frame" x="68" y="150" width="64" height="90"/>
+                            <rect key="frame" x="68" y="145.5" width="64" height="94.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xeh-PD-f2h">
                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
@@ -44,16 +48,16 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8Qv-bd-4HR">
-                                    <rect key="frame" x="11" y="64" width="42" height="26"/>
+                                    <rect key="frame" x="11" y="64" width="42" height="30.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="水果類" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfo-z5-LWF">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="14"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="16.5"/>
                                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcd-Hs-vBW">
-                                            <rect key="frame" x="6" y="14" width="30.5" height="12"/>
+                                            <rect key="frame" x="6.5" y="16.5" width="29.5" height="14"/>
                                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -63,7 +67,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Kky-Fh-1CT">
-                            <rect key="frame" x="-40" y="110" width="64" height="90"/>
+                            <rect key="frame" x="-40" y="105.5" width="64" height="94.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FXI-lC-MGl">
                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
@@ -79,16 +83,16 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1ld-oI-SWG">
-                                    <rect key="frame" x="11" y="64" width="42" height="26"/>
+                                    <rect key="frame" x="11" y="64" width="42" height="30.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蔬菜類" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHx-l0-oBG">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="14"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="16.5"/>
                                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUE-aB-VgH">
-                                            <rect key="frame" x="6" y="14" width="30.5" height="12"/>
+                                            <rect key="frame" x="6.5" y="16.5" width="29.5" height="14"/>
                                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -98,7 +102,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BGI-ba-l0m">
-                            <rect key="frame" x="-40" y="0.0" width="70" height="90"/>
+                            <rect key="frame" x="-40" y="0.0" width="70" height="94.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bmD-lz-QeL">
                                     <rect key="frame" x="3" y="0.0" width="64" height="64"/>
@@ -114,16 +118,16 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jsI-g1-MMx">
-                                    <rect key="frame" x="0.0" y="64" width="70" height="26"/>
+                                    <rect key="frame" x="0.0" y="64" width="70" height="30.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全穀雜糧類" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKK-bc-YDC">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="14"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="16.5"/>
                                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ba-1w-9PI">
-                                            <rect key="frame" x="20" y="14" width="30.5" height="12"/>
+                                            <rect key="frame" x="20.5" y="16.5" width="29.5" height="14"/>
                                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -133,7 +137,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wks-H6-qUj">
-                            <rect key="frame" x="65" y="-40" width="70" height="90"/>
+                            <rect key="frame" x="65" y="-40" width="70" height="94.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="50K-dW-XZI">
                                     <rect key="frame" x="3" y="0.0" width="64" height="64"/>
@@ -149,16 +153,16 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Plg-LF-HaT">
-                                    <rect key="frame" x="0.0" y="64" width="70" height="26"/>
+                                    <rect key="frame" x="0.0" y="64" width="70" height="30.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豆魚蛋肉類" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NO2-Kn-uiD">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="14"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="16.5"/>
                                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAl-sn-9P2">
-                                            <rect key="frame" x="20" y="14" width="30.5" height="12"/>
+                                            <rect key="frame" x="20.5" y="16.5" width="29.5" height="14"/>
                                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -168,7 +172,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uS4-jA-fvr">
-                            <rect key="frame" x="176" y="110" width="64" height="90"/>
+                            <rect key="frame" x="176" y="105.5" width="64" height="94.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZB7-da-WOK">
                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
@@ -184,16 +188,16 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7uk-Io-Z1n">
-                                    <rect key="frame" x="11" y="64" width="42" height="26"/>
+                                    <rect key="frame" x="11" y="64" width="42" height="30.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乳品類" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vD1-Bv-0Yl">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="14"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="16.5"/>
                                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGT-Zn-1ng">
-                                            <rect key="frame" x="6" y="14" width="30.5" height="12"/>
+                                            <rect key="frame" x="6.5" y="16.5" width="29.5" height="14"/>
                                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -203,7 +207,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4dn-8a-10e">
-                            <rect key="frame" x="176" y="0.0" width="64" height="90"/>
+                            <rect key="frame" x="176" y="0.0" width="64" height="94.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jLc-KN-fl1">
                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
@@ -219,16 +223,16 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="T7W-8A-RaB">
-                                    <rect key="frame" x="11" y="64" width="42" height="26"/>
+                                    <rect key="frame" x="11" y="64" width="42" height="30.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="油脂類" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deM-mx-gbm">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="14"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="16.5"/>
                                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TlZ-td-KPx">
-                                            <rect key="frame" x="6" y="14" width="30.5" height="12"/>
+                                            <rect key="frame" x="6.5" y="16.5" width="29.5" height="14"/>
                                             <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -238,27 +242,36 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="uS4-jA-fvr" secondAttribute="bottom" id="4ir-mc-lbT"/>
                         <constraint firstItem="4dn-8a-10e" firstAttribute="top" secondItem="8xq-uu-hHA" secondAttribute="top" id="7jr-kN-fRc"/>
+                        <constraint firstAttribute="trailing" secondItem="fhh-Vm-K0B" secondAttribute="trailing" constant="10" id="Bzj-1s-wqh"/>
                         <constraint firstAttribute="bottom" secondItem="Kky-Fh-1CT" secondAttribute="bottom" id="FSJ-jR-dpw"/>
                         <constraint firstItem="wks-H6-qUj" firstAttribute="top" secondItem="8xq-uu-hHA" secondAttribute="top" constant="-40" id="Kuo-wr-O2s"/>
                         <constraint firstItem="yA7-1R-xvh" firstAttribute="centerY" secondItem="8xq-uu-hHA" secondAttribute="centerY" id="MbE-gk-V8n"/>
                         <constraint firstItem="wks-H6-qUj" firstAttribute="centerX" secondItem="8xq-uu-hHA" secondAttribute="centerX" id="PPI-ht-7hF"/>
+                        <constraint firstItem="fhh-Vm-K0B" firstAttribute="top" secondItem="8xq-uu-hHA" secondAttribute="top" constant="10" id="QfA-cs-roE"/>
                         <constraint firstItem="ZTG-ld-i7d" firstAttribute="centerX" secondItem="8xq-uu-hHA" secondAttribute="centerX" id="S4H-bP-6Ak"/>
                         <constraint firstItem="yA7-1R-xvh" firstAttribute="centerX" secondItem="8xq-uu-hHA" secondAttribute="centerX" id="U4V-Bv-iNO"/>
                         <constraint firstAttribute="width" constant="200" id="aM4-Fa-qKi"/>
                         <constraint firstAttribute="height" constant="200" id="aMa-A7-kCC"/>
+                        <constraint firstItem="fhh-Vm-K0B" firstAttribute="leading" secondItem="8xq-uu-hHA" secondAttribute="leading" constant="10" id="dsp-8D-l78"/>
                         <constraint firstItem="BGI-ba-l0m" firstAttribute="top" secondItem="8xq-uu-hHA" secondAttribute="top" id="eIQ-Nv-OZo"/>
                         <constraint firstItem="Kky-Fh-1CT" firstAttribute="leading" secondItem="8xq-uu-hHA" secondAttribute="leading" constant="-40" id="mx4-TV-sfs"/>
                         <constraint firstAttribute="trailing" secondItem="uS4-jA-fvr" secondAttribute="trailing" constant="-40" id="rnh-a4-LT0"/>
+                        <constraint firstAttribute="bottom" secondItem="fhh-Vm-K0B" secondAttribute="bottom" constant="10" id="tI9-q5-Dw2"/>
                         <constraint firstAttribute="bottom" secondItem="ZTG-ld-i7d" secondAttribute="bottom" constant="-40" id="wu9-tu-LtM"/>
                         <constraint firstItem="BGI-ba-l0m" firstAttribute="leading" secondItem="8xq-uu-hHA" secondAttribute="leading" constant="-40" id="xdf-By-DMb"/>
                         <constraint firstAttribute="trailing" secondItem="4dn-8a-10e" secondAttribute="trailing" constant="-40" id="xwf-XA-FiW"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                            <color key="value" systemColor="systemOrangeColor"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
@@ -283,11 +296,15 @@
         </view>
     </objects>
     <resources>
+        <image name="circle" width="512" height="512"/>
         <image name="fruits" width="64" height="64"/>
         <image name="grains" width="64" height="64"/>
         <image name="meat" width="64" height="64"/>
         <image name="milk" width="64" height="64"/>
         <image name="oil" width="64" height="64"/>
         <image name="vegetables" width="64" height="64"/>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

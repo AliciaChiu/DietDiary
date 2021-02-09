@@ -28,6 +28,7 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
     @IBOutlet weak var foodImageView: UIImageView!
 
     @IBOutlet weak var noteTextView: UITextView!
+    @IBOutlet weak var textBGRView: UIView!
     
     @IBOutlet weak var dayTxt: UITextField!
     
@@ -56,8 +57,12 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
+        
+        self.textBGRView.layer.cornerRadius = 10
+        self.textBGRView.layer.shadowColor = UIColor.lightGray.cgColor
+        self.textBGRView.layer.shadowOpacity = 0.8
+        self.textBGRView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.textBGRView.layer.masksToBounds = false //系統預設為true，要關掉
         
         if let navigationController = self.navigationController {
                     // 修改返回鍵

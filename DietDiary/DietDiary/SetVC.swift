@@ -44,7 +44,6 @@ class SetVC: UIViewController, LoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         self.logoutBtn.layer.cornerRadius = 25.0
         
         for view in self.userInfoView.subviews {
@@ -107,6 +106,14 @@ class SetVC: UIViewController, LoginButtonDelegate {
     }
     
     @IBAction func reset(_ sender: UIBarButtonItem) {
+        MemoryData.userInfo?.gender = 1
+        MemoryData.userInfo?.birthday = Date().getFormattedDate(format: "yyyy-MM-dd")
+        MemoryData.userInfo?.nowHeight = nil
+        MemoryData.userInfo?.nowWeight = nil
+        MemoryData.userInfo?.goalWeight = nil
+        MemoryData.userInfo?.monthlyDecrease = 0.0
+        MemoryData.userInfo?.exerciseDegree = 1
+
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController
         vc.modalPresentationStyle = .overFullScreen

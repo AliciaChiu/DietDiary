@@ -31,7 +31,6 @@ class FoodListViewController: UIViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         self.title = self.foodCatogory
 
         
@@ -40,7 +39,6 @@ class FoodListViewController: UIViewController, UISearchResultsUpdating {
 
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.barTintColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
         
         if MemoryData.foods.isEmpty {
             self.activityIndicator.startAnimating()

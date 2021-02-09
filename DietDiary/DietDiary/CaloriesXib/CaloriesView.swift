@@ -21,8 +21,12 @@ class CaloriesView: UIView {
     
     override class func awakeFromNib() {
         super.awakeFromNib()
-        
-        //setLabel(self)
+
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+       
     }
     
     func setLabel() {

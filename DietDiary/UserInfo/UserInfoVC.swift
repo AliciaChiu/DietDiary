@@ -39,8 +39,8 @@ class UserInfoVC: UIViewController {
         super.viewDidLoad()
         
         self.title = "基本資料"
-        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
-        
+//        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
+//
         self.finishBtn.layer.cornerRadius = 25.0
 
         self.weightTxt.delegate = self
@@ -178,24 +178,22 @@ class UserInfoVC: UIViewController {
             ]
             
             // 呼叫API
-            //self.indicatorView.startAnimating()
             print(parameters)
             
             Alamofire.request(URLs.userInfoURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<UserInfoData>) in
                 
-                //self.indicatorView.stopAnimating()
                 print(response.result.value)
                 if response.result.isSuccess {
                     let userInfoData = response.result.value
                     MemoryData.userInfo = userInfoData?.data
                     MemoryData.userInfo?.calculateAmount()
+                    
+                    let sb = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = sb.instantiateViewController(identifier: "DietDiaryVC") as! DietDiaryVC
+                    vc.modalPresentationStyle = .currentContext
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let vc = sb.instantiateViewController(identifier: "DietDiaryVC") as! DietDiaryVC
-            vc.modalPresentationStyle = .currentContext
-            self.navigationController?.pushViewController(vc, animated: true)
-            //self.present(vc, animated: true, completion: nil)
         } else {
             let alertController = UIAlertController(title: nil, message: "還有資料沒填寫完畢喔！", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "填資料去～", style: .default) { (action) in
