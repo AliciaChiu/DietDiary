@@ -58,7 +58,7 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         addBtn.layer.cornerRadius = 15.0
         addBtn.layer.masksToBounds = false
         
-        //MemoryData.userInfo?.calculateAmount()
+        MemoryData.userInfo?.calculateAmount()
         userInfoCalories = MemoryData.userInfo?.dailyCalories ?? 0
         userInfoGrains = MemoryData.userInfo?.grainsAmount ?? 0
         userInfoMeats = MemoryData.userInfo?.meatsAmount ?? 0
@@ -66,7 +66,7 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         userInfoVegetables = MemoryData.userInfo?.vegetablesAmount ?? 0
         userInfoFruits = MemoryData.userInfo?.fruitsAmount ?? 0
         userInfoOils = MemoryData.userInfo?.oilsAmount ?? 0
-        
+
         obtainRecord()
         
     }

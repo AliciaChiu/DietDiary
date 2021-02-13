@@ -124,6 +124,7 @@ class SetVC: UIViewController, LoginButtonDelegate {
     @IBAction func logOut(_ sender: UIButton) {
         UserDefaults.standard.set(nil, forKey: "userID")
         UserDefaults.standard.synchronize()
+        //MemoryData.userInfo?.unique_id = nil
         
         let manager = LoginManager()
         manager.logOut()

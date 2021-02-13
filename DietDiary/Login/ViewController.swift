@@ -38,8 +38,6 @@ class ViewController: UIViewController, LoginButtonDelegate {
         super.viewDidAppear(animated)
         self.checkFBSignUp()
         self.checkAppleSignIn()
-        
-        
     }
     
     //MARK: Facebook login.
@@ -58,8 +56,8 @@ class ViewController: UIViewController, LoginButtonDelegate {
         
         if let profile = Profile.current {
             let userID = profile.userID
-            UserDefaults.standard.set(userID, forKey: "userID")
-            UserDefaults.standard.synchronize()
+//            UserDefaults.standard.set(userID, forKey: "userID")
+//            UserDefaults.standard.synchronize()
             
             let profileUrl = profile.imageURL(forMode: .normal, size: CGSize(width: 100.0, height: 100.0))?.absoluteString ?? ""
             let userName =  profile.name ?? "路人甲"
@@ -140,10 +138,12 @@ class ViewController: UIViewController, LoginButtonDelegate {
     
     
     func checkAppleSignIn() {
-        let userID = UserDefaults.standard.string(forKey: "userID")
-        let userName = UserDefaults.standard.string(forKey: "userName")
         
-        if userID != nil  {
+        
+//        let userID = MemoryData.userInfo?.unique_id
+//        let userName = MemoryData.userInfo?.user_name
+        
+        if let userID = UserDefaults.standard.string(forKey: "userID"), let userName = UserDefaults.standard.string(forKey: "userName"), userID != nil  {
             
             // 準備登入資料
                 let parameters: [String: Any] = [
@@ -162,16 +162,18 @@ class ViewController: UIViewController, LoginButtonDelegate {
                         MemoryData.userInfo = userInfoData?.data
                         MemoryData.userInfo?.calculateAmount()
                         
+                        let sb = UIStoryboard(name: "Main", bundle: nil)
+                        let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController
+                        vc.modalPresentationStyle = .currentContext
+                        
+                        let dietDiaryVC = sb.instantiateViewController(withIdentifier: "DietDiaryVC")
+                        vc.viewControllers.append(dietDiaryVC)
+                        self.present(vc, animated: false, completion: nil)
+                        
+                    }else{
+                        print("Failed")
                     }
                 }
-            
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController
-            vc.modalPresentationStyle = .currentContext
-            
-            let dietDiaryVC = sb.instantiateViewController(withIdentifier: "DietDiaryVC")
-            vc.viewControllers.append(dietDiaryVC)
-            self.present(vc, animated: false, completion: nil)
         }else{
             self.setUpSignInAppleButton()
         }
@@ -193,27 +195,25 @@ extension ViewController: ASAuthorizationControllerDelegate {
             UserDefaults.standard.set(userID, forKey: "userID")
             UserDefaults.standard.set(userName, forKey: "userName")
             UserDefaults.standard.synchronize()
-
+            
             // 準備登入資料
-                let parameters: [String: Any] = [
-                    "unique_id": userID,
-                    "user_name": userName
-                ]
+            let parameters: [String: Any] = [
+                "unique_id": userID,
+                "user_name": userName
+            ]
+            
+            // 呼叫API
+            print(parameters)
+            
+            Alamofire.request(URLs.userInfoURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<UserInfoData>) in
                 
-                // 呼叫API
-                print(parameters)
-
-                Alamofire.request(URLs.userInfoURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<UserInfoData>) in
-
-                    print(response.result.value)
-
-                    if response.result.isSuccess {
-                        
-                        let userInfoData = response.result.value
-                        MemoryData.userInfo = userInfoData?.data
-                    }
-                }
-
+                print(response.result.value)
+                
+                if response.result.isSuccess {
+                    
+                    let userInfoData = response.result.value
+                    MemoryData.userInfo = userInfoData?.data
+                    
                     let msg = "User id is \(userID) \n User Name is \(String(describing: userName)) \n Email id is \(String(describing: email))"
                     print(msg)
                     
@@ -229,9 +229,9 @@ extension ViewController: ASAuthorizationControllerDelegate {
                             let sb = UIStoryboard(name: "Main", bundle: nil)
                             let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController
                             vc.modalPresentationStyle = .currentContext
-
+                            
                             MemoryData.userInfo?.calculateAmount()
-
+                            
                             let dietDiaryVC = sb.instantiateViewController(withIdentifier: "DietDiaryVC")
                             vc.viewControllers.append(dietDiaryVC)
                             self.present(vc, animated: false, completion: nil)
@@ -239,8 +239,13 @@ extension ViewController: ASAuthorizationControllerDelegate {
                     }
                     alert.addAction(action)
                     self.present(alert, animated: true, completion: nil)
+                    
+                }else {
+                    print("Failed")
                 }
             }
+        }
+    }
     
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
