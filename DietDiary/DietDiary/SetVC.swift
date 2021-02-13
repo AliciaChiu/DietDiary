@@ -113,7 +113,7 @@ class SetVC: UIViewController, LoginButtonDelegate {
         MemoryData.userInfo?.goalWeight = nil
         MemoryData.userInfo?.monthlyDecrease = 0.0
         MemoryData.userInfo?.exerciseDegree = 1
-
+        
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController
         vc.modalPresentationStyle = .overFullScreen
@@ -122,6 +122,9 @@ class SetVC: UIViewController, LoginButtonDelegate {
 
     
     @IBAction func logOut(_ sender: UIButton) {
+        UserDefaults.standard.set(nil, forKey: "userID")
+        UserDefaults.standard.synchronize()
+        
         let manager = LoginManager()
         manager.logOut()
         let sb = UIStoryboard(name: "Main", bundle: nil)

@@ -90,9 +90,9 @@ class FoodDetailVC: UIViewController {
         
         let mealRecord = MealRecord()
         mealRecord.food_name = self.food.name
-        print(mealRecord.food_name)
+        //print(mealRecord.food_name)
         mealRecord.eaten_calories = self.amountEatenCalories
-        print(mealRecord.eaten_calories)
+        //print(mealRecord.eaten_calories)
         mealRecord.grains = self.amountEatenGrains
         mealRecord.meats = self.amountEatenMeats
         mealRecord.oils = self.amountEatenOils

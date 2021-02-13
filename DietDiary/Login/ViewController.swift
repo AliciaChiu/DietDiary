@@ -8,29 +8,41 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import AuthenticationServices
 import Alamofire
 
+
 class ViewController: UIViewController, LoginButtonDelegate {
-    
-//    var db: Firestore!
-    
+
     @IBOutlet weak var fbLoginButton: UIButton!
     @IBOutlet weak var fbLogo: UIImageView!
     
+    let appleSignInButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
+    
+    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.fbLoginButton.isHidden = true
         self.fbLogo.isHidden = true
+        self.appleSignInButton.isHidden = true
         self.fbLoginButton.layer.cornerRadius = 25.0
         
+        self.setUpSignInAppleButton()
+        
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.checkSignUp()
+        self.checkFBSignUp()
+        self.checkAppleSignIn()
+        
+        
     }
     
+    //MARK: Facebook login.
     @IBAction func fbLogin(_ sender: UIButton) {
         let manager = LoginManager()
         //permissions
@@ -38,21 +50,23 @@ class ViewController: UIViewController, LoginButtonDelegate {
 //        manager.delegate = self
         Profile.enableUpdatesOnAccessTokenChange(true)
         //註冊通知-當登入帳號有改變時會發送通知FBSDKProfileDidChangeNotification
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.checkSignUp), name: NSNotification.Name.ProfileDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.checkFBSignUp), name: NSNotification.Name.ProfileDidChange, object: nil)
         
     }
     
-    
-    @objc func checkSignUp() {
+    @objc func checkFBSignUp() {
         
         if let profile = Profile.current {
-            let userId = profile.userID
+            let userID = profile.userID
+            UserDefaults.standard.set(userID, forKey: "userID")
+            UserDefaults.standard.synchronize()
+            
             let profileUrl = profile.imageURL(forMode: .normal, size: CGSize(width: 100.0, height: 100.0))?.absoluteString ?? ""
             let userName =  profile.name ?? "路人甲"
             
             // 準備登入資料
             let parameters: [String: Any] = [
-                "unique_id": userId,
+                "unique_id": userID,
                 "profile_url": profileUrl,
                 "user_name": userName
             ]
@@ -86,12 +100,11 @@ class ViewController: UIViewController, LoginButtonDelegate {
                         self.present(vc, animated: false, completion: nil)
                     }
                 }
-                self.fbLoginButton.isHidden = false
-                self.fbLogo.isHidden = false
             }
         }else{
             self.fbLoginButton.isHidden = false
             self.fbLogo.isHidden = false
+            self.appleSignInButton.isHidden = false
         }
     }
     
@@ -102,5 +115,143 @@ class ViewController: UIViewController, LoginButtonDelegate {
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
     }
+    
+    
+    //MARK: Apple signin.
+    func setUpSignInAppleButton() {
+        
+        appleSignInButton.frame = CGRect(x: 50, y: 600, width: 290, height: 50)
+        appleSignInButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
+        appleSignInButton.cornerRadius = 25
+        //Add button on some view or stack
+        self.view.addSubview(appleSignInButton)
+        
+    }
+    
+    @objc func handleAppleIdRequest() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    
+    func checkAppleSignIn() {
+        let userID = UserDefaults.standard.string(forKey: "userID")
+        let userName = UserDefaults.standard.string(forKey: "userName")
+        
+        if userID != nil  {
+            
+            // 準備登入資料
+                let parameters: [String: Any] = [
+                    "unique_id": userID,
+                    "user_name": userName
+                ]
+                
+                // 呼叫API
+                print(parameters)
+
+                Alamofire.request(URLs.userInfoURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<UserInfoData>) in
+
+                    if response.result.isSuccess {
+                        
+                        let userInfoData = response.result.value
+                        MemoryData.userInfo = userInfoData?.data
+                        MemoryData.userInfo?.calculateAmount()
+                        
+                    }
+                }
+            
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController
+            vc.modalPresentationStyle = .currentContext
+            
+            let dietDiaryVC = sb.instantiateViewController(withIdentifier: "DietDiaryVC")
+            vc.viewControllers.append(dietDiaryVC)
+            self.present(vc, animated: false, completion: nil)
+        }else{
+            self.setUpSignInAppleButton()
+        }
+    }
 }
 
+extension ViewController: ASAuthorizationControllerDelegate {
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+            let userID = appleIDCredential.user
+            let givenName = appleIDCredential.fullName?.givenName ?? "Honey"
+            let familyName = appleIDCredential.fullName?.familyName ?? "Sweet"
+            let userName = givenName + familyName
+            print(userName)
+            let email = appleIDCredential.email
+            
+            UserDefaults.standard.set(userID, forKey: "userID")
+            UserDefaults.standard.set(userName, forKey: "userName")
+            UserDefaults.standard.synchronize()
+
+            // 準備登入資料
+                let parameters: [String: Any] = [
+                    "unique_id": userID,
+                    "user_name": userName
+                ]
+                
+                // 呼叫API
+                print(parameters)
+
+                Alamofire.request(URLs.userInfoURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<UserInfoData>) in
+
+                    print(response.result.value)
+
+                    if response.result.isSuccess {
+                        
+                        let userInfoData = response.result.value
+                        MemoryData.userInfo = userInfoData?.data
+                    }
+                }
+
+                    let msg = "User id is \(userID) \n User Name is \(String(describing: userName)) \n Email id is \(String(describing: email))"
+                    print(msg)
+                    
+                    let alert = UIAlertController(title: "登入成功", message: nil, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "ok", style: .cancel) { (action) in
+                        
+                        if MemoryData.userInfo?.nowHeight == nil {
+                            let sb = UIStoryboard(name: "Main", bundle: nil)
+                            let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController
+                            vc.modalPresentationStyle = .overFullScreen
+                            self.present(vc, animated: true, completion: nil)
+                        } else {
+                            let sb = UIStoryboard(name: "Main", bundle: nil)
+                            let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController
+                            vc.modalPresentationStyle = .currentContext
+
+                            MemoryData.userInfo?.calculateAmount()
+
+                            let dietDiaryVC = sb.instantiateViewController(withIdentifier: "DietDiaryVC")
+                            vc.viewControllers.append(dietDiaryVC)
+                            self.present(vc, animated: false, completion: nil)
+                        }
+                    }
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+    
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("Failed:\(error.localizedDescription)")
+    }
+}
+
+extension ViewController: ASAuthorizationControllerPresentationContextProviding {
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window!
+    }
+
+}

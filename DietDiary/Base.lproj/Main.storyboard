@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,7 +35,7 @@
                                     <constraint firstAttribute="height" constant="50" id="qT8-sT-Fxd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="jf-openhuninn-1.1" family="jf-openhuninn-1.1" pointSize="17"/>
-                                <state key="normal" title="使用Facebook登入">
+                                <state key="normal" title="Sign in with Facebook">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -746,7 +746,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w52-br-7QX"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="LVe-hF-L6o">
                         <barButtonItem key="backBarButtonItem" title=" " id="lac-OL-FZm"/>
@@ -993,7 +993,7 @@
                                                             </constraints>
                                                         </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.99607843137254903" green="1" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.99598616360000003" green="1" blue="0.9588273168" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="uA2-qa-odp" secondAttribute="bottom" id="1HA-Qu-sfV"/>
                                                         <constraint firstAttribute="trailing" secondItem="uA2-qa-odp" secondAttribute="trailing" id="TYr-zf-zdh"/>
@@ -1009,6 +1009,7 @@
                                                 <constraint firstItem="g7H-y6-Cb4" firstAttribute="leading" secondItem="SxS-0c-6Pc" secondAttribute="leading" constant="5" id="q8X-Vt-h94"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="diaryView" destination="g7H-y6-Cb4" id="0zk-Cr-CXN"/>
                                             <outlet property="foodLabel" destination="Mlv-vI-mhr" id="6Vh-TD-T8L"/>
@@ -1028,7 +1029,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WjU-NS-C2q"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WjU-NS-C2q" firstAttribute="trailing" secondItem="rnr-FB-F9u" secondAttribute="trailing" id="30S-9u-P0a"/>
                             <constraint firstItem="rnr-FB-F9u" firstAttribute="top" secondItem="WjU-NS-C2q" secondAttribute="top" id="4rR-Qj-NMS"/>
@@ -1097,7 +1098,7 @@
                             </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lX7-rg-fX7"/>
-                        <color key="backgroundColor" red="0.99607843137254903" green="1" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lX7-rg-fX7" firstAttribute="trailing" secondItem="LTH-WA-4yx" secondAttribute="trailing" constant="10" id="01D-7v-biD"/>
                             <constraint firstItem="Spd-PR-G4y" firstAttribute="leading" secondItem="lX7-rg-fX7" secondAttribute="leading" id="0EH-OC-t6Y"/>
@@ -1717,7 +1718,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZNt-pY-t1V"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="設定" id="yYT-vz-CrP">
                         <barButtonItem key="rightBarButtonItem" title="重設" id="hkh-LQ-0ta">
@@ -1769,7 +1770,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lBp-G8-JXa"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="tfi-FX-atg" firstAttribute="leading" secondItem="lBp-G8-JXa" secondAttribute="leading" id="Dg6-Fk-M9d"/>
                             <constraint firstItem="DuX-r6-BgX" firstAttribute="centerY" secondItem="Sjv-cj-Une" secondAttribute="centerY" id="L5R-mU-wOX"/>
@@ -2032,6 +2033,7 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
+                                                <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="qOM-47-NR3" firstAttribute="top" secondItem="bnn-hD-PVO" secondAttribute="bottom" id="3L6-yO-PBK"/>
                                                     <constraint firstAttribute="trailing" secondItem="bnn-hD-PVO" secondAttribute="trailing" id="Lbw-Ns-wYy"/>
@@ -2379,7 +2381,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3ds-59-Sbz"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="12/15" id="dkx-2C-hCa">
                         <barButtonItem key="backBarButtonItem" title=" " id="SoX-in-sSq"/>
@@ -2452,7 +2454,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tLk-bN-r51"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="rNy-HL-syN" secondAttribute="bottom" id="7Vm-TD-CFs"/>
                             <constraint firstItem="rNy-HL-syN" firstAttribute="leading" secondItem="tLk-bN-r51" secondAttribute="leading" id="FR2-MN-xbn"/>
@@ -2482,7 +2484,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fD5-aO-19d">
                                 <rect key="frame" x="0.0" y="88" width="390" height="681"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="foodCell" textLabel="TAB-CO-X6W" detailTextLabel="SA4-Ue-MzN" style="IBUITableViewCellStyleSubtitle" id="y6B-gx-kDW">
                                         <rect key="frame" x="0.0" y="28" width="390" height="51.666667938232422"/>
@@ -2508,7 +2510,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <segue destination="b5m-Rq-lV4" kind="show" identifier="foodDetailSegue" id="9RC-gE-wng"/>
                                         </connections>
@@ -2571,7 +2573,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QCs-Yx-BfP"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Fw0-YJ-9J9" firstAttribute="top" secondItem="fD5-aO-19d" secondAttribute="bottom" id="64z-Kh-R9W"/>
                             <constraint firstItem="fD5-aO-19d" firstAttribute="leading" secondItem="QCs-Yx-BfP" secondAttribute="leading" id="7yt-kL-30q"/>
@@ -2813,7 +2815,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZEe-Iz-svG"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="A8u-ju-g9U" secondAttribute="bottom" id="7Hs-cG-ibT"/>
                             <constraint firstItem="A8u-ju-g9U" firstAttribute="leading" secondItem="ZEe-Iz-svG" secondAttribute="leading" id="7lq-eA-MZp"/>
@@ -2906,7 +2908,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hqA-pR-q7d"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="詳細資料" id="GRN-4j-IOB">
                         <barButtonItem key="backBarButtonItem" title="null" id="B8R-Mu-N0l"/>
