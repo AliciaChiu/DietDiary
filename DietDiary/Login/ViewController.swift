@@ -15,9 +15,9 @@ import Alamofire
 class ViewController: UIViewController, LoginButtonDelegate {
 
     @IBOutlet weak var fbLoginButton: UIButton!
-    @IBOutlet weak var fbLogo: UIImageView!
-    
-    let appleSignInButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
+  
+    @IBOutlet weak var appleSignInButton: UIButton!
+//    let appleSignInButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
     
     
  
@@ -25,11 +25,11 @@ class ViewController: UIViewController, LoginButtonDelegate {
         super.viewDidLoad()
         
         self.fbLoginButton.isHidden = true
-        self.fbLogo.isHidden = true
         self.appleSignInButton.isHidden = true
-        self.fbLoginButton.layer.cornerRadius = 25.0
+        self.fbLoginButton.layer.cornerRadius = 22
+        self.appleSignInButton.layer.cornerRadius = 22
         
-        self.setUpSignInAppleButton()
+        //self.setUpSignInAppleButton()
         
     }
 
@@ -101,7 +101,6 @@ class ViewController: UIViewController, LoginButtonDelegate {
             }
         }else{
             self.fbLoginButton.isHidden = false
-            self.fbLogo.isHidden = false
             self.appleSignInButton.isHidden = false
         }
     }
@@ -116,17 +115,9 @@ class ViewController: UIViewController, LoginButtonDelegate {
     
     
     //MARK: Apple signin.
-    func setUpSignInAppleButton() {
-        
-        appleSignInButton.frame = CGRect(x: 50, y: 600, width: 290, height: 50)
-        appleSignInButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
-        appleSignInButton.cornerRadius = 25
-        //Add button on some view or stack
-        self.view.addSubview(appleSignInButton)
-        
-    }
     
-    @objc func handleAppleIdRequest() {
+    @IBAction func SignInWithApple(_ sender: Any) {
+        
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
@@ -134,7 +125,31 @@ class ViewController: UIViewController, LoginButtonDelegate {
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
+        
     }
+    
+    
+    
+    
+//    func setUpSignInAppleButton() {
+//
+//        appleSignInButton.frame = CGRect(x: 50, y: 550, width: 290, height: 44)
+//        appleSignInButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
+//        appleSignInButton.cornerRadius = 25
+//        //Add button on some view or stack
+//        self.view.addSubview(appleSignInButton)
+//
+//    }
+    
+//    @objc func handleAppleIdRequest() {
+//        let appleIDProvider = ASAuthorizationAppleIDProvider()
+//        let request = appleIDProvider.createRequest()
+//        request.requestedScopes = [.fullName, .email]
+//        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+//        authorizationController.delegate = self
+//        authorizationController.presentationContextProvider = self
+//        authorizationController.performRequests()
+//    }
     
     
     func checkAppleSignIn() {
@@ -175,7 +190,8 @@ class ViewController: UIViewController, LoginButtonDelegate {
                     }
                 }
         }else{
-            self.setUpSignInAppleButton()
+            //self.setUpSignInAppleButton()
+            //self.appleSignInButton.isHidden = false
         }
     }
 }

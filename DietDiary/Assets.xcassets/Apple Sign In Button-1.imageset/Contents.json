@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "封面V5.png",
+      "filename" : "Apple Sign In Button.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "封面V5@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "封面V5@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

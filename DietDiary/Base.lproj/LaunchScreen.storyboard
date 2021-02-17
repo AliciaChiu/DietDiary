@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,17 +14,47 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="封面V5" translatesAutoresizingMaskIntoConstraints="NO" id="Tka-TB-uBq">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="蛋糕狗狗" translatesAutoresizingMaskIntoConstraints="NO" id="Tka-TB-uBq">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="yV2-G6-7oN">
+                                <rect key="frame" x="67" y="149" width="280" height="438"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-1" translatesAutoresizingMaskIntoConstraints="NO" id="XZa-HR-nko">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="280" id="LpA-Lr-Wk9"/>
+                                            <constraint firstAttribute="height" constant="280" id="QgX-Qo-d2N"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaU-V2-wMa">
+                                        <rect key="frame" x="15" y="315" width="250" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="17b-ma-00q"/>
+                                            <constraint firstAttribute="width" constant="250" id="LN5-TV-RTm"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="Facebook Login Button-1"/>
+                                    </button>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stw-Yd-vjj">
+                                        <rect key="frame" x="15" y="394" width="250" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="IDc-Nf-AoN"/>
+                                            <constraint firstAttribute="width" constant="250" id="dx0-Zp-pne"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="Apple Sign In Button2"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="yV2-G6-7oN" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Ao0-xv-gnk"/>
                             <constraint firstAttribute="bottom" secondItem="Tka-TB-uBq" secondAttribute="bottom" id="C5k-9y-h4c"/>
+                            <constraint firstItem="yV2-G6-7oN" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="TW6-KT-PdV"/>
                             <constraint firstItem="Tka-TB-uBq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Weh-di-5Yq"/>
                             <constraint firstItem="Tka-TB-uBq" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="bbc-kO-COC"/>
                             <constraint firstItem="Tka-TB-uBq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hcc-ek-IBz"/>
@@ -36,7 +67,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="封面V5" width="375" height="812"/>
+        <image name="Apple Sign In Button2" width="424" height="76"/>
+        <image name="Facebook Login Button-1" width="250" height="44"/>
+        <image name="logo-1" width="280" height="280"/>
+        <image name="蛋糕狗狗" width="375" height="812"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
