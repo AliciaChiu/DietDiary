@@ -23,7 +23,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="yV2-G6-7oN">
                                 <rect key="frame" x="67" y="149" width="280" height="438"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-1" translatesAutoresizingMaskIntoConstraints="NO" id="XZa-HR-nko">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="XZa-HR-nko">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="280" id="LpA-Lr-Wk9"/>
@@ -69,7 +69,7 @@
     <resources>
         <image name="Apple Sign In Button2" width="424" height="76"/>
         <image name="Facebook Login Button-1" width="250" height="44"/>
-        <image name="logo-1" width="280" height="280"/>
+        <image name="logo" width="1024" height="1024"/>
         <image name="蛋糕狗狗" width="375" height="812"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
