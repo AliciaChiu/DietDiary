@@ -232,6 +232,7 @@
 				F2F3CB89258529BA002D1090 /* UserInfo */,
 				F2EA5EA9258B1ABA0013484A /* DietDiary */,
 				F28E8F5E259056C500C2C82A /* DataBase */,
+				F2D25B6825D9106200200DC4 /* Set */,
 				F23C54B725826715000D6281 /* Main.storyboard */,
 				F23C5430258260BA000D6281 /* AppDelegate.swift */,
 				F23C5432258260BA000D6281 /* SceneDelegate.swift */,
@@ -309,6 +310,16 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		F2D25B6825D9106200200DC4 /* Set */ = {
+			isa = PBXGroup;
+			children = (
+				F24B710B25C85CC9001F5FAC /* ListViewController.swift */,
+				F2ADF06525CBF8B400E275AB /* PrivacyPolicyViewController.swift */,
+				F236614A258B2F72006437DC /* SetVC.swift */,
+			);
+			path = Set;
+			sourceTree = "<group>";
+		};
 		F2EA5EA9258B1ABA0013484A /* DietDiary */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,9 +331,6 @@
 				F2EA5EA4258B1AAF0013484A /* NewRecordVC.swift */,
 				F2EA5E9F258B1A950013484A /* DailyDetailVC.swift */,
 				F2DF3A30258E48D2006B4361 /* CalendarVC.swift */,
-				F24B710B25C85CC9001F5FAC /* ListViewController.swift */,
-				F2ADF06525CBF8B400E275AB /* PrivacyPolicyViewController.swift */,
-				F236614A258B2F72006437DC /* SetVC.swift */,
 			);
 			path = DietDiary;
 			sourceTree = "<group>";
@@ -789,14 +797,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8U5US6S28U;
 				INFOPLIST_FILE = DietDiary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliciachiu.DietDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -810,14 +820,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8U5US6S28U;
 				INFOPLIST_FILE = DietDiary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliciachiu.DietDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
