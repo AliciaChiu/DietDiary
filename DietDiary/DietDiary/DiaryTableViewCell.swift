@@ -19,7 +19,7 @@ class DiaryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var foodPicture: UIImageView!
     
-    @IBOutlet weak var noteTextView: UITextView!
+    @IBOutlet weak var noteTextView: UILabel!
     
     @IBOutlet weak var foodLabel: UILabel!
     
