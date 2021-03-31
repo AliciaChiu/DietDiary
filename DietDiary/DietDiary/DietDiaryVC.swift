@@ -108,14 +108,7 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         
     }
     
-    
-    
-    
-    
-    
-    
-    //MARK: Call API, obtain records.
-    
+    //MARK: - Call API, obtain records.
     func obtainRecord() {
         
         segmentedControl.selectedSegmentIndex = self.date.getWeekdayIndex()
@@ -144,7 +137,7 @@ class DietDiaryVC: UIViewController, UIPopoverPresentationControllerDelegate, Ne
         }
     }
     
-    // MARk: - Get daily total amounts.
+    // MARK: - Get daily total amounts.
     func getDailyTotalAmount() {
         
         dailyTotalCalories = 0.0

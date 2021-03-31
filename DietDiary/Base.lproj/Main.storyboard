@@ -1954,7 +1954,7 @@
                                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfg-3K-iBX">
                                                         <rect key="frame" x="50" y="0.0" width="89" height="40"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                        <state key="normal" title="版本：1.0.1">
+                                                        <state key="normal" title="版本：1.0.2">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                     </button>
