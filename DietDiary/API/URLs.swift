@@ -17,4 +17,5 @@ struct URLs {
     
     static let mealRecordsURL = "http://diary-env.eba-qxfskmrq.us-west-2.elasticbeanstalk.com/api/meal_records"
 
+    static let mealPostURL = "http://diary-env.eba-qxfskmrq.us-west-2.elasticbeanstalk.com/api/meal_post_counts"
 }

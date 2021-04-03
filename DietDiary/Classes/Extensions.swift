@@ -11,8 +11,8 @@ import UIKit
 extension Date {
    func getFormattedDate(format: String) -> String {
         let dateformat = DateFormatter()
-        dateformat.dateFormat = format
         dateformat.locale = Locale(identifier: "zh_TW")
+        dateformat.dateFormat = format
         return dateformat.string(from: self)
     }
     

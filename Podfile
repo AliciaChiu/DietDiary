@@ -23,6 +23,8 @@ pod 'Kingfisher', '~> 6.0'
 
 pod 'SideMenu'
 
+pod 'FSCalendar'
+
   target 'DietDiaryTests' do
     inherit! :search_paths
     # Pods for testing

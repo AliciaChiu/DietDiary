@@ -11,6 +11,7 @@ class MemoryData {
     static var foods: [Food] = []
     static var userInfo: UserInformation?
     static var record = Record()
+    static var post = Post()
     
 }
 

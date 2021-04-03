@@ -32,6 +32,7 @@
 		F24AF60B25CAA700002B7F79 /* jf-openhuninn-1.1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F24AF60A25CAA700002B7F79 /* jf-openhuninn-1.1.ttf */; };
 		F24B710C25C85CC9001F5FAC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B710B25C85CC9001F5FAC /* ListViewController.swift */; };
 		F267B1C7258C8B8700A6A31E /* NutrientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F267B1C6258C8B8700A6A31E /* NutrientsTableViewCell.swift */; };
+		F29A51BD26185B21005A5B92 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29A51BC26185B21005A5B92 /* PostData.swift */; };
 		F2A344A6259244A6009B4C81 /* CategoryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A344A5259244A6009B4C81 /* CategoryListController.swift */; };
 		F2A344AB259244CA009B4C81 /* FoodListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A344AA259244CA009B4C81 /* FoodListViewController.swift */; };
 		F2AA2432258FA20D00102A8C /* FoodDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AA2431258FA20D00102A8C /* FoodDetailVC.swift */; };
@@ -106,6 +107,7 @@
 		F24AF60A25CAA700002B7F79 /* jf-openhuninn-1.1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "jf-openhuninn-1.1.ttf"; sourceTree = "<group>"; };
 		F24B710B25C85CC9001F5FAC /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		F267B1C6258C8B8700A6A31E /* NutrientsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientsTableViewCell.swift; sourceTree = "<group>"; };
+		F29A51BC26185B21005A5B92 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		F2A344A5259244A6009B4C81 /* CategoryListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListController.swift; sourceTree = "<group>"; };
 		F2A344AA259244CA009B4C81 /* FoodListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodListViewController.swift; sourceTree = "<group>"; };
 		F2AA2431258FA20D00102A8C /* FoodDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailVC.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				F217E5A12598715900F8BE0C /* UserInfoData.swift */,
 				F217E57425983E0E00F8BE0C /* FoodsData.swift */,
 				F23C2360259A259200FF7C71 /* RecordData.swift */,
+				F29A51BC26185B21005A5B92 /* PostData.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				F2A344AB259244CA009B4C81 /* FoodListViewController.swift in Sources */,
 				F23C5433258260BA000D6281 /* SceneDelegate.swift in Sources */,
 				F217E57725983E0F00F8BE0C /* URLs.swift in Sources */,
+				F29A51BD26185B21005A5B92 /* PostData.swift in Sources */,
 				F2DF3A31258E48D2006B4361 /* CalendarVC.swift in Sources */,
 				F217E56E25983DF300F8BE0C /* MemoryData.swift in Sources */,
 				F2B6E1F9258274AA0008C3B7 /* UserInfoVC.swift in Sources */,
