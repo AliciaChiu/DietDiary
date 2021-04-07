@@ -25,6 +25,8 @@ pod 'SideMenu'
 
 pod 'FSCalendar'
 
+pod 'Siren'
+
   target 'DietDiaryTests' do
     inherit! :search_paths
     # Pods for testing

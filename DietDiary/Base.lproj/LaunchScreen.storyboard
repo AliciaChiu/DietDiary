@@ -47,6 +47,10 @@
                                         <state key="normal" title="Button" image="Apple Sign In Button2"/>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="438" id="q5R-CC-gmY"/>
+                                    <constraint firstAttribute="width" constant="280" id="r2t-Sh-yom"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

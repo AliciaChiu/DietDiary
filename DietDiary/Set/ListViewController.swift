@@ -73,6 +73,26 @@ class ListViewController: UIViewController, MFMailComposeViewControllerDelegate 
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
+    @IBAction func rateUs(_ sender: UIButton) {
+        
+        let askController = UIAlertController(title: "Hello😊", message: "如果您喜歡我們的App，請給我們好評鼓勵吧！👍", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "我要評論", style: .default) { (action) in
+            //let appID = "1560110307"
+            let appURL = URL(string: "https://apps.apple.com/us/app/dietdiary/id1553665738")!
+            UIApplication.shared.open(appURL, options: [:]) { (success) in
+                //
+            }
+        }
+        let laterAction = UIAlertAction(title: "下次再評", style: .default, handler: nil)
+        askController.addAction(laterAction)
+        askController.addAction(okAction)
+        self.present(askController, animated: true, completion: nil)
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 

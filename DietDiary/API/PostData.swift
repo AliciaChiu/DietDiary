@@ -9,6 +9,7 @@ import Foundation
 import ObjectMapper
 
 class PostData: BaseResponseData {
+    
     var data: [Post]?
     
     required init?(map: Map) {

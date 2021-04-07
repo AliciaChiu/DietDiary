@@ -24,20 +24,26 @@ class ViewController: UIViewController, LoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.fbLoginButton.isHidden = true
-        self.appleSignInButton.isHidden = true
+        self.fbLoginButton.alpha = 0
+        self.appleSignInButton.alpha = 0
         self.fbLoginButton.layer.cornerRadius = 22
         self.appleSignInButton.layer.cornerRadius = 22
         
-        //self.setUpSignInAppleButton()
-        
+        Alamofire.request("https://aliciachiu.github.io/DDdomain/domain.json?abc=\(arc4random())", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<DomainData>) in
+            if response.result.isSuccess {
+                let domainData = response.result.value
+                URLs.domain = domainData?.domain ?? URLs.domain
+            }
+            
+            self.checkFBSignUp()
+            self.checkAppleSignIn()
+        }
     }
 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.checkFBSignUp()
-        self.checkAppleSignIn()
+        
     }
     
     //MARK: Facebook login.
@@ -56,9 +62,6 @@ class ViewController: UIViewController, LoginButtonDelegate {
         
         if let profile = Profile.current {
             let userID = profile.userID
-//            UserDefaults.standard.set(userID, forKey: "userID")
-//            UserDefaults.standard.synchronize()
-            
             let profileUrl = profile.imageURL(forMode: .normal, size: CGSize(width: 100.0, height: 100.0))?.absoluteString ?? ""
             let userName =  profile.name ?? "路人甲"
             
@@ -70,12 +73,10 @@ class ViewController: UIViewController, LoginButtonDelegate {
             ]
             
             // 呼叫API
-            //self.indicatorView.startAnimating()
             print(parameters)
             
             Alamofire.request(URLs.userInfoURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<UserInfoData>) in
-                
-                //self.indicatorView.stopAnimating()
+
                 print(response.result.value)
                 if response.result.isSuccess {
                     let userInfoData = response.result.value
@@ -100,8 +101,8 @@ class ViewController: UIViewController, LoginButtonDelegate {
                 }
             }
         }else{
-            self.fbLoginButton.isHidden = false
-            self.appleSignInButton.isHidden = false
+            self.fbLoginButton.alpha = 1
+            self.appleSignInButton.alpha = 1
         }
     }
     
@@ -153,11 +154,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
     
     
     func checkAppleSignIn() {
-        
-        
-//        let userID = MemoryData.userInfo?.unique_id
-//        let userName = MemoryData.userInfo?.user_name
-        
+
         if let userID = UserDefaults.standard.string(forKey: "userID"), let userName = UserDefaults.standard.string(forKey: "userName"), userID != nil  {
             
             // 準備登入資料

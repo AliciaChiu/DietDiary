@@ -47,6 +47,8 @@ class CalendarVC: UIViewController, FSCalendarDataSource, FSCalendarDelegate {
                 self.calendar.reloadData()
             }
         }
+        
+        self.calendar.select(date)
     }
     
     @IBAction func close(_ sender: Any) {
@@ -75,15 +77,6 @@ class CalendarVC: UIViewController, FSCalendarDataSource, FSCalendarDelegate {
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        
-        
-        
-        
-        
-        
-        
-        
-        
         let dateStr = date.getFormattedDate(format: "yyyy-MM-dd")
         print(dateStr)
         var count = 0

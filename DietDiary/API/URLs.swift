@@ -9,13 +9,15 @@ import Foundation
 
 struct URLs {
     
-    static let categoryURL = "http://diary-env.eba-qxfskmrq.us-west-2.elasticbeanstalk.com/api/categories"
+    static var domain = "https://dietdiary.tw"
     
-    static let foodURL = "http://diary-env.eba-qxfskmrq.us-west-2.elasticbeanstalk.com/api/foods"
+    static let categoryURL = "\(URLs.domain)/api/categories"
     
-    static let userInfoURL = "http://diary-env.eba-qxfskmrq.us-west-2.elasticbeanstalk.com/api/userinfos"
+    static let foodURL = "\(URLs.domain)/api/foods"
     
-    static let mealRecordsURL = "http://diary-env.eba-qxfskmrq.us-west-2.elasticbeanstalk.com/api/meal_records"
+    static let userInfoURL = "\(URLs.domain)/api/userinfos"
+    
+    static let mealRecordsURL = "\(URLs.domain)/api/meal_records"
 
-    static let mealPostURL = "http://diary-env.eba-qxfskmrq.us-west-2.elasticbeanstalk.com/api/meal_post_counts"
+    static let mealPostURL = "\(URLs.domain)/api/meal_post_counts"
 }

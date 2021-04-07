@@ -11,6 +11,7 @@ import AlamofireObjectMapper
 import WXImageCompress
 import TagListView
 import Kingfisher
+import StoreKit
 
 protocol NewRecordVCDelegate : class{
     func didFinishUpdate(record : Record)
@@ -315,6 +316,13 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
                 self.navigationController?.popViewController(animated: true)
             }
         }
+        
+        if #available(iOS 13.4, *) {
+            SKStoreReviewController.requestReview()
+        }
+        
+        
+        
     }
     
     // MARK: - Prepare camera.
