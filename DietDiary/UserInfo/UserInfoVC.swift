@@ -25,6 +25,8 @@ class UserInfoVC: UIViewController {
     
     @IBOutlet weak var planLabel: UILabel!
     
+    @IBOutlet weak var monthlyLabel: UILabel!
+    
     @IBOutlet weak var exerciseSC: UISegmentedControl!
     
     @IBOutlet weak var timeNeededLabel: UILabel!
@@ -40,7 +42,33 @@ class UserInfoVC: UIViewController {
         
         self.title = "基本資料"
 //        self.view.backgroundColor = UIColor(red: 255/255, green: 252/255, blue: 184/255, alpha: 1)
-//
+
+        if MemoryData.userInfo?.nowHeight != 0 {
+            if MemoryData.userInfo?.gender == 1 {
+                self.genderSC.selectedSegmentIndex = 0
+            } else {
+                self.genderSC.selectedSegmentIndex = 1
+            }
+            
+            self.birthdayTxt.text = MemoryData.userInfo?.birthday
+            self.heightTxt.text = "\(Int(MemoryData.userInfo?.nowHeight ?? 0))"
+            self.weightTxt.text = "\(Int(MemoryData.userInfo?.nowWeight ?? 0))"
+            self.goalWeightTxt.text = "\(Int(MemoryData.userInfo?.goalWeight ?? 0))"
+            self.planLabel.text = MemoryData.userInfo?.planName
+            self.monthlyLabel.text = "\(MemoryData.userInfo?.monthlyDecrease ?? 0)"
+            
+            if MemoryData.userInfo?.exerciseDegree == 1 {
+                self.exerciseSC.selectedSegmentIndex = 0
+            } else if MemoryData.userInfo?.exerciseDegree == 2 {
+                self.exerciseSC.selectedSegmentIndex = 1
+            } else if MemoryData.userInfo?.exerciseDegree == 3 {
+                self.exerciseSC.selectedSegmentIndex = 2
+            }
+            
+            self.timeNeededLabel.text = "\(MemoryData.userInfo?.timeNeeded ?? 0)天"
+            
+            self.dailyCaloriesLabel.text = "\((Float(MemoryData.userInfo?.dailyCalories ?? 0)).rounding(toDecimal: 1))大卡"
+        }
         self.finishBtn.layer.cornerRadius = 25.0
 
         self.weightTxt.delegate = self
@@ -57,7 +85,7 @@ class UserInfoVC: UIViewController {
 
     func createDatePicker() {
         
-        birthdayTxt.textAlignment = .right
+        birthdayTxt.textAlignment = .center
         
         //toolbar
         let toolbar = UIToolbar()
@@ -109,7 +137,6 @@ class UserInfoVC: UIViewController {
         self.birthdayTxt.resignFirstResponder()
     }
     
-    @IBOutlet weak var monthlyLabel: UILabel!
     
     @IBAction func monthlyDecreaseValueChanged(_ sender: UIStepper) {
         MemoryData.userInfo?.monthlyDecrease = Float(sender.value)

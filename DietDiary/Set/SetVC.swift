@@ -106,13 +106,13 @@ class SetVC: UIViewController, LoginButtonDelegate {
     }
     
     @IBAction func reset(_ sender: UIBarButtonItem) {
-        MemoryData.userInfo?.gender = 1
-        MemoryData.userInfo?.birthday = Date().getFormattedDate(format: "yyyy-MM-dd")
-        MemoryData.userInfo?.nowHeight = nil
-        MemoryData.userInfo?.nowWeight = nil
-        MemoryData.userInfo?.goalWeight = nil
-        MemoryData.userInfo?.monthlyDecrease = 0.0
-        MemoryData.userInfo?.exerciseDegree = 1
+//        MemoryData.userInfo?.gender = 1
+//        MemoryData.userInfo?.birthday = Date().getFormattedDate(format: "yyyy-MM-dd")
+//        MemoryData.userInfo?.nowHeight = nil
+//        MemoryData.userInfo?.nowWeight = nil
+//        MemoryData.userInfo?.goalWeight = nil
+//        MemoryData.userInfo?.monthlyDecrease = 0.0
+//        MemoryData.userInfo?.exerciseDegree = 1
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "UserInfoNav") as! UINavigationController

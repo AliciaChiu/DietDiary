@@ -308,6 +308,7 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
         print(parameters)
         
         // 呼叫API
+        self.finishBarButtonItem.isEnabled = false
         Alamofire.request(URLs.mealRecordsURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<BaseResponseData>) in
             if response.result.isSuccess {
                 print(response.result.value?.toJSON())
@@ -315,6 +316,7 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
                 self.delegate?.didFinishUpdate(record: MemoryData.record)
                 self.navigationController?.popViewController(animated: true)
             }
+            self.finishBarButtonItem.isEnabled = true
         }
         
         if #available(iOS 13.4, *) {
@@ -327,6 +329,15 @@ class NewRecordVC: UIViewController, TagListViewDelegate {
     
     // MARK: - Prepare camera.
     @IBAction func camera(_ sender: Any) {
+        
+        if self.foodImageView.image != nil {
+            if let id = MemoryData.record.meal_images?.first?.id {
+                //self.foodImageView.image = nil
+                MemoryData.record.meal_images?.removeAll()
+                MemoryData.record.delete_meal_images = [id]
+                print("刪除成功")
+            }
+        }
         
         let photoSourceRequestController = UIAlertController(title: "", message: "請選擇使用相機或相簿", preferredStyle: .actionSheet)
         
@@ -490,6 +501,25 @@ extension NewRecordVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         let image = info[.originalImage] as! UIImage
         self.foodImageView.image = image
         self.dismiss(animated: true, completion: nil)
+        
+        
+        
+        
+//        if self.foodImageView.image != nil {
+//            if let id = MemoryData.record.meal_images?.first?.id {
+//                //self.foodImageView.image = nil
+//                MemoryData.record.meal_images?.removeAll()
+//                MemoryData.record.delete_meal_images = [id]
+//                print("刪除成功")
+//
+//                let image = info[.originalImage] as! UIImage
+//                self.foodImageView.image = image
+//                self.dismiss(animated: true, completion: nil)
+//            }else{
+//                let image = info[.originalImage] as! UIImage
+//                self.foodImageView.image = image
+//                self.dismiss(animated: true, completion: nil)
+//            }
+//        }
     }
-    
 }

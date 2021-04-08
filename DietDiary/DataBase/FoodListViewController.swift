@@ -36,6 +36,7 @@ class FoodListViewController: UIViewController, UISearchResultsUpdating {
         
         searchController = UISearchController(searchResultsController: nil)
         tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.barTintColor = UIColor(red: 255/255, green: 248/255, blue: 245/255, alpha: 1)
 
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
