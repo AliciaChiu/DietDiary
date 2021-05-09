@@ -1181,7 +1181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CKg-fg-4hK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7882" y="677"/>
+            <point key="canvasLocation" x="8293" y="678"/>
         </scene>
         <!--SetVC-->
         <scene sceneID="iXv-u7-o6r">
@@ -2324,7 +2324,7 @@
                                                         </constraints>
                                                         <state key="normal" image="plus" catalog="system"/>
                                                         <connections>
-                                                            <segue destination="WGs-hD-Vaq" kind="show" identifier="categoriesSegue" id="0cu-7n-cIb"/>
+                                                            <segue destination="GwZ-Z2-Zzb" kind="show" id="32H-Xa-QHR"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addfood" translatesAutoresizingMaskIntoConstraints="NO" id="eyY-j3-CAU">
@@ -2492,16 +2492,131 @@
             </objects>
             <point key="canvasLocation" x="4594" y="679"/>
         </scene>
+        <!--Database View Controller-->
+        <scene sceneID="dzf-PB-1Um">
+            <objects>
+                <viewController id="GwZ-Z2-Zzb" customClass="DatabaseViewController" customModule="DietDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aHn-eg-csn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1Z-g3-97Q">
+                                <rect key="frame" x="0.0" y="44" width="414" height="43.666666666666657"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mdA-W4-TqX">
+                                        <rect key="frame" x="0.0" y="7" width="414" height="30"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XpM-TY-hNc">
+                                                <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Z9i-go-GlO"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1q4-NP-W6F">
+                                                <rect key="frame" x="46" y="0.0" width="138" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="X3w-7P-uAq"/>
+                                                </constraints>
+                                                <state key="normal" title="食物資料庫"/>
+                                                <connections>
+                                                    <action selector="showfoodDatabase:" destination="GwZ-Z2-Zzb" eventType="touchUpInside" id="HjF-Dl-UOc"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z77-Md-70G">
+                                                <rect key="frame" x="184" y="0.0" width="46" height="30"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="6ba-q8-ST7"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4m-fW-GHe">
+                                                <rect key="frame" x="230" y="0.0" width="138" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="xVi-Bt-Fe5"/>
+                                                </constraints>
+                                                <state key="normal" title="自訂食物"/>
+                                                <connections>
+                                                    <action selector="showCustomPage:" destination="GwZ-Z2-Zzb" eventType="touchUpInside" id="zVR-Uy-fX5"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIt-Ba-vSG">
+                                                <rect key="frame" x="368" y="0.0" width="46" height="30"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Lrn-iE-BIe"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99929267170000002" green="0.97262710330000002" blue="0.96012586359999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="XpM-TY-hNc" firstAttribute="width" secondItem="W1Z-g3-97Q" secondAttribute="width" multiplier="1:9" id="D9A-ko-ThJ"/>
+                                    <constraint firstAttribute="height" constant="43.666666666666664" id="HQa-Vq-hCK"/>
+                                    <constraint firstItem="F4m-fW-GHe" firstAttribute="width" secondItem="W1Z-g3-97Q" secondAttribute="width" multiplier="1:3" id="Raq-Ch-eN9"/>
+                                    <constraint firstItem="mdA-W4-TqX" firstAttribute="centerX" secondItem="W1Z-g3-97Q" secondAttribute="centerX" id="SDQ-9N-Lng"/>
+                                    <constraint firstItem="mdA-W4-TqX" firstAttribute="centerY" secondItem="W1Z-g3-97Q" secondAttribute="centerY" id="Tum-vQ-6FV"/>
+                                    <constraint firstItem="fIt-Ba-vSG" firstAttribute="width" secondItem="W1Z-g3-97Q" secondAttribute="width" multiplier="1:9" id="VTQ-ji-hhW"/>
+                                    <constraint firstItem="z77-Md-70G" firstAttribute="width" secondItem="W1Z-g3-97Q" secondAttribute="width" multiplier="1:9" id="ozl-d9-iFU"/>
+                                    <constraint firstItem="1q4-NP-W6F" firstAttribute="width" secondItem="W1Z-g3-97Q" secondAttribute="width" multiplier="1:3" id="qzk-g0-Ugj"/>
+                                </constraints>
+                            </view>
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gh-Dh-M4s" userLabel="Food Database Container View">
+                                <rect key="frame" x="0.0" y="84" width="414" height="652"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="WGs-hD-Vaq" kind="embed" id="wBy-ky-VQX"/>
+                                </connections>
+                            </containerView>
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3x-td-ipF" userLabel="Custom food Container View">
+                                <rect key="frame" x="0.0" y="87.666666666666686" width="414" height="648.33333333333326"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="GDw-M4-eKh" kind="embed" id="Hfm-4J-WND"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bhY-AL-Mps"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bhY-AL-Mps" firstAttribute="trailing" secondItem="3gh-Dh-M4s" secondAttribute="trailing" id="1oC-Vu-sZt"/>
+                            <constraint firstItem="bhY-AL-Mps" firstAttribute="trailing" secondItem="b3x-td-ipF" secondAttribute="trailing" id="3Td-se-djF"/>
+                            <constraint firstItem="bhY-AL-Mps" firstAttribute="bottom" secondItem="3gh-Dh-M4s" secondAttribute="bottom" id="FC4-FS-Igs"/>
+                            <constraint firstItem="b3x-td-ipF" firstAttribute="top" secondItem="W1Z-g3-97Q" secondAttribute="bottom" id="S75-MK-m3R"/>
+                            <constraint firstItem="W1Z-g3-97Q" firstAttribute="top" secondItem="bhY-AL-Mps" secondAttribute="top" id="SD0-vu-U1Q"/>
+                            <constraint firstItem="b3x-td-ipF" firstAttribute="leading" secondItem="bhY-AL-Mps" secondAttribute="leading" id="SZF-7W-28d"/>
+                            <constraint firstItem="bhY-AL-Mps" firstAttribute="bottom" secondItem="b3x-td-ipF" secondAttribute="bottom" id="Smr-hp-moh"/>
+                            <constraint firstItem="3gh-Dh-M4s" firstAttribute="top" secondItem="W1Z-g3-97Q" secondAttribute="bottom" constant="-3.6666666666666572" id="Z0c-2b-J7D"/>
+                            <constraint firstItem="bhY-AL-Mps" firstAttribute="trailing" secondItem="W1Z-g3-97Q" secondAttribute="trailing" id="ey7-RL-7r6"/>
+                            <constraint firstItem="W1Z-g3-97Q" firstAttribute="leading" secondItem="bhY-AL-Mps" secondAttribute="leading" id="scx-zL-Dti"/>
+                            <constraint firstItem="3gh-Dh-M4s" firstAttribute="leading" secondItem="bhY-AL-Mps" secondAttribute="leading" id="tFL-wd-htR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="m1z-5D-BgD"/>
+                    <connections>
+                        <outlet property="cuatomFoodContainerView" destination="b3x-td-ipF" id="R8r-fv-Z43"/>
+                        <outlet property="customFoodBtn" destination="F4m-fW-GHe" id="fgk-Da-zK1"/>
+                        <outlet property="foodDatabaseContainerView" destination="3gh-Dh-M4s" id="DN2-qR-cg3"/>
+                        <outlet property="foodDatabseBtn" destination="1q4-NP-W6F" id="nkD-5I-6wK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AHg-Q3-mcD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5355" y="677"/>
+        </scene>
         <!--CategoryListController-->
         <scene sceneID="yv7-e6-R1c">
             <objects>
                 <viewController title="CategoryListController" id="WGs-hD-Vaq" customClass="CategoryListController" customModule="DietDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uzo-K8-ZhW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="652"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rNy-HL-syN">
-                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="652"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="foodCatogoryCell" textLabel="Mhx-Df-Mik" style="IBUITableViewCellStyleDefault" id="EeS-Db-GpK">
@@ -2556,18 +2671,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UXI-w9-pL3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5477" y="677"/>
+            <point key="canvasLocation" x="6083" y="677"/>
         </scene>
         <!--FoodListViewController-->
         <scene sceneID="ipu-pk-qZ5">
             <objects>
                 <viewController title="FoodListViewController" id="Ln9-tg-HdN" customClass="FoodListViewController" customModule="DietDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2sd-rg-uhz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="632"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fD5-aO-19d">
-                                <rect key="frame" x="0.0" y="44" width="414" height="622"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="562"/>
                                 <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="foodCell" textLabel="TAB-CO-X6W" detailTextLabel="SA4-Ue-MzN" style="IBUITableViewCellStyleSubtitle" id="y6B-gx-kDW">
@@ -2606,7 +2721,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-YJ-9J9">
-                                <rect key="frame" x="0.0" y="666" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="562" width="414" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVB-W6-YNU">
                                         <rect key="frame" x="145" y="15" width="124" height="30"/>
@@ -2653,7 +2768,7 @@
                                 </constraints>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Hq1-pC-vlF">
-                                <rect key="frame" x="188.66666666666666" y="371.66666666666669" width="37" height="37"/>
+                                <rect key="frame" x="188.66666666666666" y="297.66666666666669" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QCs-Yx-BfP"/>
@@ -2681,18 +2796,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gEb-xV-wcn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6300.0000000000009" y="678.26086956521749"/>
+            <point key="canvasLocation" x="6833" y="677"/>
         </scene>
         <!--FoodDetailVC-->
         <scene sceneID="eQw-M5-nJU">
             <objects>
                 <viewController storyboardIdentifier="FoodDetailVC" title="FoodDetailVC" id="b5m-Rq-lV4" customClass="FoodDetailVC" customModule="DietDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4jQ-68-usW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="632"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9M-RI-W8L">
-                                <rect key="frame" x="0.0" y="44" width="414" height="622"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="562"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="6ZA-wl-gho">
                                         <rect key="frame" x="35" y="35" width="344" height="800"/>
@@ -2713,7 +2828,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trempettes" translatesAutoresizingMaskIntoConstraints="NO" id="mc7-ba-iTJ">
-                                                                        <rect key="frame" x="12.666666666666664" y="12.666666666666671" width="25" height="25"/>
+                                                                        <rect key="frame" x="12.666666666666664" y="12.666666666666664" width="25" height="25"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="25" id="Ou1-0h-65P"/>
                                                                             <constraint firstAttribute="width" constant="25" id="Xgi-tS-eVA"/>
@@ -2772,7 +2887,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weighing-machine2" translatesAutoresizingMaskIntoConstraints="NO" id="sA9-nh-vpY">
-                                                                        <rect key="frame" x="12.666666666666664" y="12.666666666666657" width="25" height="25"/>
+                                                                        <rect key="frame" x="12.666666666666664" y="12.666666666666671" width="25" height="25"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="25" id="GqD-gI-9e1"/>
                                                                             <constraint firstAttribute="width" constant="25" id="Pbj-Vp-cde"/>
@@ -2867,7 +2982,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Zpq-yR-2P4"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8u-ju-g9U">
-                                <rect key="frame" x="0.0" y="666" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="562" width="414" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txa-4H-Utr">
                                         <rect key="frame" x="157" y="15" width="100" height="30"/>
@@ -2920,7 +3035,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8W6-Lu-l4E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7100" y="679"/>
+            <point key="canvasLocation" x="7577" y="678"/>
         </scene>
         <!--DailyDetailVC-->
         <scene sceneID="S0p-Jx-LBi">
@@ -3043,6 +3158,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bm-dg-Nud" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4628" y="-944"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eaV-hV-Kfx">
+            <objects>
+                <viewController id="cvQ-eJ-lIW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y0r-bd-k0D">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="gPP-r5-5PC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ap7-3q-hTO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3265" y="1084"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="shs-mu-cFW">
+            <objects>
+                <viewController id="GDw-M4-eKh" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CvZ-Cs-BNs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="648.33333333333337"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Pi8-CR-Of4"/>
+                        <color key="backgroundColor" red="0.99929267170000002" green="0.97262710330000002" blue="0.96012586359999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W40-Do-vOY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6083" y="1386"/>
         </scene>
     </scenes>
     <designables>

@@ -29,6 +29,8 @@
 		F23C5456258260BE000D6281 /* DietDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C5455258260BE000D6281 /* DietDiaryUITests.swift */; };
 		F23C54A825826665000D6281 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F23C54A725826665000D6281 /* GoogleService-Info.plist */; };
 		F23C54B925826715000D6281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23C54B725826715000D6281 /* Main.storyboard */; };
+		F2440C0D26332FEC00BE00EC /* CustomDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2440C0C26332FEC00BE00EC /* CustomDataViewController.swift */; };
+		F2440C122633302200BE00EC /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2440C112633302200BE00EC /* DatabaseViewController.swift */; };
 		F24AF60325CAA4E6002B7F79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F24AF60225CAA4E5002B7F79 /* Assets.xcassets */; };
 		F24AF60B25CAA700002B7F79 /* jf-openhuninn-1.1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F24AF60A25CAA700002B7F79 /* jf-openhuninn-1.1.ttf */; };
 		F24B710C25C85CC9001F5FAC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B710B25C85CC9001F5FAC /* ListViewController.swift */; };
@@ -105,6 +107,8 @@
 		F23C5457258260BE000D6281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F23C54A725826665000D6281 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F23C54B825826715000D6281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F2440C0C26332FEC00BE00EC /* CustomDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDataViewController.swift; sourceTree = "<group>"; };
+		F2440C112633302200BE00EC /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
 		F24AF60225CAA4E5002B7F79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F24AF60A25CAA700002B7F79 /* jf-openhuninn-1.1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "jf-openhuninn-1.1.ttf"; sourceTree = "<group>"; };
 		F24B710B25C85CC9001F5FAC /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +298,8 @@
 			isa = PBXGroup;
 			children = (
 				F2A344A5259244A6009B4C81 /* CategoryListController.swift */,
+				F2440C112633302200BE00EC /* DatabaseViewController.swift */,
+				F2440C0C26332FEC00BE00EC /* CustomDataViewController.swift */,
 				F2A344AA259244CA009B4C81 /* FoodListViewController.swift */,
 				F2AA2431258FA20D00102A8C /* FoodDetailVC.swift */,
 			);
@@ -618,7 +624,9 @@
 				F217E57725983E0F00F8BE0C /* URLs.swift in Sources */,
 				F29A51BD26185B21005A5B92 /* PostData.swift in Sources */,
 				F2DF3A31258E48D2006B4361 /* CalendarVC.swift in Sources */,
+				F2440C122633302200BE00EC /* DatabaseViewController.swift in Sources */,
 				F217E56E25983DF300F8BE0C /* MemoryData.swift in Sources */,
+				F2440C0D26332FEC00BE00EC /* CustomDataViewController.swift in Sources */,
 				F2B6E1F9258274AA0008C3B7 /* UserInfoVC.swift in Sources */,
 				F217E5A22598715900F8BE0C /* UserInfoData.swift in Sources */,
 				F2ADF06625CBF8B400E275AB /* PrivacyPolicyViewController.swift in Sources */,
